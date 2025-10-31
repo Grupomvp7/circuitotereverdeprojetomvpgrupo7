@@ -1,0 +1,425 @@
+
+        :root {
+            --color-dark-brown: #443e2b; /* Fundo de seções e rodapé */
+            --color-light-bg: #ad7907; /* Fundo principal */
+            --color-olive-nav: #50553c; /* Barras de navegação */
+            --color-orange-button: #dc8c32; /* Botão de ação */
+            --color-text-light: #fff; /* Texto claro */
+            --color-text-dark: #333; /* Texto escuro */
+            --color-login-bg: #927a37; /* Fundo da área de login */
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--color-light-bg);
+            color: var(--color-text-dark);
+        }
+
+        /* Utilidades e Layout Base */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .dark-bg {
+            background-color: var(--color-dark-brown);
+            color: var(--color-text-light);
+        }
+
+        section {
+            padding: 40px 0;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        /* Nav Bars */
+        .top-bar {
+            background-color: var(--color-dark-brown);
+            color: var(--color-text-light);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            padding: 5px 0;
+        }
+
+        .secondary-nav {
+            background-color: var(--color-olive-nav);
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .secondary-nav .nav-links a {
+            margin: 0 10px;
+        }
+        
+        /* SEÇÃO HERO */
+        .hero-section .container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .hero-image-box {
+            width: 280px; /* Largura da imagem do Dedo de Deus */
+            height: 200px; /* Tamanho da imagem do Dedo de Deus */
+            background-color: #fffdfb; /* Cor de fundo da imagem da logo */
+            background-image: url('img/Logo.png'); 
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0; /* Impede que a imagem encolha */
+        }
+
+        .welcome-text {
+            flex-grow: 1;
+        }
+
+        .welcome-text h2 {
+            text-align: left;
+            margin-bottom: 5px;
+        }
+        
+        .hero-cards {
+            display: flex;
+            gap: 15px;
+            flex-shrink: 0;
+        }
+
+        .hero-cards .card-item {
+            background-color: #79715a;
+            padding: 15px;
+            width: 120px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            font-size: 0.9em;
+        }
+        
+        /* SEÇÃO TRILHAS */
+        .section-trilhas {
+            padding-top: 50px;
+        }
+
+        .trilhas-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .trilha-card {
+            background-color: #fff;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header-image {
+            height: 150px;
+            background-color: #999;
+            /* Placeholder para imagem de trilha */
+            background-image: url('caminho/para/imagem-trilha.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body h3 {
+            margin-top: 0;
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+        
+        .card-body .subtitle {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 20px;
+            font-size: 0.9em;
+        }
+
+        .card-body li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .card-body .dot {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background-color: var(--color-text-dark);
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .orange-button {
+            background-color: var(--color-orange-button);
+            color: var(--color-text-light);
+            border: none;
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        /* SEÇÃO CACHOEIRAS */
+        .cachoeiras-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cachoeira-item {
+            display: flex;
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .cachoeira-img-placeholder {
+            width: 100px;
+            height: 100px;
+            background-color: #aaa;
+            flex-shrink: 0;
+            margin-right: 15px;
+            /* Placeholder para imagem de cachoeira */
+            background-image: url('/img/cachoeira-rio-dos-frades.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .cachoeira-text h3 {
+            margin-top: 0;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        
+        .cachoeira-text p {
+            font-size: 0.9em;
+            margin: 0;
+        }
+        
+        /* SEÇÃO EVENTOS */
+        .eventos-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .evento-card {
+            width: 300px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .evento-img-placeholder {
+            height: 200px;
+            background-color: #999;
+            /* Placeholder para imagem de evento */
+            background-image: url('caminho/para/imagem-evento.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .saber-mais-button {
+            background-color: var(--color-olive-nav);
+            color: var(--color-text-light);
+            border: none;
+            width: 100%;
+            padding: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        
+        /* SEÇÃO SOBRE */
+        .sobre-content {
+            display: flex;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .sobre-image {
+            width: 450px;
+            height: 300px;
+            background-color: #6a634e;
+            /* Placeholder para imagem de sobre */
+            background-image: url('caminho/para/imagem-sobre.jpg');
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        .sobre-text {
+            flex-grow: 1;
+        }
+
+        .sobre-text h2 {
+            text-align: left;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        
+        .sobre-text p {
+            line-height: 1.6;
+        }
+
+        /* FOOTER/ADMIN */
+        .admin-footer {
+            padding-bottom: 40px;
+        }
+
+        .admin-area {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            padding: 40px 0;
+        }
+
+        .login-box {
+            background-color: var(--color-login-bg);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .login-box p {
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .login-box h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .login-box .input-group {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .login-box .input-group i { /* Ícone placeholder */
+            margin-right: 10px;
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .login-box input {
+            border: none;
+            padding: 5px 0;
+            width: 100%;
+            outline: none;
+        }
+        
+        .login-box .input-group.senha {
+            margin-bottom: 20px;
+        }
+
+        .admin-panel {
+            text-align: center;
+            padding-top: 30px;
+        }
+
+        .admin-panel p {
+            margin-bottom: 20px;
+        }
+
+        .admin-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .admin-btn {
+            background-color: var(--color-olive-nav);
+            color: var(--color-text-light);
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        /* Media Queries para Responsividade */
+        @media (max-width: 1050px) {
+            .hero-section .container,
+            .sobre-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-cards {
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+            .hero-image-box, .sobre-image {
+                margin: 0 auto;
+            }
+            
+            .sobre-text h2 {
+                text-align: center;
+            }
+            
+            .cachoeiras-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-area {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .trilhas-grid, .eventos-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .top-bar, .nav-links {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .top-bar {
+                align-items: flex-start;
+            }
+        }
