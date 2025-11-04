@@ -1,12 +1,12 @@
 
         :root {
-            --color-dark-brown: #443e2b; /* Fundo de seções e rodapé */
-            --color-light-bg: #ad7907; /* Fundo principal */
-            --color-olive-nav: #50553c; /* Barras de navegação */
-            --color-orange-button: #dc8c32; /* Botão de ação */
-            --color-text-light: #fff; /* Texto claro */
-            --color-text-dark: #333; /* Texto escuro */
-            --color-login-bg: #927a37; /* Fundo da área de login */
+          --color-dark-brown: #2b3a2d;       /* Fundo de seções e rodapé */
+          --color-light-bg: #e8f3ec;         /* Fundo principal */
+          --color-olive-nav: #4f7942;        /* Barras de navegação */
+          --color-orange-button: #f4a261;    /* Botão de ação */
+          --color-text-light: #ffffff;       /* Texto claro */
+          --color-text-dark: #1b1b1b;        /* Texto escuro */
+          --color-login-bg: #81a97d;         /* Fundo da área de login */
         }
 
         body {
