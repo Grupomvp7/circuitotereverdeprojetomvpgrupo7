@@ -83,7 +83,7 @@
             width: 280px; /* Largura da imagem do Dedo de Deus */
             height: 200px; /* Tamanho da imagem do Dedo de Deus */
             background-color: #fffdfb; /* Cor de fundo da imagem da logo */
-            background-image: url('img/Logo.png'); 
+            background-image: url('img/Dedo_de_Deus_vista_do_Soberbo.jpg'); 
             background-size: cover;
             background-position: center;
             flex-shrink: 0; /* Impede que a imagem encolha */
@@ -423,3 +423,32 @@
                 align-items: flex-start;
             }
         }
+        html {
+    scroll-behavior: smooth;
+}
+/* --- ESTILOS PARA O ÍCONE HOME --- */
+
+.top-bar {
+    /* Alinhamento ajustado: remove o logo-link complexo */
+    display: flex;
+    justify-content: flex-start; /* Alinha o ícone à esquerda */
+    align-items: center; 
+    gap: 30px; /* Adiciona espaço entre o ícone e a barra de links */
+}
+
+.home-icon-link {
+    color: var(--color-text-light);
+    font-size: 1.5em; /* Define um tamanho bom para o ícone */
+    margin-left: 5%; /* Ajusta o ícone para a mesma margem dos links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.home-icon-link:hover {
+    color: var(--color-accent); /* Destaque com o laranja/âmbar */
+}
+
+/* Ajusta o nav-links para empurrar o bloco para o lado oposto */
+.nav-links {
+    margin-left: auto; /* Empurra o nav-links para a direita, separando-o do ícone */
+}
