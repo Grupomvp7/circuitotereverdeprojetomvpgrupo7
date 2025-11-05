@@ -6,6 +6,8 @@
     <title>Terê Verde Online - Teresópolis</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
@@ -18,7 +20,12 @@
             <a href="cachoeiras.html">Cachoeiras</a>
             <a href="eventos.html">Eventos</a>
             <a href="#sobre">Sobre</a>
-            <a href="#">Login</a>
+            <a href="#login">Login</a>
+            <div class="search-bar">
+            <input type="text" placeholder="Buscar..." />
+            <i class="fas fa-magnifying-glass"></i>
+        </div>
+
         </nav>
     </header>
 
@@ -30,32 +37,153 @@
                 <p>Descubra as belezas naturais de Teresópolis. Trilhas, cachoeiras e muito mais. Clique e explore!</p>
             </div>
             <div class="hero-cards">
-                <div class="card-item">Trilhas</div>
-                <div class="card-item">Cachoeiras</div>
-                <div class="card-item">Eventos</div>
+                <a href="trilhas.html" class="card-item">Trilhas</a>
+                <a href="cachoeiras.html" class="card-item">Cachoeiras</a>
+                <a href="eventos.html" class="card-item">Eventos</a>
             </div>
         </div>
     </section>
 
-   
+
     <section class="section-eventos container">
         <h2>Eventos</h2>
         <div class="eventos-grid">
             <div class="evento-card">
-                <div class="evento-img-placeholder"></div>
+                <div class="evento-img-placeholder"
+                style="background-image: url('img/E_BANNER_C_R_06_03_16.jpg');"></div>
                 <button class="saber-mais-button">SABER MAIS</button>
             </div>
             <div class="evento-card">
-                <div class="evento-img-placeholder"></div>
+                <div class="evento-img-placeholder"
+                style="background-image: url('img/serveja.jpg');"></div>
                 <button class="saber-mais-button">SABER MAIS</button>
             </div>
             <div class="evento-card">
-                <div class="evento-img-placeholder"></div>
+                <div class="evento-img-placeholder"
+                style="background-image: url('img/feport.jpg');"></div>
                 <button class="saber-mais-button">SABER MAIS</button>
             </div>
         </div>
     </section>
 
+    <section class="section-sobre dark-bg" id="sobre">
+        <div class="sobre-content">
+            <div class="sobre-image"></div>
+            <div class="sobre-text">
+                <h2>Sobre</h2>
+                <p>Este Portal foi criado para que você possa explorar a beleza dos Parques de Teresópolis, facilitando seu acesso a informações sobre Trilhas, Cachoeiras e Eventos. Contamos com apoio do Parque Natural Municipal de Teresópolis. Nosso objetivo é tornar a sua visita a Teresópolis e região, o mais tranquila e agradável possível, de forma prática e segura.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer dark-bg">
+    <div class="container footer-grid">
+        
+        <div class="footer-col contact-info">
+            <h3>Terê Verde Online</h3>
+            <p>Descubra as melhores trilhas e cachoeiras de Teresópolis e região.</p>
+            <p>Email: contato@tereverdeonline.com</p>
+            <p>Telefone: (21) 99999-0000</p>
+        </div>
+
+        <div class="footer-col quick-links">
+            <h3>Acesso Rápido</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="trilhas.html">Trilhas</a></li>
+                <li><a href="eventos.html">Eventos</a></li>
+                <li><a href="#sobre">Sobre Nós</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col social-media">
+            <h3>Siga-nos</h3>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            </div>
+
+    </div>
+    
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2025 Terra Verde Online. Todos os direitos reservados. | Desenvolvido por Grupo MVP 7.</p>
+        </div>
+    </div>
+</footer>
+
+<div class="admin-area-section">
+    <div class="top-bar">
+        <span>WWW.TEREVERDEONLINE.COM</span>
+    </div>
+    <div class="admin-area container">
+        </div>
+</div>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+
+    <!-- NOVO: fundo da imagem do evento -->
+    <div id="modal-background" class="modal-background"></div>
+
+    <div class="modal-text">
+      <h2 id="modal-title">Título do Evento</h2>
+      <p id="modal-description">Aqui vai a descrição detalhada do evento selecionado.</p>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // Captura os botões
+const buttons = document.querySelectorAll('.saber-mais-button'); // Seleciona todos os botões "SABER MAIS"
+const modal = document.getElementById('modal');
+const closeBtn = document.querySelector('.close-btn');
+const modalTitle = document.getElementById('modal-title');
+const modalDesc = document.getElementById('modal-description');
+const modalBackground = document.getElementById('modal-background');
+
+const eventos = [
+  {
+    titulo: "Cultura de Raiz - Teresópolis 2025",
+    descricao: "O evento “Cultura de Raiz” celebra as tradições e manifestações culturais de Teresópolis e da região serrana. Com música ao vivo de artistas locais, apresentações de dança folclórica, rodas de viola, artesanato típico e oficinas culturais, é uma experiência única para toda a família. Além disso, os visitantes podem degustar comidas e bebidas regionais, explorar exposições de arte popular e conhecer de perto a riqueza cultural que preserva a identidade da cidade. Uma verdadeira imersão nas raízes de Teresópolis, promovendo cultura, educação e diversão em um só lugar.",
+    img: "img/E_BANNER_C_R_06_03_16.jpg"
+  },
+  {
+    titulo: "Serveja Terê - Teresópolis 2025",
+    descricao: "O Serveja é o festival que celebra a cultura da cerveja artesanal em Teresópolis, reunindo apaixonados por sabores únicos e experiências gastronômicas. O evento conta com degustações de cervejas de diferentes estilos, food trucks com pratos especiais, música ao vivo e atividades interativas para os visitantes. Uma oportunidade para conhecer produtores locais, trocar experiências e aproveitar momentos de lazer com amigos e familiares em um ambiente descontraído e animado.",
+    img: "img/serveja.jpg"
+  },
+  {
+    titulo: "Feport - Teresópolis 2025",
+    descricao: "A Feport é a tradicional Feira de Produtos e Eventos de Teresópolis, reunindo cultura, gastronomia e entretenimento em um só lugar. Em 2025, o evento promete atrações para toda a família: shows ao vivo com artistas locais, exposições de artesanato regional, comidas típicas, bebidas artesanais e atividades recreativas para crianças. É a oportunidade perfeita para conhecer e valorizar a riqueza cultural e natural da cidade, enquanto aproveita momentos de lazer com amigos e familiares. Venha fazer parte dessa festa que celebra o melhor de Teresópolis!",
+    img: "img/feport.jpg"
+  }
+];
+
+buttons.forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    modalTitle.textContent = eventos[index].titulo;
+    modalDesc.textContent = eventos[index].descricao;
+    modalBackground.style.backgroundImage = `url('${eventos[index].img}')`;
+    modal.style.display = 'flex';
+  });
+});
+
+closeBtn.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+window.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
+</script>
 
 </body>
 </html>

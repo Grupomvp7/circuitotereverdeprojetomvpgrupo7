@@ -54,7 +54,7 @@
             gap: 15px;
         }
 
-        .nav-links a {
+        .nav-links a:visited {
             color: var(--color-text-light);
             text-decoration: none;
             padding: 5px 0;
@@ -62,7 +62,7 @@
 
         .secondary-nav {
             background-color: var(--color-olive-nav);
-            padding: 10px 0;
+            padding: 10px 0; 
             display: flex;
             justify-content: center;
             margin-top: 20px;
@@ -101,17 +101,19 @@
         .hero-cards {
             display: flex;
             gap: 15px;
-            flex-shrink: 0;
+            flex-shrink: 0;                       
         }
 
         .hero-cards .card-item {
-            background-color: #79715a;
+            background-color: #1fad2a;
+            color: var(--color-text-light); /* deixa o texto branco */
             padding: 15px;
             width: 120px;
             text-align: center;
             cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 4px rgba(230, 255, 2, 0.979);
             font-size: 0.9em;
+            border-radius: 15px;
         }
         
         /* SEÇÃO TRILHAS */
@@ -136,7 +138,7 @@
             height: 150px;
             background-color: #999;
             /* Placeholder para imagem de trilha */
-            background-image: url('caminho/para/imagem-trilha.jpg');
+            background-image: url("");
             background-size: cover;
             background-position: center;
         }
@@ -452,3 +454,117 @@
 .nav-links {
     margin-left: auto; /* Empurra o nav-links para a direita, separando-o do ícone */
 }
+/* --- ESTILOS PARA O ÍCONE DE PESQUISA --- */
+
+.search-icon-link {
+    color: var(--color-text-light);
+    font-size: 0.9em; /* Um pouco maior que o texto, mas menor que o ícone home */
+    margin-left: 10px; /* Espaço para separá-lo do link 'Login' */
+    transition: color 0.3s ease;
+}
+
+.search-icon-link:hover {
+    color: var(--color-accent); /* Destaque ao passar o mouse */
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 2px 7px;
+    margin-left: 10px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 0.9em;
+    width: 120px;
+}
+
+.search-bar i {
+    color: var(--color-olive-nav);
+    margin-left: 5px;
+    cursor: pointer;
+}
+/* --- ESTILOS DO MODAL (Método :target) --- */
+
+/* Modal */
+.modal {
+  display: none; /* escondido por padrão */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  font-family: 'Poppins', sans-serif;
+}
+
+.modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
+  color: #fff;
+}
+
+.modal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.3); /* deixa mais escuro */
+  z-index: 0;
+}
+
+.modal-text {
+  position: relative;
+  z-index: 1;
+  padding: 25px;
+  background-color: rgba(0,0,0,0.5); /* leve fundo preto atrás do texto */
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 0 0 15px 15px;
+}
+
+.modal-text h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.modal-text p {
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  z-index: 2;
+}
+.close-btn:hover {
+  color: #f4a261; /* cor de destaque ao passar o mouse */
+}
+
+

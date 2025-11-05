@@ -7,7 +7,19 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
+
 <body>
+    <div id="loginModal" class="modal">
+        <a href="#" class="modal-overlay"></a>
+
+        <div class="modal-content">
+            <a href="#close" class="close-button" id="close-modal-btn">&times;</a>
+            <div class="login-box modal-login-box">
+                <p>Administrador</p>
+                <h3>LOGIN</h3>
+            </div>
+        </div>
+    </div>
 
     <header class="top-bar">
         <a href="index.html" class="home-icon-link">
@@ -18,7 +30,12 @@
             <a href="cachoeiras.html">Cachoeiras</a>
             <a href="eventos.html">Eventos</a>
             <a href="#sobre">Sobre</a>
-            <a href="#">Login</a>
+            <a href="#loginModal" id="open-login-btn">Login</a>
+            <div class="search-bar">
+            <input type="text" placeholder="Buscar..." />
+            <i class="fas fa-magnifying-glass"></i>
+        </div>
+
         </nav>
     </header>
 
@@ -30,9 +47,9 @@
                 <p>Descubra as belezas naturais de Teresópolis. Trilhas, cachoeiras e muito mais. Clique e explore!</p>
             </div>
             <div class="hero-cards">
-                <div class="card-item">Trilhas</div>
-                <div class="card-item">Cachoeiras</div>
-                <div class="card-item">Eventos</div>
+                <a href="trilhas.html" class="card-item">Trilhas</a>
+                <a href="cachoeiras.html" class="card-item">Cachoeiras</a>
+                <a href="eventos.html" class="card-item">Eventos</a>
             </div>
         </div>
     </section>
@@ -183,37 +200,50 @@
         </div>
     </section>
 
-    <footer class="admin-footer">
-        <div class="top-bar">
-            <span>WWW.TEREVERDEONLINE.COM</span>
+    <footer class="main-footer dark-bg">
+    <div class="container footer-grid">
+        
+        <div class="footer-col contact-info">
+            <h3>Terê Verde Online</h3>
+            <p>Descubra as melhores trilhas e cachoeiras de Teresópolis e região.</p>
+            <p>Email: contato@tereverdeonline.com</p>
+            <p>Telefone: (21) 99999-0000</p>
         </div>
-        <div class="admin-area container">
-            <div class="login-box">
-                <p>Administrador</p>
-                <h3>LOGIN</h3>
-                
-                <div class="input-group">
-                    <i>&#9993;</i> <input type="email" placeholder="E-mail">
-                </div>
-                
-                <div class="input-group senha">
-                    <i>&#128274;</i> <input type="password" placeholder="Senha">
-                </div>
-                
-                <div class="input-group" style="background-color: var(--color-dark-brown);">
-                    <input type="button" value="Entrar" style="background: none; color: white; cursor: pointer; padding: 0;">
-                </div>
-            </div>
-            
-            <div class="admin-panel">
-                <p>Painel do Administrador</p>
-                <div class="admin-buttons">
-                    <button class="admin-btn">Gerenciar Trilhas</button>
-                    <button class="admin-btn">Gerenciar Eventos</button>
-                </div>
-            </div>
+
+        <div class="footer-col quick-links">
+            <h3>Acesso Rápido</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="trilhas.html">Trilhas</a></li>
+                <li><a href="eventos.html">Eventos</a></li>
+                <li><a href="#sobre">Sobre Nós</a></li>
+            </ul>
         </div>
-    </footer>
+
+        <div class="footer-col social-media">
+            <h3>Siga-nos</h3>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            </div>
+
+    </div>
+    
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2025 Terra Verde Online. Todos os direitos reservados. | Desenvolvido por Grupo MVP 7.</p>
+        </div>
+    </div>
+</footer>
+
+<div class="admin-area-section">
+    <div class="top-bar">
+        <span>WWW.TEREVERDEONLINE.COM</span>
+    </div>
+    <div class="admin-area container">
+</div>
 
 </body>
 </html>
