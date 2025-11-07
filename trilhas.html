@@ -1,179 +1,344 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terê Verde Online - Teresópolis</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-</head>
-<body>
-    <div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close-button" id="close-modal-btn">&times;</span>
-        
-        <div class="login-box modal-login-box">
-            <p>Administrador</p>
-            <h3>LOGIN</h3>
-            
-            <div class="input-group">
-                <i>&#9993;</i> <input type="email" placeholder="E-mail">
-            </div>
-            
-            <div class="input-group senha">
-                <i>&#128274;</i> <input type="password" placeholder="Senha">
-            </div>
-            
-            <div class="input-group" style="background-color: var(--color-dark-brown);">
-                <input type="button" value="Entrar" style="background: none; color: white; cursor: pointer; padding: 0;">
-            </div>
-        </div>
-        </div>
-</div>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trilhas de Teresópolis</title>
+    <link rel="stylesheet" href="styles.css" />
+    </head>
+
+<body id="topo">
 
     <header class="top-bar">
-        <a href="index.html" class="home-icon-link">
-            <i class="fas fa-house"></i>
-        </a>
-        <nav class="nav-links">
-            <a href="trilhas.html">Trilhas</a>
-            <a href="cachoeiras.html">Cachoeiras</a>
-            <a href="eventos.html">Eventos</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#" id="open-login-btn">Login</a>
-            <div class="search-bar">
-            <input type="text" placeholder="Buscar..." />
-            <i class="fas fa-magnifying-glass"></i>
+        <div class="logo">Trilhas de Teresópolis</div>
+
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
+        <nav class="nav-links" id="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#cachoeiras">Cachoeiras</a>
+            <a href="index.html#eventos">Eventos</a>
         </nav>
     </header>
 
-    <section class="hero-section dark-bg">
-        <div class="container">
-            <div class="hero-image-box"></div>
-            <div class="welcome-text">
-                <h2>Bem Vindo a Terê Verde Online</h2>
-                <p>Descubra as belezas naturais de Teresópolis. Trilhas, cachoeiras e muito mais. Clique e explore!</p>
-            </div>
-            <div class="hero-cards">
-                <a href="trilhas.html" class="card-item">Trilhas</a>
-                <a href="cachoeiras.html" class="card-item">Cachoeiras</a>
-                <a href="eventos.html" class="card-item">Eventos</a>
-            </div>
-        </div>
-    </section>
+    <main class="container trilhas">
 
-    <section class="section-trilhas container">
-        <h2>Trilhas</h2>
-        <div class="trilhas-grid">
-            <div class="trilha-card">
-                <div class="card-header-image"></div>
-                <div class="card-body">
-                    <h3>Trilha da Primavera</h3>
-                    <p class="subtitle">Trilha da Primavera</p>
-                    <ul>
-                        <li><span class="dot"></span> Extensão: 500m</li>
-                        <li><span class="dot"></span> Altitude: 900 a 1.000m</li>
-                        <li><span class="dot"></span> Duração: 15 a 20 minutos</li>
-                        <li><span class="dot"></span> Nível de Dificuldade: Fácil</li>
-                    </ul>
-                    <button class="orange-button">QUERO ESSA</button>
+        <section class="parque-section" id="trespicos">
+            <h1>Parque Estadual dos Três Picos</h1>
+            <p class="parque-descricao">
+                O Parque Estadual dos Três Picos é uma das maiores e mais importantes unidades de conservação do estado do Rio de Janeiro,
+                abrangendo áreas de Nova Friburgo, Teresópolis e Cachoeiras de Macacu. É conhecido por suas formações rochosas impressionantes,
+                trilhas deslumbrantes e ampla biodiversidade.
+            </p>
+
+            <section class="trilha-section" id="dragao">
+                <h2>Trilha da Cabeça do Dragão</h2>
+
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <img src="img/foto 2.webp" alt="Trilha da Cabeça do Dragão" />
+                        <img src="img/foto 3.webp" alt="Trilha da Cabeça do Dragão" />
+                        <img src="img/foto 4.webp" alt="Trilha da Cabeça do Dragão" />
+                        <img src="img/foto 5.webp" alt="Trilha da Cabeça do Dragão" />
+                        <img src="img/foto 6.webp" alt="Trilha da Cabeça do Dragão" />
+                        <img src="img/foto 7.webp" alt="Trilha da Cabeça do Dragão" />
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Anterior">&#10094;</button>
+                    <button class="carousel-btn next" aria-label="Próximo">&#10095;</button>
                 </div>
-            </div>
-            <div class="trilha-card">
-                <div class="card-header-image"></div>
-                <div class="card-body">
-                    <h3>Mirante Dedo de Deus</h3>
-                    <p class="subtitle">Mirante Teresópolis</p>
-                    <ul>
-                        <li><span class="dot"></span> 3.1km</li>
-                        <li><span class="dot"></span> 100m</li>
-                        <li><span class="dot"></span> 3.5-4h</li>
-                    </ul>
-                    <button class="orange-button">QUERO ESSA</button>
+
+                <p class="descricao-trilha">
+                    A Trilha da Cabeça do Dragão é uma das caminhadas mais impressionantes e cênicas do Parque Estadual dos Três Picos, em Teresópolis (RJ). Situada em meio à exuberante Mata Atlântica de montanha, ela conduz o visitante a um dos mirantes naturais mais espetaculares da região serrana.<br><br>
+                    Com cerca de 3,5 km de extensão (ida e volta) e nível de dificuldade moderado a difícil, a trilha exige preparo físico intermediário, pois apresenta trechos íngremes e curtos lances de trepação sobre rochas. Durante o trajeto, o aventureiro atravessa áreas sombreadas de floresta, campos de altitude e mirantes naturais que revelam aos poucos o visual majestoso da Serra dos Órgãos.<br><br>
+                    O ponto alto do percurso é o cume da Cabeça do Dragão, uma formação rochosa que, vista de certos ângulos, lembra o perfil de um dragão.<br><br>
+                    Com início próximo à portaria do Parque Estadual dos Três Picos, o acesso é simples e bem sinalizado. O local conta com estacionamento, área de recepção e controle ambiental administrados pelo INEA (Instituto Estadual do Ambiente).
+                </p>
+
+                <h3>Características Gerais</h3>
+                <table>
+                    <thead>
+                        <tr><th>Item</th><th>Informação</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Localização</td><td>Parque Estadual dos Três Picos (Teresópolis / RJ)</td></tr>
+                        <tr><td>Altitude do cume</td><td>Aprox. 1.470 m</td></tr>
+                        <tr><td>Extensão</td><td>3,5 km (ida e volta)</td></tr>
+                        <tr><td>Tempo médio</td><td>2h30 a 4h</td></tr>
+                        <tr><td>Nível de dificuldade</td><td>Moderado a difícil</td></tr>
+                        <tr><td>Tipo de atividade</td><td>Trilha de montanha / caminhada ecológica</td></tr>
+                        <tr><td>Acesso</td><td>Estrada para o Vale dos Frades — Portaria Teresópolis do PETP</td></tr>
+                        <tr><td>Ponto final</td><td>Cume da Cabeça do Dragão (mirante natural)</td></tr>
+                        <tr><td>Ambiente natural</td><td>Mata Atlântica montana e campos de altitude</td></tr>
+                        <tr><td>Sinalização</td><td>Boa — setas e totens de pedra</td></tr>
+                        <tr><td>Melhor época</td><td>Abril a setembro</td></tr>
+                        <tr><td>Infraestrutura</td><td>Estacionamento e posto do INEA</td></tr>
+                        <tr><td>Administração</td><td>INEA – Instituto Estadual do Ambiente</td></tr>
+                        <tr><td>Indicação</td><td>Trilheiros intermediários ou experientes</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>Dicas</h3>
+                <ul>
+                    <li>⏰ Comece entre 6h e 8h da manhã para aproveitar o nascer do sol.</li>
+                    <li>🌤️ Evite dias de neblina — a visibilidade é essencial.</li>
+                    <li>🥾 Use bota ou tênis de trilha com boa tração.</li>
+                    <li>💧 Leve pelo menos 1 litro de água por pessoa.</li>
+                    <li>🍎 Leve lanches leves como frutas secas e barras de cereal.</li>
+                    <li>📸 No cume há formações perfeitas para fotos panorâmicas.</li>
+                    <li>⚠️ Cuidado em trechos de rocha, especialmente após chuva.</li>
+                    <li>🕊️ Respeite o ambiente e evite sons altos.</li>
+                    <li>🧭 Pode ser feita autoguiada ou com guia credenciado.</li>
+                </ul>
+            </section>
+
+            <section class="trilha-section" id="elefante">
+                <h2>Trilha da Pedra do Elefante</h2>
+
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <img src="img/elefante1.jpg" alt="Trilha da Pedra do Elefante" />
+                        <img src="img/elefante2 (1).jpg" alt="Trilha da Pedra do Elefante" />
+                        <img src="img/elefante2 (2).jpg" alt="Trilha da Pedra do Elefante" />
+                        <img src="img/elefante2 (3).jpg" alt="Trilha da Pedra do Elefante" />
+                        <img src="img/elefante2 (4).jpg" alt="Trilha da Pedra do Elefante" />
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Anterior">&#10094;</button>
+                    <button class="carousel-btn next" aria-label="Próximo">&#10095;</button>
                 </div>
-            </div>
-            <div class="trilha-card">
-                <div class="card-header-image"></div>
-                <div class="card-body">
-                    <h3>Mirante Dedo de Deus</h3>
-                    <p class="subtitle">Mirante Teresópolis</p>
-                    <ul>
-                        <li><span class="dot"></span> 3.1km</li>
-                        <li><span class="dot"></span> 100m</li>
-                        <li><span class="dot"></span> 3.5-4h</li>
-                    </ul>
-                    <button class="orange-button">QUERO ESSA</button>
+
+                <p class="descricao-trilha">
+                    A Trilha da Pedra do Elefante é uma das mais conhecidas e encantadoras do Parque Estadual dos Três Picos (PETP).
+                    Localizada próxima ao Mirante do Soberbo, em Teresópolis, ela oferece uma caminhada curta, mas com visual de tirar
+                    o fôlego. Ideal para quem busca uma experiência leve de contato com a natureza.<br><br>
+                    Com cerca de 1,5 km (somente ida) e nível moderado, apresenta subidas curtas com degraus naturais e trechos de pedra.
+                    O topo, a aproximadamente 1.180 metros de altitude, revela uma vista panorâmica impressionante da Serra dos Órgãos,
+                    incluindo o Dedo de Deus e a Pedra do Sino.<br><br>
+                    O acesso é feito pelo Mirante do Soberbo, ao lado da BR-116, e a trilha é bem sinalizada e mantida pelo INEA.
+                </p>
+
+                <h3>Características Gerais</h3>
+                <table>
+                    <thead>
+                        <tr><th>Item</th><th>Informação</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Localização</td><td>Parque Estadual dos Três Picos (Teresópolis / RJ)</td></tr>
+                        <tr><td>Altitude do cume</td><td>Aprox. 1.180 m</td></tr>
+                        <tr><td>Extensão</td><td>1,5 km (somente ida)</td></tr>
+                        <tr><td>Tempo médio</td><td>1h30 a 2h (ida e volta)</td></tr>
+                        <tr><td>Nível de dificuldade</td><td>Moderado</td></tr>
+                        <tr><td>Tipo de atividade</td><td>Trilha ecológica / contemplação</td></tr>
+                        <tr><td>Acesso</td><td>Mirante do Soberbo — BR-116 (Teresópolis–Guapimirim)</td></tr>
+                        <tr><td>Ponto final</td><td>Topo da Pedra do Elefante</td></tr>
+                        <tr><td>Ambiente natural</td><td>Mata Atlântica de altitude</td></tr>
+                        <tr><td>Sinalização</td><td>Boa — caminho bem visível</td></tr>
+                        <tr><td>Melhor época</td><td>Março a setembro</td></tr>
+                        <tr><td>Infraestrutura</td><td>Estacionamento, lanchonetes e banheiros no Mirante</td></tr>
+                        <tr><td>Administração</td><td>INEA – Instituto Estadual do Ambiente</td></tr>
+                        <tr><td>Indicação</td><td>Iniciantes e aventureiros ocasionais</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>Dicas</h3>
+                <ul>
+                    <li>⏰ Comece entre 6h e 8h da manhã para aproveitar o clima fresco.</li>
+                    <li>🚫 Evite horários quentes — o sol é forte após 10h.</li>
+                    <li>🌤️ Verifique o tempo: neblina ou chuva reduzem a visibilidade.</li>
+                    <li>🥾 Use calçado adequado — tênis ou bota de trilha com boa aderência.</li>
+                    <li>💧 Leve água e lanche leve — não há pontos de abastecimento.</li>
+                    <li>📸 O cume revela vista para o Dedo de Deus e Pedra do Sino.</li>
+                    <li>♻️ Leve seu lixo de volta e evite ruídos altos.</li>
+                </ul>
+            </section>
+
+            <section class="trilha-section" id="doisbicos">
+                <h2>Trilha dos Dois Bicos</h2>
+
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <img src="img/doisbicos1 (1).png" alt="Trilha dos Dois Bicos" />
+                        <img src="img/doisbicos1 (2).png" alt="Trilha dos Dois Bicos" />
+                        <img src="img/doisbicos1 (3).png" alt="Trilha dos Dois Bicos" />
+                        <img src="img/doisbicos1 (4).png" alt="Trilha dos Dois Bicos" />
+                        <img src="img/doisbicos1 (5).png" alt="Trilha dos Dois Bicos" />
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Anterior">&#10094;</button>
+                    <button class="carousel-btn next" aria-label="Próximo">&#10095;</button>
                 </div>
+
+                <p class="descricao-trilha">
+                    A Trilha dos Dois Bicos é uma das mais marcantes do Parque Estadual dos Três Picos, situada no Vale das Sebastianas,
+                    em Teresópolis (RJ). O percurso tem cerca de 6 a 8 km (ida e volta), com nível de dificuldade moderado, e leva ao
+                    topo de duas formações rochosas que proporcionam uma vista panorâmica espetacular de 360° da Serra dos Órgãos.<br><br>
+                    O trajeto alterna trechos de estrada de terra, pasto e mata nativa, com subidas exigentes e exposição ao sol.
+                    O esforço é recompensado por um visual incrível — ideal para fotos e contemplação. A trilha é mantida pelo INEA e é
+                    indicada para aventureiros com alguma experiência.<br><br>
+                    O acesso se dá pela região do Vale das Sebastianas, dentro dos limites do Parque Estadual dos Três Picos.
+                </p>
+
+                <h3>Características Gerais</h3>
+                <table>
+                    <thead>
+                        <tr><th>Item</th><th>Informação</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Localização</td><td>Parque Estadual dos Três Picos – Vale das Sebastianas (Teresópolis / RJ)</td></tr>
+                        <tr><td>Altitude do cume</td><td>Aprox. 1.520 m</td></tr>
+                        <tr><td>Extensão</td><td>6 a 8 km (ida e volta)</td></tr>
+                        <tr><td>Tempo médio</td><td>4h a 6h</td></tr>
+                        <tr><td>Nível de dificuldade</td><td>Moderado</td></tr>
+                        <tr><td>Tipo de atividade</td><td>Caminhada de montanha / trilha panorâmica</td></tr>
+                        <tr><td>Acesso</td><td>Estrada de terra até o Vale das Sebastianas</td></tr>
+                        <tr><td>Ponto final</td><td>Cume dos Dois Bicos (mirante natural)</td></tr>
+                        <tr><td>Ambiente natural</td><td>Pastos, mata nativa e rochas graníticas</td></tr>
+                        <tr><td>Sinalização</td><td>Parcial — requer atenção e navegação por GPS</td></tr>
+                        <tr><td>Melhor época</td><td>Abril a setembro</td></tr>
+                        <tr><td>Infraestrutura</td><td>Sem estrutura — leve o necessário</td></tr>
+                        <tr><td>Administração</td><td>INEA – Instituto Estadual do Ambiente</td></tr>
+                        <tr><td>Indicação</td><td>Trilheiros intermediários e experientes</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>Dicas</h3>
+                <ul>
+                    <li>⏰ Comece entre 6h e 8h para aproveitar o clima fresco.</li>
+                    <li>🌧️ Evite dias de chuva — o terreno fica escorregadio.</li>
+                    <li>💧 Leve no mínimo 1,5L de água por pessoa.</li>
+                    <li>🥾 Use calçado com boa tração — há trechos de pedra e pasto.</li>
+                    <li>☀️ Use protetor solar, boné e óculos escuros.</li>
+                    <li>🍎 Leve lanches leves e energéticos.</li>
+                    <li>📸 O cume tem vista para o Dedo de Deus e Pedra do Elefante.</li>
+                    <li>🧭 Use GPS ou guia local — a trilha tem bifurcações.</li>
+                    <li>🕊️ Preserve o ambiente e traga seu lixo de volta.</li>
+                </ul>
+            </section>
+        </section>
+
+
+        <section class="parque-section" id="montanhas">
+            <h1>Parque Natural Montanhas de Teresópolis</h1>
+            <p class="parque-descricao">
+                Localizado na região rural de Santa Rita, o Parque Natural Montanhas de Teresópolis é uma unidade de conservação municipal
+                que oferece trilhas, cachoeiras e mirantes com vistas incríveis para a Serra dos Órgãos. É um destino ideal para ecoturismo e observação de fauna e flora.
+            </p>
+
+            <section class="trilha-section" id="trilha-exemplo1">
+                <h2>Trilha Exemplo 1</h2>
+                </section>
+
+            <section class="trilha-section" id="trilha-exemplo2">
+                <h2>Trilha Exemplo 2</h2>
+            </section>
+
+            <section class="trilha-section" id="trilha-exemplo3">
+                <h2>Trilha Exemplo 3</h2>
+            </section>
+        </section>
+
+        <section class="parque-section" id="serraorgaos">
+            <h1>Parque Nacional da Serra dos Órgãos</h1>
+            <p class="parque-descricao">
+                O Parque Nacional da Serra dos Órgãos (PARNASO) é uma das mais antigas unidades de conservação do Brasil,
+                famoso pelo icônico Dedo de Deus e por suas trilhas lendárias como a Travessia Petrópolis-Teresópolis.
+            </p>
+
+            <section class="trilha-section" id="trilha-exemplo4">
+                <h2>Trilha Exemplo 1</h2>
+            </section>
+
+            <section class="trilha-section" id="trilha-exemplo5">
+                <h2>Trilha Exemplo 2</h2>
+            </section>
+
+            <section class="trilha-section" id="trilha-exemplo6">
+                <h2>Trilha Exemplo 3</h2>
+            </section>
+        </section>
+
+        <a href="#topo" id="voltarTopo" class="voltar-topo" aria-label="Voltar ao topo da página">↑</a>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h3>Trilhas de Teresópolis</h3>
+                <p>Explore, descubra e se conecte com a natureza.</p>
+            </div>
+
+            <div class="footer-social">
+                <a href="#"><i class="fa-brands fa-instagram" aria-label="Instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook" aria-label="Facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp" aria-label="WhatsApp"></i></a>
             </div>
         </div>
-    </section>
 
-    <nav class="secondary-nav">
-        <div class="nav-links">
-            <a href="trilhas.html">Trilhas</a>
-            <a href="cachoeiras.html">Cachoeiras</a>
-            <a href="eventos.html">Eventos</a>
-            <a href="#">Login</a>
+        <div class="footer-bottom">
+            <p>© 2025 Trilhas de Teresópolis</p>
         </div>
-    </nav>
+    </footer>
 
-    <section class="section-sobre dark-bg" id="sobre">
-        <div class="sobre-content">
-            <div class="sobre-image"></div>
-            <div class="sobre-text">
-                <h2>Sobre</h2>
-                <p>Este Portal foi criado para que você possa explorar a beleza dos Parques de Teresópolis, facilitando seu acesso a informações sobre Trilhas, Cachoeiras e Eventos. Contamos com apoio do Parque Natural Municipal de Teresópolis. Nosso objetivo é tornar a sua visita a Teresópolis e região, o mais tranquila e agradável possível, de forma prática e segura.</p>
-            </div>
-        </div>
-    </section>
+    <script>
+        // ===== MENU HAMBÚRGUER =====
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
 
-    <footer class="main-footer dark-bg">
-    <div class="container footer-grid">
-        
-        <div class="footer-col contact-info">
-            <h3>Terê Verde Online</h3>
-            <p>Descubra as melhores trilhas e cachoeiras de Teresópolis e região.</p>
-            <p>Email: contato@tereverdeonline.com</p>
-            <p>Telefone: (21) 99999-0000</p>
-        </div>
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
 
-        <div class="footer-col quick-links">
-            <h3>Acesso Rápido</h3>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="trilhas.html">Trilhas</a></li>
-                <li><a href="eventos.html">Eventos</a></li>
-                <li><a href="#sobre">Sobre Nós</a></li>
-            </ul>
-        </div>
+        // ===== BOTÃO VOLTAR AO TOPO =====
+        const btnTopo = document.getElementById('voltarTopo');
 
-        <div class="footer-col social-media">
-            <h3>Siga-nos</h3>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-            </div>
+        if (btnTopo) {
+            // Inicializa o botão como 'hidden' se já não estiver assim no CSS
+            btnTopo.classList.add('hidden');
 
-    </div>
-    
-    <div class="footer-bottom">
-        <div class="container">
-            <p>&copy; 2025 Terra Verde Online. Todos os direitos reservados. | Desenvolvido por Grupo MVP 7.</p>
-        </div>
-    </div>
-</footer>
+            window.addEventListener('scroll', () => {
+                // Remove a classe 'hidden' após rolar 300px
+                if (window.scrollY > 300) btnTopo.classList.remove('hidden');
+                else btnTopo.classList.add('hidden');
+            });
 
-<div class="admin-area-section">
-    <div class="top-bar">
-        <span>WWW.TEREVERDEONLINE.COM</span>
-    </div>
-    <div class="admin-area container">
-        </div>
-</div>
+            btnTopo.addEventListener('click', e => {
+                e.preventDefault();
+                // O 'href="#topo"' já funcionaria, mas o JS garante o smooth scroll
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
 
+        // ===== CARROSSEL =====
+        document.querySelectorAll('.carousel').forEach(carousel => {
+            const track = carousel.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const nextBtn = carousel.querySelector('.next');
+            const prevBtn = carousel.querySelector('.prev');
+            let currentIndex = 0;
+
+            const updateSlide = () => {
+                // Garante que o track existe e tem slides
+                if (!track || slides.length === 0) return;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            };
+
+            if (nextBtn && prevBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    updateSlide();
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    updateSlide();
+                });
+            }
+        });
+    </script>
 </body>
 </html>
