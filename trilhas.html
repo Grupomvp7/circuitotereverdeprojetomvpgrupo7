@@ -12,13 +12,18 @@
     <header class="top-bar">
         <div class="logo">Trilhas de Teresópolis</div>
 
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+        <!-- checkbox invisivel -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" />
 
-        <nav class="nav-links" id="nav-links">
+        <!-- Icone do menu -->
+
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="nav-links">
             <a href="index.html">Home</a>
             <a href="index.html#cachoeiras">Cachoeiras</a>
             <a href="index.html#eventos">Eventos</a>
@@ -412,6 +417,8 @@
             </section>
         </section>
 
+----<!-- PARQUE NACIONAL DA SERRA DOS ÓRGÃOS -->
+
         <section class="parque-section" id="serraorgaos">
             <h1>Parque Nacional da Serra dos Órgãos</h1>
             <p class="parque-descricao">
@@ -598,36 +605,6 @@
     </footer>
 
     <script>
-        // ===== MENU HAMBÚRGUER =====
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
-
-        if (hamburger && navLinks) {
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-        }
-
-        // ===== BOTÃO VOLTAR AO TOPO =====
-        const btnTopo = document.getElementById('voltarTopo');
-
-        if (btnTopo) {
-            // Inicializa o botão como 'hidden' se já não estiver assim no CSS
-            btnTopo.classList.add('hidden');
-
-            window.addEventListener('scroll', () => {
-                // Remove a classe 'hidden' após rolar 300px
-                if (window.scrollY > 300) btnTopo.classList.remove('hidden');
-                else btnTopo.classList.add('hidden');
-            });
-
-            btnTopo.addEventListener('click', e => {
-                e.preventDefault();
-                // O 'href="#topo"' já funcionaria, mas o JS garante o smooth scroll
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-
         // ===== CARROSSEL =====
         document.querySelectorAll('.carousel').forEach(carousel => {
             const track = carousel.querySelector('.carousel-track');

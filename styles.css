@@ -569,6 +569,34 @@
 
 /* ======== 1. Página de Trilhas ======= */
 
+/* ===== ÍCONE DO MENU ===== */
+.menu-toggle {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+  z-index: 1001; /* garante que o botão fica por cima do menu */
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* ===== MENU PADRÃO (desktop) ===== */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+
 /* ===== CONTAINER PRINCIPAL DO CONTEÚDO ===== */
 .trilhas.container {
     max-width: 1200px;
@@ -863,4 +891,46 @@ footer a:hover {
     .carousel-track img {
         height: 320px;
     }
+
+     .hamburger {
+    display: flex;
+  }
+
+    .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #1b4332;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+  }
+
+    .nav-links a {
+        color: #fff;
+        padding: 10px;
+        text-decoration: none;
+    }
+
+    /* ===== QUANDO MARCAR O CHECKBOX, O MENU APARECE ===== */
+    .menu-toggle:checked + .hamburger + .nav-links {
+        display: flex;
+        margin-top: 15px; /* afasta o menu do x */
+    }
+
+    .menu-toggle:checked + .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
 }
+
+    .menu-toggle:checked + .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+    .menu-toggle:checked + .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+}
+
