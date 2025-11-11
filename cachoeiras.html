@@ -1,75 +1,330 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terê Verde Online - Teresópolis</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-</head>
-<body>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cachoeiras de Teresópolis</title>
+    <link rel="stylesheet" href="styles.css" />
+    </head>
+
+<body id="topo">
 
     <header class="top-bar">
-        <a href="index.html" class="home-icon-link">
-            <i class="fas fa-house"></i>
-        </a>
+        <div class="logo">Cachoeiras de Teresópolis</div>
+
+        <!-- checkbox invisivel -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+
+        <!-- Icone do menu -->
+
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
         <nav class="nav-links">
+            <a href="index.html">Home</a>
             <a href="trilhas.html">Trilhas</a>
-            <a href="cachoeiras.html">Cachoeiras</a>
-            <a href="eventos.html">Eventos</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#">Login</a>
+            <a href="index.html#eventos">Eventos</a>
         </nav>
     </header>
 
-    <section class="hero-section dark-bg">
-        <div class="container">
-            <div class="hero-image-box"></div>
-            <div class="welcome-text">
-                <h2>Bem Vindo a Terê Verde Online</h2>
-                <p>Descubra as belezas naturais de Teresópolis. Trilhas, cachoeiras e muito mais. Clique e explore!</p>
+    <main class="container trilhas">
+
+<!---- PARQUE TRÊS PICOS ---->
+
+        <section class="parque-section" id="trespicos">
+            <h1>Parque Estadual dos Três Picos</h1>
+            <p class="parque-descricao">
+                O Parque Estadual dos Três Picos é uma das maiores e mais importantes unidades de conservação do estado do Rio de Janeiro,
+                abrangendo áreas de Nova Friburgo, Teresópolis e Cachoeiras de Macacu. É conhecido por suas formações rochosas impressionantes,
+                trilhas deslumbrantes e ampla biodiversidade.
+            </p>
+
+            <section class="trilha-section" id="cachoeiras">
+                <h2>Cachoeira dos Frades</h2>
+
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <img src="img/frades (1).jpg" alt="cachoeira-dos-frades" />
+                        <img src="img/frades (2).jpg" alt="cachoeira-dos-frades" />
+                        <img src="img/frades (3).jpg" alt="cachoeira-dos-frades" />
+                        <img src="img/frades (4).jpg" alt="cachoeira-dos-frades" />
+                        <img src="img/frades (5).jpg" alt="cachoeira-dos-frades" />
+                        <img src="img/frades (6).jpg" alt="cachoeira-dos-frades" />
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Anterior">&#10094;</button>
+                    <button class="carousel-btn next" aria-label="Próximo">&#10095;</button>
+                </div>
+
+                <p class="descricao-trilha">
+                    No coração do Vale dos Frades, uma das regiões mais encantadoras de Teresópolis, está um verdadeiro refúgio natural: a Cachoeira dos Frades. 🌿✨<br></br>
+                    Com suas águas cristalinas, queda d’água de cerca de 10 metros e um poço convidativo para banho, o local é o destino ideal para quem busca paz, contato direto com a natureza e um cenário de tirar o fôlego.<br></br>
+                    Cercada pela Mata Atlântica preservada do Parque Estadual dos Três Picos, a cachoeira é um convite para desconectar da rotina e se conectar ao som da água e dos pássaros. O acesso é fácil e rápido — uma curta trilha leva até o poço, cercado por pedras arredondadas e vegetação exuberante. A paisagem encanta tanto os aventureiros quanto aqueles que apenas querem relaxar e aproveitar o clima fresco da serra. 🌄💦<br></br>
+                    Por estar em uma área mais afastada do centro urbano, o ambiente é tranquilo e pouco movimentado, ideal para quem valoriza experiências autênticas e sustentáveis. Aqui, o visitante encontra água pura, ar limpo e uma energia revitalizante, que fazem da Cachoeira dos Frades um dos segredos mais bem guardados de Teresópolis.<br></br>
+                    📸 Perfeita para fotos e descanso, a queda forma uma cortina d’água que reflete a luz do sol em tons dourados, criando um cenário digno de cartão-postal. Seja para um banho gelado, um piquenique à beira do rio ou apenas para contemplar a natureza, o passeio promete renovar corpo e alma.<br></br>
+                    💚 Viva essa experiência e descubra o encanto da Cachoeira dos Frades — um pedacinho de paraíso escondido entre as montanhas de Teresópolis! 🌿💧
+                </p>
+
+                <h3>Características Gerais</h3>
+                <table>
+                    <thead>
+                        <tr><th>Item</th><th>Informação</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Localização</td><td>Situada no Vale dos Frades, zona rural de Teresópolis, dentro dos limites do Parque Estadual dos Três Picos — uma das áreas mais preservadas da Serra do Mar.</td></tr>
+                        <tr><td>Acesso:</td><td>Pela RJ-130 (Terê-Fri), aproximadamente 19 km a partir do centro de Teresópolis. No km 19, entre à direita em uma estrada de terra por cerca de 5 km até o ponto de início da trilha.</td></tr>
+                        <tr><td>Trilha:</td><td>Curta e fácil, com cerca de 300 metros de extensão (5 minutos de caminhada).</td></tr>
+                        <tr><td>Tipo de atrativo:</td><td>Cachoeira com cerca de 10 metros de altura, formando um poço natural de águas cristalinas e geladas.</td></tr>
+                        <tr><td>Ambiente:</td><td>Mata Atlântica densa e preservada, com vegetação exuberante e sons de pássaros típicos da serra.</td></tr>
+                        <tr><td>Destaque:</td><td>O visual do poço e das rochas arredondadas forma uma paisagem perfeita para fotos e descanso.</td></tr>
+                        <tr><td>Estrutura:</td><td>Não há quiosques nem banheiros no local — ideal para quem busca um contato mais natural e selvagem.</td></tr>
+                        <tr><td>Melhor época para visitar:</td><td>De setembro a abril, com clima quente e bom volume d’água.</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>🌄 Dicas para a Cachoeira dos Frades 💦</h3>
+                <ul>
+                    <li>⏰ Vá pela manhã, entre 8h e 11h, quando o sol ilumina o poço e a água fica mais clara e agradável para banho.</li>
+                    <li>🚗 O caminho é feito pela RJ-130 (Terê-Fri) até a altura do km 19. Depois, siga por cerca de 5 km de estrada de terra até o ponto de estacionamento.</li>
+                    <li>🥾 Após o estacionamento, há uma pequena trilha de 5 minutos, tranquila e cercada por mata atlântica — perfeita para famílias e iniciantes.</li>
+                    <li>💧 A água é limpa e gelada — ótima para relaxar após o trajeto. Cuidado apenas com as pedras escorregadias ao redor.</li>
+                    <li>🍎 A região é isolada, sem quiosques ou estrutura comercial, leve o necessário e traga todo o lixo de volta</li>
+                    <li>📸 A queda d’água forma uma cortina natural com poço raso, ideal para fotos com longa exposição ou retratos em meio à natureza.</li>
+                </ul>
+            </section>
+        </section>
+
+<!-- PARQUE NACIONAL DA SERRA DOS ÓRGÃOS -->
+
+        <section class="parque-section" id="serraorgaos">
+            <h1>Parque Nacional da Serra dos Órgãos</h1>
+            <p class="parque-descricao">
+                O Parque Nacional da Serra dos Órgãos (PARNASO) é uma das mais antigas unidades de conservação do Brasil,
+                famoso pelo icônico Dedo de Deus e por suas trilhas lendárias como a Travessia Petrópolis-Teresópolis.
+            </p>
+
+            <section class="trilha-section" id="irmao">
+                <h2>Cachoeira Poço Dois Irmãos</h2>
+
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <img src="img/irmao (1).jpg" alt="Trilha da Pedra do Sino" />
+                        <img src="img/irmao (1).png" alt="Trilha da Pedra do Sino" />
+                        <img src="img/irmao (2).jpg" alt="Trilha da Pedra do Sino" />
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Anterior">&#10094;</button>
+                    <button class="carousel-btn next" aria-label="Próximo">&#10095;</button>
+                </div>
+
+                <p class="descricao-trilha">
+                    Localizado no coração do Parque Nacional da Serra dos Órgãos, em Teresópolis (RJ), o Poço Dois Irmãos é um dos refúgios naturais mais encantadores da região.<br></br>
+                    Formada por uma sequência de quedas d’água cristalinas e poços de cor verde-esmeralda, a cachoeira é rodeada por uma exuberante vegetação de Mata Atlântica preservada, criando um cenário de tranquilidade e beleza rara.<br></br>
+                    O nome “Dois Irmãos” vem das duas grandes rochas que se destacam lado a lado, moldando o poço principal e formando uma piscina natural perfeita para banho. A água é fria, revigorante e convida o visitante a relaxar, mergulhar e se reconectar com a natureza.<br></br>
+                    A trilha até o poço é curta e leve, com cerca de 1,5 km e um visual encantador durante todo o percurso. O caminho é cercado por árvores nativas, bromélias, orquídeas e o som suave dos riachos que acompanham o trajeto. É uma caminhada tranquila, ideal tanto para iniciantes quanto para famílias que desejam um contato mais próximo com o ambiente natural.<br></br>
+                    Ao chegar, o visitante é recebido por uma vista deslumbrante: o poço cercado de pedras, o som da água caindo e a sensação de estar completamente imerso na natureza. Nos dias ensolarados, os raios de luz atravessam as copas das árvores e refletem na água, criando um efeito cintilante mágico — cenário perfeito para fotos e momentos de descanso.<br></br>
+                    Além de sua beleza natural, o Poço Dois Irmãos é um convite ao ecoturismo consciente. O local faz parte de uma área protegida pelo ICMBio, com controle de visitantes e ações de conservação que garantem a preservação da fauna e da flora locais.
+                </p>
+
+                <h3>Características Gerais</h3>
+                <table>
+                    <thead>
+                        <tr><th>Item</th><th>Informação</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Localização</td><td>Sede Teresópolis do Parque Nacional da Serra dos Órgãos (PARNASO), acessível pela BR-495</td></tr>
+                        <tr><td>Extensão da trilha:</td><td>2.275 metros (ponto mais alto da Serra dos Órgãos)</td></tr>
+                        <tr><td>Extensão</td><td>Aproximadamente 1,5 km (ida).</td></tr>
+                        <tr><td>Tempo médio</td><td>Cerca de 30 a 40 minutos de caminhada leve.</td></tr>
+                        <tr><td>Altitude média:</td><td>900 m.</td></tr>
+                        <tr><td>Tipo de atrativo:</td><td>Cachoeira e poço natural para banho.</td></tr>
+                        <tr><td>Ambiente:</td><td>Floresta densa de Mata Atlântica, com rica fauna e flora.</td></tr>
+                        <tr><td>Infraestrutura:</td><td>Sinalização, estacionamento, centro de visitantes, banheiros e lanchonete próximos à portaria.</td></tr>
+                        <tr><td>Melhor época para visita:</td><td>Entre setembro e abril, quando o volume d’água é maior e o clima mais agradável.</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>Dicas</h3>
+                <ul>
+                    <li>✅ Chegue cedo: O parque abre pela manhã e o acesso é limitado. Ir cedo garante mais tranquilidade e a melhor luz para fotos.</li>
+                    <li>🥾 Use calçado adequado: Apesar de ser uma trilha leve, o caminho pode ficar escorregadio em dias úmidos. Tênis ou botas de trilha com boa aderência fazem toda a diferença.</li>
+                    <li>🧢 Leve o essencial: Água, lanche leve, protetor solar, repelente e uma muda de roupa seca. A água do poço é gelada, mas irresistível!</li>
+                    <li>📸 Aproveite o visual: As pedras e o contraste do verde da mata com a água cristalina tornam o lugar perfeito para fotos e momentos de contemplação.</li>
+                    <li>🦜 Respeite a natureza: Não deixe lixo, evite sons altos e mantenha o ambiente limpo — o Poço Dois Irmãos é um refúgio de biodiversidade.</li>
+                    <li>🚫 Cuidado nas pedras: Algumas áreas podem ser escorregadias, especialmente próximas à queda d’água. Caminhe com atenção.</li>
+                    <li>🌞 Melhor época: Entre setembro e abril, quando o volume d’água está ideal e o clima é mais quente para banho.</li>
+                </ul>
+
+                <h3>🕒 Horário de Funcionamento:</h3>
+                <ul>
+                    <li>🚫 Segunda-Feira: Fechado</li>
+                    <li>📅 Terça-Feira: 07:00 – 16:00</li>
+                    <li>📅 Quarta-Feira: 07:00 – 16:00</li>
+                    <li>📅 Quinta-Feira: 07:00 – 16:00</li>
+                    <li>📅 Sexta-Feira: 07:00 – 16:00</li>
+                    <li>🌄 Sábado: 07:00 – 16:00</li>
+                    <li>🌞 Domingo: 07:00 – 16:00</li>
+                </ul>
+            </section>
+
+            <section class="trilha-section" id="ducha">
+                <h2>Cachoeira Poço da Ducha</h2>
+
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <img src="img/duchas (1).jpeg" alt="Trilha Mozart Catão" />
+                        <img src="img/duchas (1).jpg" alt="Trilha Mozart Catão" />
+                        <img src="img/duchas (2).jpeg" alt="Trilha Mozart Catão" />
+                        <img src="img/duchas (3).jpeg" alt="Trilha Mozart Catão" />
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Anterior">&#10094;</button>
+                    <button class="carousel-btn next" aria-label="Próximo">&#10095;</button>
+                </div>
+
+                <p class="descricao-trilha">
+                    Localizada na sede Teresópolis do Parque Nacional da Serra dos Órgãos (PARNASO), a Cachoeira Poço da Ducha é um verdadeiro convite ao relaxamento e ao contato direto com a natureza.<br></br>
+                    Com suas águas cristalinas e quedas suaves que formam duchas naturais entre as pedras, o local encanta pela simplicidade e pela sensação de paz que proporciona.<br></br>
+                    A trilha de acesso é curta e leve, perfeita para quem quer aproveitar um passeio tranquilo, cercado pela vegetação exuberante da Mata Atlântica e pelo som constante dos riachos.<br></br>
+                    Ao final do percurso, o visitante encontra um poço raso e refrescante, ideal para se banhar, descansar e apreciar a beleza serena do parque.<br></br>
+                    O Poço da Ducha é uma das paradas mais agradáveis do PARNASO, ideal para famílias, casais e aventureiros que buscam momentos de descanso e contemplação após explorar outras trilhas da região.<br></br>
+                    Em dias ensolarados, os raios de sol atravessam as copas das árvores e criam reflexos mágicos sobre a água, tornando o cenário ainda mais encantador.<br></br>
+                    Além do visual paradisíaco, o local é símbolo do ecoturismo sustentável, mantendo viva a harmonia entre visitantes e natureza. É o tipo de passeio que revigora corpo e mente — um banho de energia e tranquilidade no coração da serra.
+                </p>
+
+                <h3>Características Gerais</h3>
+                <table>
+                    <thead>
+                        <tr><th>Item</th><th>Informação</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Localização</td><td>Setor Teresópolis do Parque Nacional da Serra dos Órgãos (PARNASO), com acesso pela portaria principal do parque.</td></tr>
+                        <tr><td>Extensão da trilha:</td><td>Entre 900 e 1.050 metros</td></tr>
+                        <tr><td>Tempo médio</td><td>15 a 30 minutos, em ritmo leve.</td></tr>
+                        <tr><td>Nível de dificuldade</td><td>Fácil, com trechos sombreados e bem sinalizados, ideal para iniciantes e famílias.</td></tr>
+                        <tr><td>Tipo de atrativo:</td><td>Pequena queda d’água formando duchas naturais e um poço raso de águas cristalinas — perfeito para banho e descanso.</td></tr>
+                        <tr><td>Estrutura de apoio:</td><td>Centro de visitantes, estacionamento, banheiros e lanchonete próximos à entrada.</td></tr>
+                        <tr><td>ambiente</td><td>Vegetação exuberante de Mata Atlântica, com riachos e pequenos poços ao longo do caminho.</td></tr>
+                        <tr><td>Melhor época</td><td>Entre setembro e abril, quando o volume d’água é maior e o clima mais quente.</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>Dicas</h3>
+                <ul>
+                    <li>✅ Chegue cedo: O Poço da Ducha costuma ser bastante procurado nos fins de semana, especialmente em dias quentes. Ir pela manhã garante mais tranquilidade e fotos com melhor iluminação.</li>
+                    <li>🥾 Trilha leve e acessível: A caminhada é curta e tranquila, ideal para todas as idades. Mesmo assim, use calçados com boa aderência, pois as pedras podem ficar escorregadias.</li>
+                    <li>🧢 Leve itens essenciais: Protetor solar, repelente, garrafa d’água e roupa de banho são indispensáveis. Uma toalha e uma muda de roupa seca também ajudam a aproveitar melhor o passeio.</li>
+                    <li>📸 Aproveite o visual: A queda d’água suave e o poço de águas cristalinas criam um cenário perfeito para fotos e vídeos — especialmente com a vegetação da Mata Atlântica ao redor.</li>
+                    <li>🌳 Respeite a natureza: O Poço da Ducha está dentro de uma área de conservação do PARNASO. Evite deixar lixo, não use sabão ou protetor dentro da água e mantenha o ambiente limpo.</li>
+                    <li>🚫 Evite em dias de chuva forte: O terreno pode ficar escorregadio e o nível da água pode subir rapidamente.</li>
+                    <li>💚 Dica extra: Após visitar o Poço da Ducha, aproveite para conhecer outras trilhas próximas da sede Teresópolis, como o Poço Dois Irmãos ou a Trilha Cartão Postal, com vista incrível para os picos da Serra dos Órgãos.</li>
+                </ul>                
+            </section>
+
+            <section class="trilha-section" id="castelo">
+                <h2>Poço do Castelo</h2>
+
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <img src="img/castelo (1).jpeg" alt="Trilha da Primavera" />
+                        <img src="img/castelo (1).jpg" alt="Trilha da Primavera" />
+                        <img src="img/castelo (1).png" alt="Trilha da Primavera" />
+                        <img src="img/castelo (1).webp" alt="Trilha da Primavera" />
+                        <img src="img/castelo (2).jpg" alt="Trilha da Primavera" />
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Anterior">&#10094;</button>
+                    <button class="carousel-btn next" aria-label="Próximo">&#10095;</button>
+                </div>
+
+                <p class="descricao-trilha">
+                    Entre as belezas escondidas do Parque Nacional da Serra dos Órgãos, o Poço do Castelo se destaca como um refúgio natural de tranquilidade e charme. Localizado a poucos minutos da entrada da sede Teresópolis, o local encanta visitantes com seu cenário de águas cristalinas, grandes pedras lisas e o som relaxante do Rio Paquequer correndo pela mata. 🌿✨<br></br>
+                    Ideal para quem busca um momento de descanso em meio à natureza, o Poço do Castelo combina fácil acesso e paisagem deslumbrante. Sua área de banho é perfeita para se refrescar nos dias quentes, enquanto as rochas ao redor formam um verdadeiro “castelo natural”, onde é possível sentar, apreciar o verde da serra e tirar fotos incríveis. 📸💦<br></br>
+                    Por ser um ponto bem próximo à portaria, o Poço do Castelo é ideal para famílias, casais e turistas que desejam aproveitar o parque com conforto e segurança. O som das águas e o ar puro criam uma atmosfera de paz que representa perfeitamente o espírito de Teresópolis — cidade serrana conhecida pelo equilíbrio entre aventura e contemplação. 🌄💚<br></br>
+                    Venha se encantar com o Poço do Castelo — um pequeno paraíso de fácil acesso, mas de beleza grandiosa, que oferece o primeiro mergulho inesquecível na natureza exuberante do PARNASO. 🌿💧
+                </p>
+
+                <h3>Características Gerais</h3>
+                <table>
+                    <thead>
+                        <tr><th>Item</th><th>Informação</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Localização</td><td>Dentro da sede Teresópolis do Parque Nacional da Serra dos Órgãos (PARNASO), a poucos metros da portaria principal.</td></tr>
+                        <tr><td>Extensão da trilha:</td><td>Aproximadamente 100 a 200 metros, partindo da entrada do parque.</td></tr>
+                        <tr><td>Tempo médio de percurso:</td><td>5 a 10 minutos de caminhada leve.</td></tr>
+                        <tr><td>Nível de dificuldade:</td><td>Muito fácil, ideal para todas as idades.</td></tr>
+                        <tr><td>Ambiente:</td><td>Mata Atlântica preservada, com áreas abertas de rocha e trechos sombreados.</td></tr>
+                        <tr><td>Tipo de atrativo: </td><td>Poço natural com grandes rochas lisas e águas transparentes do Rio</td></tr>
+                        <tr><td>Destaque:</td><td>Ampla área de pedra que serve como “mirante natural” e local para banho de sol, com vista para a vegetação e o curso do rio.</td></tr>
+                        <tr><td>Estrutura próxima:</td><td>Estacionamento, centro de visitantes, banheiros e lanchonete próximos à portaria.</td></tr>
+                        <tr><td>Melhor época para visita:</td><td>De setembro a abril, quando o clima é mais quente e o volume d’água ideal para banho.</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>Dicas</h3>
+                <ul>
+                    <li>✅ Ideal para começar o dia: Por ser um dos primeiros atrativos da sede Teresópolis, o Poço do Castelo é uma ótima parada logo após entrar no parque. Um banho rápido aqui é perfeito para se refrescar antes de explorar outras trilhas.</li>
+                    <li>🥾 Calçado adequado: Mesmo sendo de fácil acesso, as pedras ao redor do poço podem ficar escorregadias. Use tênis ou sandálias próprias para trilha ou água.</li>
+                    <li>🧢 Leve o essencial: Protetor solar, garrafa d’água e toalha são suficientes. O local é próximo da portaria, então você pode deixar mochilas maiores no carro.</li>
+                    <li>📸 Aproveite o visual: As grandes pedras formam um cenário incrível para fotos — especialmente com o reflexo da água e o verde da Mata Atlântica ao fundo.</li>
+                    <li>🌳 Ambiente tranquilo: Evite som alto e respeite o espaço dos outros visitantes. O charme do Poço do Castelo está na sua paz e na harmonia com a natureza.</li>
+                    <li>💧 Banho refrescante: A água é gelada e cristalina — perfeita para se energizar depois de uma caminhada leve.</li>
+                    <li>☀️ Aproveite o sol: As rochas ao redor formam um ótimo ponto para tomar sol, descansar e contemplar o visual da serra.</li>
+                    <li>💚 Dica extra: Combine a visita com o Poço Dois Irmãos ou a Cachoeira da Ducha — ambos ficam próximos e oferecem experiências complementares dentro do PARNASO.</li>
+                </ul>   
+            </section>
+        </section>
+
+        <a href="#topo" id="voltarTopo" class="voltar-topo" aria-label="Voltar ao topo da página">↑</a>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h3>cachoeiras de Teresópolis</h3>
+                <p>Explore, descubra e se conecte com a natureza.</p>
             </div>
-            <div class="hero-cards">
-                <div class="card-item">Trilhas</div>
-                <div class="card-item">Cachoeiras</div>
-                <div class="card-item">Eventos</div>
+
+            <div class="footer-social">
+                <a href="#"><i class="fa-brands fa-instagram" aria-label="Instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook" aria-label="Facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp" aria-label="WhatsApp"></i></a>
             </div>
         </div>
-    </section>
 
-    <section class="section-cachoeiras container">
-        <h2>As mais lindas Cachoeiras</h2>
-        <div class="cachoeiras-grid">
-            <div class="cachoeira-item">
-                <div class="cachoeira-img-placeholder"></div>
-                <div class="cachoeira-text">
-                    <h3>Cachoeira do Rio dos Frades</h3>
-                    <p>Considerada uma das principais atrações de Teresópolis, tem uma trilha de 30 minutos e é conhecida por ser um dos pontos mais acessíveis e seguros para o banho.</p>
-                </div>
-            </div>
-             <div class="cachoeira-item">
-                <div class="cachoeira-img-placeholder"></div>
-                <div class="cachoeira-text">
-                    <h3>Cachoeira Olho D'Água</h3>
-                    <p>Simplesmente incrível para aqueles que amam um mergulho em águas geladas. De fácil acesso e com poços profundos.</p>
-                </div>
-            </div>
-             <div class="cachoeira-item">
-                <div class="cachoeira-img-placeholder"></div>
-                <div class="cachoeira-text">
-                    <h3>Cachoeira da Campanha</h3>
-                    <p>A Cachoeira da Campanha, perfeita para um final de semana, é um ótimo lugar tranquilo para sair com a família.</p>
-                </div>
-            </div>
-             <div class="cachoeira-item">
-                <div class="cachoeira-img-placeholder"></div>
-                <div class="cachoeira-text">
-                    <h3>Cachoeira Véu da Noiva</h3>
-                    <p>Possui poços para banho, mais vendidos e que estão em busca de busca de uma trilha mais curta.</p>
-                </div>
-            </div>
+        <div class="footer-bottom">
+            <p>© 2025 Cachoeiras de Teresópolis</p>
         </div>
-    </section>
+    </footer>
 
+    <script>
+        // ===== CARROSSEL =====
+        document.querySelectorAll('.carousel').forEach(carousel => {
+            const track = carousel.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const nextBtn = carousel.querySelector('.next');
+            const prevBtn = carousel.querySelector('.prev');
+            let currentIndex = 0;
+
+            const updateSlide = () => {
+                // Garante que o track existe e tem slides
+                if (!track || slides.length === 0) return;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            };
+
+            if (nextBtn && prevBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    updateSlide();
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    updateSlide();
+                });
+            }
+        });
+    </script>
 </body>
 </html>
