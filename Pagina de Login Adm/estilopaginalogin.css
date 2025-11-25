@@ -1,0 +1,541 @@
+/* ============================================== */
+/* === 1. ESTILOS PARA PÁGINA DE LOGIN (Principal) === */
+/* ============================================== */
+
+/* Variáveis de Cores (Tema Natureza Profunda e Terrosa) */
+/* Mantidas aqui para compatibilidade com o Dashboard, apesar de não serem usadas no login */
+:root {
+    --color-primary-admin: #38761d; /* Verde Floresta Escuro (Principal Admin) */
+    --color-secondary-admin: #6aa84f; /* Verde Musgo (Destaque Secundário Admin) */
+    --color-text-admin: #2f2f2f; /* Cinza Quase Preto (Terra Admin) */
+    --color-background-admin: #D5D5D5; 
+    --color-sidebar-admin: #4a4a42; /* Cinza Carvão/Pedra (Sidebar Admin) */
+    --color-sidebar-text-admin: #e8e8e3; /* Texto Quase Branco Admin */
+    --color-card-bg-admin: #ffffff; /* Fundo do Card Branco Admin */
+    --color-hover-admin: #547844; /* Verde Oliva Escuro para Hover Admin */
+    --color-border-admin: #dcdccb; /* Borda Suave e Terrosa Admin */
+}
+
+/* Reset Básico (Pode ser usado por ambas as páginas) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Fonte mais orgânica e legível no admin, mas a página de login usa Poppins */
+    /* Deixando a fonte Poppins na tag body para o login e a Georgia no admin body */
+}
+
+
+/* Estilos Específicos da Página de Login */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(rgba(0, 30, 0, 0.75), rgba(0, 30, 0, 0.75)),
+    url('https://images.unsplash.com/photo-1526676037777-05a232554f77?q=80&w=2070') center/cover no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 450px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 25px;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  text-align: center;
+  animation: fadeIn 0.9s ease;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+h2 {
+  margin-bottom: 25px;
+  letter-spacing: 1.5px;
+  font-size: 2rem;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* O input puro é sobrescrito abaixo pelo .input-group input */
+input {
+  width: 92%;
+  padding: 14px;
+  margin: 15px 0;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.25);
+  color: #000; 
+  font-size: 1rem;
+  transition: 0.3s;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+input::placeholder {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 500; 
+}
+
+input:focus {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.02);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5); 
+}
+
+button {
+  width: 95%;
+  padding: 14px;
+  margin-top: 18px;
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #1f8d4d, #27ae60);
+  transform: scale(1.04);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+}
+
+.link {
+  margin-top: 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #b8ffcc;
+  text-decoration: underline;
+  transition: 0.3s;
+}
+
+.link:hover {
+  color: #81ffae;
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* NOVO VISUAL PREMIUM (Login) */
+.wrapper {
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  animation: fadeIn 1.2s ease;
+}
+
+.logo-area {
+  text-align: center;
+  color: #eaffea;
+}
+
+.logo-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.8rem;
+  margin: auto;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 12px rgba(0, 255, 120, 0.4);
+}
+
+.title {
+  margin-top: 10px;
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+.input-group {
+  width: 92%;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2); 
+  border: 1px solid rgba(0, 0, 0, 0.6); 
+  border-radius: 12px;
+  padding: 12px;
+  margin: 10px auto;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+}
+
+.input-group:focus-within {
+  background: rgba(255, 255, 255, 0.3); 
+  border: 1px solid #000; 
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transform: scale(1.02);
+}
+
+.icon {
+  margin-right: 10px;
+  font-size: 1.3rem;
+  opacity: 0.9;
+}
+
+.input-group input {
+  border: none;
+  background: transparent;
+  /* ALTERADO: Cor do texto digitado agora é PRETO SÓLIDO para maior legibilidade */
+  color: #000; 
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+}
+
+
+/* ============================================== */
+/* === 2. ESTILOS PARA PÁGINA DO ADMINISTRADOR (Dashboard) === */
+/* ============================================== */
+/* Aplicações de fonte e cor de fundo específicas para o layout do Dashboard */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sobrescreve o body do login para o body do dashboard */
+.dashboard-container ~ body {
+    background-color: var(--color-background-admin);
+    color: var(--color-text-admin);
+    line-height: 1.6;
+    font-family: 'Georgia', serif; 
+    /* Remove os estilos de centralização do body de login */
+    display: block; 
+    height: auto; 
+}
+
+
+/* --- Barra Lateral (Sidebar) --- */
+.sidebar {
+    width: 280px;
+    background-color: var(--color-sidebar-admin);
+    padding: 30px 0;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2); 
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-bottom: 50px;
+    padding: 0 10px; 
+    border-bottom: 2px solid var(--color-secondary-admin);
+    padding-bottom: 15px;
+}
+
+.logo i {
+    font-size: 30px;
+    margin-right: 8px; 
+    color: var(--color-secondary-admin); 
+}
+
+.logo h3 {
+    margin: 0;
+    font-size: 1.6em;
+    font-weight: bold;
+    color: var(--color-sidebar-text-admin);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    text-align: center; 
+}
+
+.nav-menu a {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    margin: 0 0 8px 0;
+    text-decoration: none;
+    color: var(--color-sidebar-text-admin);
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-menu a i {
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    background-color: var(--color-primary-admin); 
+    color: #ffffff;
+    border-left: 5px solid var(--color-secondary-admin);
+}
+
+/* --- Conteúdo Principal (Main Content) --- */
+.main-content {
+    flex-grow: 1;
+    padding: 40px;
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+/* --- Header (CABEÇALHO) --- */
+.header {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    gap: 20px; 
+    margin-bottom: 40px;
+    padding-bottom: 0;
+    border-bottom: none; 
+}
+
+/* Estilo Base do Perfil do Usuário (Preto/Escuro) */
+.user-profile {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    border: 2px solid var(--color-text-admin); 
+    border-radius: 20px; 
+    background-color: var(--color-card-bg-admin); 
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer; 
+    color: var(--color-text-admin); 
+    transition: all 0.3s ease; 
+}
+
+.user-profile i {
+    font-size: 28px;
+    color: var(--color-text-admin); 
+    margin-right: 8px;
+    transition: color 0.3s ease; 
+}
+
+/* Estilo de HOVER Estiloso para o perfil do administrador */
+.user-profile:hover {
+    border-color: var(--color-primary-admin); 
+    color: var(--color-primary-admin); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+    transform: translateY(-2px); 
+}
+
+.user-profile:hover i {
+    color: var(--color-primary-admin); 
+}
+
+/* Estilo do Botão Sair */
+.btn-logout {
+    background-color: #E53935; 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease; 
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.btn-logout i {
+    margin-right: 8px;
+    font-size: 1em;
+}
+
+.btn-logout:hover {
+    background-color: #C62828; 
+    transform: translateY(-3px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+}
+
+
+/* Seções de Conteúdo */
+.content-section {
+    display: none;
+    padding: 10px 0;
+}
+
+.content-section.active {
+    display: block;
+}
+
+/* TÍTULOS CENTRALIZADOS */
+.content-section h3 {
+    color: var(--color-text-admin);
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    font-weight: 600;
+    padding-bottom: 5px;
+    text-align: center; 
+}
+
+/* ------------------- ESTILOS DO BOTÃO ADICIONAR (CADASTRAR) ------------------- */
+.button-row {
+    text-align: right; 
+    margin-bottom: 30px; 
+    margin-top: -10px; 
+}
+
+.btn-add {
+    background-color: var(--color-secondary-admin); 
+    color: white;
+    border: 2px solid var(--color-primary-admin); 
+    padding: 10px 18px;
+    border-radius: 8px; 
+    cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: background-color 0.3s, border-color 0.3s;
+    font-size: 0.9em;
+    display: inline-flex; 
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-add i {
+    margin-right: 8px;
+    font-size: 1em;
+}
+
+.btn-add:hover {
+    background-color: var(--color-primary-admin); 
+    border-color: var(--color-secondary-admin); 
+}
+/* ------------------- FIM DOS ESTILOS DE CADASTRO ------------------- */
+
+
+/* --- Cards de Estatísticas --- */
+.stats-cards {
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.card {
+    background-color: var(--color-card-bg-admin);
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+    gap: 10px;
+    font-size: 1.1em;
+    border-left: 8px solid var(--color-primary-admin);
+    min-width: 300px; 
+    max-width: 350px; 
+}
+
+.card i {
+    font-size: 40px; 
+    margin-bottom: 5px; 
+    color: var(--color-secondary-admin);
+}
+
+/* --- Listas de Itens (Trilhas, Cachoeiras, Eventos) --- */
+.list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    align-items: stretch;
+}
+
+.item {
+    background-color: var(--color-card-bg-admin); 
+    padding: 25px;
+    border-radius: 5px; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-border-admin);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 100%; 
+}
+
+.item h4 {
+    color: black; 
+    margin-bottom: 5px;
+    font-size: 1.3em;
+}
+
+.item p {
+    color: #7f7f7f;
+    margin: 5px 0 15px 0; 
+    flex-grow: 1; 
+}
+
+/* --- ESTILOS PARA OS BOTÕES DE AÇÃO (Estilosos e Alinhados) --- */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    align-items: center; 
+    margin-top: auto; 
+}
+
+.action-buttons button {
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+    color: white; 
+    flex-grow: 1; 
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px; 
+}
+
+.action-buttons button i {
+    margin-right: 5px;
+    font-size: 1em; 
+}
+
+/* Botão de Edição (Verde Vibrante) */
+.btn-edit {
+    background-color: #4CAF50; 
+}
+.btn-edit:hover {
+    background-color: #388E3C; 
+}
+
+/* Botão de Excluir (Vermelho Moderno) */
+.btn-delete {
+    background-color: #E53935; 
+}
+.btn-delete:hover {
+    background-color: #C62828; 
+}
+/* --- FIM DOS ESTILOS DE BOTÃO DE AÇÃO --- */
+
+/* Placeholder de Gráfico (Relatórios) */
+.chart-placeholder {
+    height: 300px;
+    color: var(--color-primary-admin);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-top: 25px;
+    font-style: italic;
+    font-size: 1.1em;
+}

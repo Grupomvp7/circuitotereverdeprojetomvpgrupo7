@@ -1,0 +1,274 @@
+<! -- Pagina de Login html -->
+<html lang="pt-BR">
+<head>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Circuito Terê Verde</title>
+  <link rel="stylesheet" href="estilopaginalogin.css"> 
+  <script src="script.js"></script>
+  <!-- Importa os ícones do Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+  
+  <!-- VISUALIZAÇÃO DA PAGINA DE LOGIN ! -->
+   
+  <div id="login-view">
+    <div class="wrapper">
+
+      
+      <div class="logo-area">
+        <div class="logo-circle">
+          🌿 
+        </div>
+        <h1 class="title">Circuito Terê Verde</h1>
+        <p class="subtitle">Painel Administrativo</p>
+      </div>
+  
+      <!-- Caixa de login do administrador -->
+      <div class="container" id="loginBox">
+        <h2>Login do Administrador</h2>
+
+        <!-- Campo de usuário -->
+        <div class="input-group">
+          <span class="icon">👤</span>
+          <input type="text" id="loginUser" placeholder="Usuário" />
+        </div>
+
+        <!-- Campo de senha -->
+        <div class="input-group">
+          <span class="icon">🔒</span>
+          <input type="password" id="loginPass" placeholder="Senha" />
+        </div>
+
+        <!-- Botão para realizar o login -->
+        <button onclick="login()">Entrar</button>
+
+        <!-- Link que abre a tela de cadastro -->
+        <div class="link" onclick="showRegister()">Cadastrar novo usuário</div>
+      </div>
+  
+      <!-- Caixa de cadastro de novo usuário ADMIN -->
+      <div class="container" id="registerBox" style="display:none;">
+        <h2>Cadastrar Usuário</h2>
+
+        <!-- Campo nome -->
+        <div class="input-group">
+          <span class="icon">📛</span>
+          <input type="text" id="registerName" placeholder="Nome completo" />
+        </div>
+
+        <!-- Campo e-mail -->
+        <div class="input-group">
+          <span class="icon">📧</span>
+          <input type="email" id="registerEmail" placeholder="E-mail" />
+        </div>
+
+        <!-- Campo usuário -->
+        <div class="input-group">
+          <span class="icon">👤</span>
+          <input type="text" id="registerUser" placeholder="Usuário" />
+        </div>
+
+        <!-- Campo senha -->
+        <div class="input-group">
+          <span class="icon">🔒</span>
+          <input type="password" id="registerPass" placeholder="Senha" />
+        </div>
+
+        <!-- Botão cadastrar -->
+        <button onclick="register()">Cadastrar</button>
+
+        <!-- Voltar ao login -->
+        <div class="link" onclick="showLogin()">Voltar ao login</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================== PAINEL DO ADMINISTRADOR ========================== -->
+
+  <!-- Esta parte só aparece após o login -->
+  <div id="dashboard-view" style="display:none;">
+
+    <div class="dashboard-container">
+
+        <!-- Barra lateral do menu -->
+        <aside class="sidebar">
+
+            <!-- Logo e título lateral -->
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <h3>Painel</h3>
+            </div>
+
+            <!-- Navegação principal -->
+            <nav class="nav-menu">
+                <a href="#overview" class="active"><i class="fas fa-chart-line"></i> Visão Geral</a>
+                <a href="#trilhas"><i class="fas fa-route"></i> Trilhas</a>
+                <a href="#cachoeiras"><i class="fas fa-water"></i> Cachoeiras</a>
+                <a href="#eventos"><i class="fas fa-calendar-alt"></i> Eventos</a>
+                <a href="#relatorios"><i class="fas fa-users"></i> Relatórios de Usuários</a>
+            </nav>
+        </aside>
+
+        <!-- Conteúdo principal da dashboard -->
+        <main class="main-content">
+
+            <!-- Cabeçalho da dashboard (usuário logado + botão sair) -->
+            <header class="header">
+                <div class="user-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Administrador</span>
+                </div>
+
+                <!-- Botão de logout -->
+                <button class="btn-logout" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </button>
+            </header>
+
+            <!-- ================= SEÇÃO: VISÃO GERAL ================= -->
+            <section id="overview" class="content-section active">
+                <h3>Informações dos Cadastros</h3>
+
+                <!-- Cards simples com dados rápidos -->
+                <div class="stats-cards">
+                    <div class="card"><i class="fas fa-route"></i> <b>Trilhas:</b> 9 cadastradas</div>
+                    <div class="card"><i class="fas fa-water"></i> <b>Cachoeiras:</b> 4 cadastradas</div>
+                    <div class="card"><i class="fas fa-calendar-alt"></i> <b>Eventos:</b> 3 cadastradas</div> 
+                </div>
+            </section>
+            
+            <!-- ================= SEÇÃO: TRILHAS ================= -->
+            <section id="trilhas" class="content-section">
+                <h3>🌿 Gestão de Trilhas</h3>
+
+                <!-- Botão para cadastrar nova trilha -->
+                <div class="button-row">
+                    <button class="btn-add"><i class="fas fa-plus"></i> Cadastrar Trilha</button>
+                </div>
+
+                <!-- Lista de trilhas cadastradas -->
+                <div class="list-container">
+
+                    <!-- Cada bloco representa uma trilha cadastrada -->
+                    <div class="item">
+                        <h4>Trilha Mozart do Catão (Difícil)</h4>
+                        <p>18 km • 8h de duração.</p>
+
+                        <!-- Botões de ação -->
+                        <div class="action-buttons">
+                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
+                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
+                        </div>
+                    </div>
+
+                    
+                    <div class="item">
+                        <h4>Trilha Pedra do Sino (Difícil)</h4>
+                        <p>11 km • 6h de duração.</p>
+                        <div class="action-buttons">
+                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
+                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
+                        </div>
+                    </div>
+
+                    
+                    
+                    <div class="item">
+                        <h4>Trilha Pedra Alpina (Extrema)</h4>
+                        <p>15 km • 9h de duração.</p>
+                        <div class="action-buttons">
+                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
+                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ================= SEÇÃO: CACHOEIRAS ================= -->
+            <section id="cachoeiras" class="content-section">
+                <h3>💧 Gestão de Cachoeiras</h3>
+
+                <!-- Botão para adicionar nova cachoeira -->
+                <div class="button-row">
+                    <button class="btn-add"><i class="fas fa-plus"></i> Cadastrar Cachoeira</button>
+                </div>
+
+                <!-- Lista das cachoeiras cadastradas -->
+                <div class="list-container">
+
+                    <div class="item">
+                        <h4>Cachoeira Poço das Duchas</h4>
+                        <p>• Acesso: Leve.</p>
+                        <div class="action-buttons">
+                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
+                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
+                        </div>
+                    </div>
+
+                    
+                    
+                </div>
+            </section>
+
+            <!-- ================= SEÇÃO: EVENTOS ================= -->
+            <section id="eventos" class="content-section">
+                <h3>📅 Gestão de Eventos</h3>
+
+                <!-- Botão cadastrar evento -->
+                <div class="button-row">
+                    <button class="btn-add"><i class="fas fa-plus"></i> Cadastrar Evento</button>
+                </div>
+
+                <!-- Lista de eventos -->
+                <div class="list-container">
+
+                    <div class="item">
+                        <h4>Evento feport 2025</h4>
+                        <p>Data: 15/Jan/2025 | Local: Centro de Convenções | Foco: Relatórios Anuais</p>
+                        <div class="action-buttons">
+                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
+                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+            </section>
+
+            <!-- ================= SEÇÃO: RELATÓRIOS ================= -->
+            <section id="relatorios" class="content-section">
+                <h3>👥 Relatórios de Usuários</h3>
+
+                <!-- Cards mostrando estatísticas -->
+                <div class="stats-cards">
+                    <div class="card status-card">
+                        <i class="fas fa-users"></i>
+                        <b>Usuários Cadastrados = 10.000</b>
+                    </div>
+                    <div class="card status-card">
+                        <i class="fas fa-hiking"></i>
+                        <b>Trilhas Concluídas = 10.000</b>
+                    </div>
+                    <div class="card status-card">
+                        <i class="fas fa-comment-dots"></i>
+                        <b>Feedback dos Usuários = 5.000</b>
+                    </div>
+                </div>
+
+                <!-- Área futura para gráficos -->
+                <div class="chart-placeholder">
+                    Gráfico de Estatísticas
+                </div>
+            </section>
+
+        </main>
+    </div>
+  </div>
+</body>
+</html>
