@@ -6,187 +6,182 @@
     <title>Terê Verde Online - Teresópolis</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <script src="script.js"></script>
 </head>
 
 <body>
-    <div id="loginModal" class="modal">
-        <a href="#" class="modal-overlay"></a>
-
-        <div class="modal-content">
-            <a href="#close" class="close-button" id="close-modal-btn">&times;</a>
-            <div class="login-box modal-login-box">
-                <p>Administrador</p>
-                <h3>LOGIN</h3>
-            </div>
-        </div>
-    </div>
-
     <header class="top-bar">
-        <a href="index.html" class="home-icon-link">
-            <i class="fas fa-house"></i>
-        </a>
-        <nav class="nav-links">
+    <div class="logo-container">
+    <div class="logo-icon">
+        <!-- Ícone de folha estilizada como SVG -->
+        <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 2C18 10 8 24 8 40C8 50 16 60 32 62C48 60 56 50 56 40C56 24 46 10 32 2Z" fill="#78B268"/>
+            <path d="M32 2C25 12 16 28 16 40C16 48 22 58 32 60C42 58 48 48 48 40C48 28 39 12 32 2Z" fill="#4FA574"/>
+        </svg>
+    </div>
+    <h1 class="logo-text">Terê Verde Online</h1>
+</div>
+
+        <!-- Menu Mobile -->
+        <nav class="menu">
             <a href="trilhas.html">Trilhas</a>
             <a href="cachoeiras.html">Cachoeiras</a>
             <a href="eventos.html">Eventos</a>
             <a href="#sobre">Sobre</a>
-            <a href="#loginModal" id="open-login-btn">Login</a>
-            <div class="search-bar">
+            <a href="#loginModal">Login</a>
+        </nav>
+    </div>
+
+    <!-- Nav Links Desktop -->
+    <nav class="nav-links">
+        <div class="search-bar">
             <input type="text" placeholder="Buscar..." />
             <i class="fas fa-magnifying-glass"></i>
         </div>
+        <a href="trilhas.html">Trilhas</a>
+        <a href="cachoeiras.html">Cachoeiras</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#loginModal">Login</a>
+    </nav>
+</header>
 
-        </nav>
-    </header>
 
     <section class="hero-section dark-bg">
-        <div class="container">
-            <div class="hero-image-box"></div>
-            <div class="welcome-text">
-                <h2>Bem Vindo a Terê Verde Online</h2>
-                <p>Descubra as belezas naturais de Teresópolis. Trilhas, cachoeiras e muito mais. Clique e explore!</p>
-            </div>
-            <div class="hero-cards">
-                <a href="trilhas.html" class="card-item">Trilhas</a>
-                <a href="cachoeiras.html" class="card-item">Cachoeiras</a>
-                <a href="eventos.html" class="card-item">Eventos</a>
-            </div>
-        </div>
-    </section>
+    <div class="container">
 
-    <nav class="secondary-nav">
-        <div class="nav-links">
-            <a href="trilhas.html">Trilhas</a>
-            <a href="cachoeiras.html">Cachoeiras</a>
-            <a href="eventos.html">Eventos</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#">Login</a>
-        </div>
-    </nav>
+        <!-- Imagem ou Banner -->
+        <div class="hero-image-box"></div>
 
-    <section class="section-trilhas container">
-        <h2>Trilhas</h2>
-        <div class="trilhas-grid">
-            <div class="trilha-card">
-                <div class="card-header-image"></div>
-                <div class="card-body">
-                    <h3>Mirante Dedo de Deus</h3>
-                    <p class="subtitle">Mirante Teresópolis</p>
-                    <ul>
-                        <li><span class="dot"></span> 3.1km</li>
-                        <li><span class="dot"></span> 100m</li>
-                        <li><span class="dot"></span> 3.5-4h</li>
-                    </ul>
-                    <button class="orange-button">QUERO ESSA</button>
-                </div>
-            </div>
-            <div class="trilha-card">
-                <div class="card-header-image"></div>
-                <div class="card-body">
-                    <h3>Mirante Dedo de Deus</h3>
-                    <p class="subtitle">Mirante Teresópolis</p>
-                    <ul>
-                        <li><span class="dot"></span> 3.1km</li>
-                        <li><span class="dot"></span> 100m</li>
-                        <li><span class="dot"></span> 3.5-4h</li>
-                    </ul>
-                    <button class="orange-button">QUERO ESSA</button>
-                </div>
-            </div>
-            <div class="trilha-card">
-                <div class="card-header-image"></div>
-                <div class="card-body">
-                    <h3>Mirante Dedo de Deus</h3>
-                    <p class="subtitle">Mirante Teresópolis</p>
-                    <ul>
-                        <li><span class="dot"></span> 3.1km</li>
-                        <li><span class="dot"></span> 100m</li>
-                        <li><span class="dot"></span> 3.5-4h</li>
-                    </ul>
-                    <button class="orange-button">QUERO ESSA</button>
-                </div>
-            </div>
+        <!-- Texto de Boas-Vindas -->
+        <div class="welcome-text">
+            <h2>Bem-vindo ao Terê Verde Online</h2>
+            <p>
+                Descubra as belezas naturais de Teresópolis. Trilhas, cachoeiras e muito mais.
+                Clique e explore!
+            </p>
         </div>
-    </section>
 
-    <nav class="secondary-nav">
-        <div class="nav-links">
-            <a href="trilhas.html">Trilhas</a>
-            <a href="cachoeiras.html">Cachoeiras</a>
-            <a href="eventos.html">Eventos</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#">Login</a>
+        <!-- Cards Principais -->
+<!-- Cards Principais -->
+<div class="hero-cards">
+    <a href="trilhas.html" class="hero-icon-card">
+        <div class="icon-circle">
+            <i class="fas fa-hiking"></i>
         </div>
-    </nav>
+        <span>Trilhas</span>
+    </a>
 
-    <section class="section-cachoeiras container">
-        <h2>As mais lindas Cachoeiras</h2>
-        <div class="cachoeiras-grid">
-            <div class="cachoeira-item">
-                <div class="cachoeira-img-placeholder"></div>
-                <div class="cachoeira-text">
-                    <h3>Cachoeira do Rio dos Frades</h3>
-                    <p>Considerada uma das principais atrações de Teresópolis, tem uma trilha de 30 minutos e é conhecida por ser um dos pontos mais acessíveis e seguros para o banho.</p>
-                </div>
-            </div>
-             <div class="cachoeira-item">
-                <div class="cachoeira-img-placeholder"></div>
-                <div class="cachoeira-text">
-                    <h3>Cachoeira Olho D'Água</h3>
-                    <p>Simplesmente incrível para aqueles que amam um mergulho em águas geladas. De fácil acesso e com poços profundos.</p>
-                </div>
-            </div>
-             <div class="cachoeira-item">
-                <div class="cachoeira-img-placeholder"></div>
-                <div class="cachoeira-text">
-                    <h3>Cachoeira da Campanha</h3>
-                    <p>A Cachoeira da Campanha, perfeita para um final de semana, é um ótimo lugar tranquilo para sair com a família.</p>
-                </div>
-            </div>
-             <div class="cachoeira-item">
-                <div class="cachoeira-img-placeholder"></div>
-                <div class="cachoeira-text">
-                    <h3>Cachoeira Véu da Noiva</h3>
-                    <p>Possui poços para banho, mais vendidos e que estão em busca de busca de uma trilha mais curta.</p>
-                </div>
-            </div>
+    <a href="cachoeiras.html" class="hero-icon-card">
+        <div class="icon-circle">
+            <i class="fas fa-water"></i>
         </div>
-    </section>
+        <span>Cachoeiras</span>
+    </a>
 
-    <nav class="secondary-nav">
-        <div class="nav-links">
-            <a href="trilhas.html">Trilhas</a>
-            <a href="cachoeiras.html">Cachoeiras</a>
-            <a href="eventos.html">Eventos</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#">Login</a>
+    <a href="eventos.html" class="hero-icon-card">
+        <div class="icon-circle">
+            <i class="fas fa-calendar-alt"></i>
         </div>
-    </nav>
+        <span>Eventos</span>
+    </a>
+</div>
+
+
+    </div>
+</section>
 
     <section class="section-eventos container">
-        <h2>Eventos</h2>
-        <div class="eventos-grid">
-            <div class="evento-card">
-                <div class="evento-img-placeholder"></div>
-                <button class="saber-mais-button">SABER MAIS</button>
-            </div>
-            <div class="evento-card">
-                <div class="evento-img-placeholder"></div>
-                <button class="saber-mais-button">SABER MAIS</button>
-            </div>
-            <div class="evento-card">
-                <div class="evento-img-placeholder"></div>
-                <button class="saber-mais-button">SABER MAIS</button>
-            </div>
-        </div>
+        <h2>🌿 Biodiversidade de Teresópolis</h2>
+    <h3>O Coração Verde da Serra dos Órgãos</h3>
+
+    <p>
+        Aninhada entre montanhas imponentes e vales cobertos de névoa, Teresópolis é um dos tesouros ecológicos 
+        mais preciosos do Brasil. Localizada no alto da Serra dos Órgãos, a cidade abriga uma das maiores reservas 
+        de Mata Atlântica preservada do estado do Rio de Janeiro, um verdadeiro paraíso natural onde a vida pulsa em 
+        cada folha, canto e nascente.
+    </p>
+
+    <p>
+        Essas condições criam ecossistemas únicos, que sustentam uma impressionante variedade de espécies vegetais 
+        e animais, muitas delas endêmicas e ameaçadas de extinção.
+    </p>
+
+    <h4>Parques que Protegem Esse Patrimônio</h4>
+    <ul>
+        <li>🏞️ <strong>Parque Nacional da Serra dos Órgãos (PARNASO)</strong> — Um dos parques mais antigos e ricos em biodiversidade do Brasil.</li>
+        <li>🌄 <strong>Parque Estadual dos Três Picos</strong> — Florestas densas e picos monumentais formam o cenário perfeito para espécies raras.</li>
+        <li>🌳 <strong>Parque Natural Municipal Montanhas de Teresópolis</strong> — Um corredor ecológico que conecta habitats e preserva o equilíbrio ambiental.</li>
+    </ul>
+
+    <h3>🌸 Flora — O Jardim Vivo da Serra</h3>
+    <p>
+        Caminhar por Teresópolis é mergulhar em um tapete verde onde cada detalhe revela a força da vida. 
+        As matas são formadas por árvores centenárias, bromélias, orquídeas e samambaias que se espalham pelos troncos 
+        e pedras cobertas de musgo.
+    </p>
+
+    <h4>Espécies em Destaque</h4>
+    <ul>
+        <li>Ipês, quaresmeiras e jacarandás que colorem a serra com tons vibrantes;</li>
+        <li>Araucárias e cedros típicos das altitudes mais elevadas;</li>
+        <li>Bromélias e orquídeas, joias naturais que abrigam insetos, rãs e pássaros;</li>
+        <li>Musgos e liquens, indicadores da pureza do ar.</li>
+    </ul>
+
+    <h3>🐾 Fauna — A Vida que Habita a Floresta</h3>
+
+    <h4>🐦 Aves</h4>
+    <ul>
+        <li>Tucano-de-bico-preto, araponga, tiê-sangue, sabiá e beija-flores multicoloridos;</li>
+        <li>Mais de 250 espécies registradas, tornando a cidade um dos melhores pontos de observação do estado.</li>
+    </ul>
+
+    <h4>🐒 Mamíferos</h4>
+    <ul>
+        <li>Mico-leão-da-serra, bugios, quatis, ouriços, gatos-do-mato e jaguatiricas;</li>
+        <li>Roedores e morcegos frugívoros, essenciais para dispersão de sementes.</li>
+    </ul>
+
+    <h4>🐍 Répteis e Anfíbios</h4>
+    <ul>
+        <li>Sapos, pererecas e rãs coloridas, sensíveis à pureza da água;</li>
+        <li>Serpentes e lagartos escondidos entre folhas e rochas.</li>
+    </ul>
+
+    <h4>🦋 Insetos e Polinizadores</h4>
+    <ul>
+        <li>Borboletas raras, abelhas nativas e libélulas que mantém o ciclo da vida.</li>
+    </ul>
+
+    <h3>💧 Rios, Cachoeiras e Ecossistemas</h3>
+    <ul>
+        <li>Florestas de encosta e neblina, sempre úmidas e cheias de epífitas;</li>
+        <li>Campos de altitude, adaptados ao frio e ao vento;</li>
+        <li>Rios cristalinos como Rio Paquequer e Rio Beija-Flor, além das cachoeiras do Parque dos Frades e Poço do Castelo.</li>
+    </ul>
+
+    <p>
+        Cada nascente é um fio de vida que alimenta ecossistemas, a cultura local e a própria identidade da cidade.
+    </p>
+
+    <h2>💚 Teresópolis: Onde a Natureza Respira</h2>
+    <p>
+        Visitar Teresópolis é mais do que admirar belas paisagens — é vivenciar a energia viva da Mata Atlântica. 
+        A biodiversidade da cidade inspira respeito, cuidado e amor pela vida. Em cada trilha e cada canto de pássaro, 
+        Teresópolis reafirma seu título de <strong>Coração Verde da Serra dos Órgãos</strong>.
+    </p>
+
     </section>
 
     <nav class="secondary-nav">
         <div class="nav-links">
-            <a href="trilhas.html">Trilhas</a>
-            <a href="cachoeiras.html">Cachoeiras</a>
-            <a href="eventos.html">Eventos</a>
-            <a href="#">Login</a>
         </div>
     </nav>
 
@@ -223,9 +218,9 @@
         <div class="footer-col social-media">
             <h3>Siga-nos</h3>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
             </div>
             </div>
 
