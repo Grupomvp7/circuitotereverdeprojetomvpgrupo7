@@ -1,35 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cachoeiras de Teresópolis</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terê Verde Online - Teresópolis</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <script src="script.js"></script>
+</head>
 
 <body id="topo">
-
     <header class="top-bar">
-        <div class="logo">Cachoeiras de Teresópolis</div>
+    <div class="logo-container">
+    <div class="logo-circle">
+          🌿 
+        </div>
+    <h1 class="logo-text">Terê Verde Online</h1>
+</div>
 
-        <!-- checkbox invisivel -->
-        <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-
-        <!-- Icone do menu -->
-
-        <label for="menu-toggle" class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-
-        <nav class="nav-links">
-            <a href="index.html">Home</a>
+        <!-- Menu Mobile -->
+        <nav class="menu">
             <a href="trilhas.html">Trilhas</a>
-            <a href="index.html#eventos">Eventos</a>
+            <a href="cachoeiras.html">Cachoeiras</a>
+            <a href="eventos.html">Eventos</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#loginModal">Login</a>
         </nav>
-    </header>
+    </div>
+
+    <!-- Nav Links Desktop -->
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="trilhas.html">Trilhas</a>
+        <a href="eventos.html">Eventos</a>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar..." />
+            <i class="fas fa-magnifying-glass"></i>
+        </div>
+        <a href="login.html" class="login-icon">
+    <i class="fa-solid fa-user"></i>
+</a>
+    </nav>
+</header>
 
     <main class="container trilhas">
 

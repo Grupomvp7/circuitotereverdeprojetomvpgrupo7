@@ -9,7 +9,9 @@
           --color-login-bg: #81a97d;         /* Fundo da área de login */
           
         }
+
         /* Fonte moderna */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
 /* Container do logo */
@@ -205,12 +207,6 @@
     margin-left: 0; /* Remove a margem extra de 5% que estava desalinhando */
     text-decoration: none;
     transition: color 0.3s ease;
-}
-
-.nav-links {
-    display: flex;
-    gap: 15px;
-    margin-left: auto; /* Empurra os links para o lado oposto do ícone home */
 }
 
 .nav-links a {
@@ -606,10 +602,6 @@
     color: var(--color-accent); /* Destaque com o laranja/âmbar */
 }
 
-/* Ajusta o nav-links para empurrar o bloco para o lado oposto */
-.nav-links {
-    margin-left: auto; /* Empurra o nav-links para a direita, separando-o do ícone */
-}
 /* --- ESTILOS PARA O ÍCONE DE PESQUISA --- */
 
 .search-icon-link {
@@ -652,30 +644,8 @@
   display: none;
 }
 
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 6px;
-  z-index: 1001; /* garante que o botão fica por cima do menu */
-}
-
-.hamburger span {
-  width: 28px;
-  height: 3px;
-  background: #fff;
-  border-radius: 2px;
-  transition: 0.3s;
-}
-
-/* ===== MENU PADRÃO (desktop) ===== */
-.nav-links {
-  display: flex;
-  gap: 20px;
-}
-
-
 /* ===== CONTAINER PRINCIPAL DO CONTEÚDO ===== */
+
 .trilhas.container {
     max-width: 1200px;
     margin: 0 auto;
@@ -699,11 +669,13 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
+    opacity: 0.3;
 }
 
 .voltar-topo:hover {
     background: #d65d00;
     transform: translateY(-4px);
+    opacity: 1;
 }
 
 /* ======================== 2. HEADER E NAV ================ */
@@ -970,13 +942,6 @@ footer a:hover {
 }
 
 /* ===== Nav Links Desktop ===== */
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-left: auto;
-}
-
 .nav-links a {
     color: #fff;
     text-decoration: none;
@@ -1001,21 +966,6 @@ footer a:hover {
 
 .menu-toggle {
     display: none;
-}
-
-.hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-}
-
-.hamburger span {
-    width: 28px;
-    height: 3px;
-    background-color: #fff;
-    border-radius: 2px;
-    transition: 0.3s;
 }
 
 /* Menu Mobile */
@@ -1294,7 +1244,7 @@ footer a:hover {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 5px;
     margin-left: auto;
 }
 
@@ -1627,22 +1577,6 @@ footer a:hover {
     }
 }
 
-/* Hamburger */
-.hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-}
-
-.hamburger span {
-    width: 28px;
-    height: 3px;
-    background-color: #fff;
-    border-radius: 2px;
-    transition: 0.3s;
-}
-
 /* Menu que aparece ao clicar */
 .menu {
     position: absolute;
@@ -1749,5 +1683,19 @@ footer a:hover {
         text-align: center;
     }
 }
+.logo-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  margin: auto;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 12px rgba(0, 255, 120, 0.4);
+}
+
 
 

@@ -111,13 +111,33 @@ button:hover {
   font-size: 1rem;
   cursor: pointer;
   color: #b8ffcc;
-  text-decoration: underline;
+  text-decoration: none;
   transition: 0.3s;
 }
 
 .link:hover {
   color: #81ffae;
   transform: scale(1.05);
+}
+
+.back-home-container {
+    margin-top: 10px; /* garante espaço acima do "Voltar para a Home" */
+    text-align: center; /* centraliza o link */
+}
+
+.back-home-btn {
+    color: var(--color-olive-nav) !important; /* garante que fique verde */
+    text-decoration: none !important;
+    font-weight: bold;
+    transition: color 0.3s ease; /* adiciona animação suave no hover */
+}
+
+.back-home-btn:hover {
+    color: var(--color-orange-button) !important; /* muda a cor ao passar o mouse */
+}
+
+.back-home-btn:visited {
+    color: var(--color-olive-nav) !important; /* evita roxo em links visitados */
 }
 
 @keyframes fadeIn {
