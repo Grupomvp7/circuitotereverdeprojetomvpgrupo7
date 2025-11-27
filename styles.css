@@ -9,6 +9,7 @@
           --color-login-bg: #81a97d;         /* Fundo da área de login */
           
         }
+        
 
         /* Fonte moderna */
 
@@ -1642,7 +1643,7 @@ footer a:hover {
 .sobre-image {
     flex: 1 1 400px;
     min-height: 250px;
-    background-image: url('img/sobre-img.jpg'); /* substitua pela sua imagem */
+    background-image: url('img/sobre.png'); /* substitua pela sua imagem */
     background-size: cover;
     background-position: center;
     border-radius: 12px;
@@ -1696,6 +1697,80 @@ footer a:hover {
   backdrop-filter: blur(5px);
   box-shadow: 0 0 12px rgba(0, 255, 120, 0.4);
 }
+/* Container da seção de eventos */
+.section-eventos {
+    padding: 60px 20px;
+    background: #f5f5f5;
+    text-align: center;
+}
+
+/* Grid de eventos */
+.eventos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Card de evento */
+.evento-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.evento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+}
+
+/* Imagem do evento */
+.evento-img {
+    width: 100%;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Conteúdo do evento */
+.evento-content {
+    padding: 20px;
+    text-align: left;
+}
+
+.evento-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #2b3a2d;
+}
+
+.evento-content p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Botão de detalhes */
+.evento-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background: #4f7942;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.evento-btn:hover {
+    background: #81a77f;
+}
+
 
 
 

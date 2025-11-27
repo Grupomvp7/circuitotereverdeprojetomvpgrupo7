@@ -3,91 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terê Verde Online - Teresópolis</title>
+    <title>Eventos - Circuito Terê Verde</title>
+
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Fontes e Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-    <script src="script.js"></script>
 </head>
 
 <body id="topo">
-    <header class="top-bar">
-    <div class="logo-container">
-    <div class="logo-circle">
-          🌿 
-        </div>
-    <h1 class="logo-text">Terê Verde Online</h1>
-</div>
 
-        <!-- Menu Mobile -->
-        <nav class="menu">
-            <a href="trilhas.html">Trilhas</a>
-            <a href="cachoeiras.html">Cachoeiras</a>
-            <a href="eventos.html">Eventos</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#loginModal">Login</a>
-        </nav>
+<header class="top-bar">
+    <div class="logo-container">
+        <div class="logo-circle">🌿</div>
+        <h1 class="logo-text">Circuito Terê Verde</h1>
     </div>
 
-    <!-- Nav Links Desktop -->
     <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="trilhas.html">Trilhas</a>
         <a href="cachoeiras.html">Cachoeiras</a>
+
         <div class="search-bar">
-            <input type="text" placeholder="Buscar..." />
+            <input type="text" placeholder="Buscar eventos..." />
             <i class="fas fa-magnifying-glass"></i>
         </div>
+
         <a href="login.html" class="login-icon">
-    <i class="fa-solid fa-user"></i>
-</a>
+            <i class="fa-solid fa-user"></i>
+        </a>
     </nav>
 </header>
 
-    <section class="section-eventos container">
-        <h2>Eventos</h2>
-        <div class="eventos-grid">
-            <div class="evento-card">
-                <div class="evento-img-placeholder"
-                style="background-image: url('img/E_BANNER_C_R_06_03_16.jpg');"></div>
-                <button class="saber-mais-button">SABER MAIS</button>
-            </div>
-            <div class="evento-card">
-                <div class="evento-img-placeholder"
-                style="background-image: url('img/serveja.jpg');"></div>
-                <button class="saber-mais-button">SABER MAIS</button>
-            </div>
-            <div class="evento-card">
-                <div class="evento-img-placeholder"
-                style="background-image: url('img/feport.jpg');"></div>
-                <button class="saber-mais-button">SABER MAIS</button>
+<!-- HERO ESPECÍFICO DA PÁGINA -->
+<section class="hero-section dark-bg">
+    <div class="container">
+        <div class="hero-image-box eventos-banner"></div>
+
+        <div class="welcome-text">
+            <h2>Eventos de Teresópolis</h2>
+            <p>Descubra o que está acontecendo na Serra! Cultura, música, gastronomia e atividades ao ar livre.</p>
+        </div>
+    </div>
+</section>
+
+<!-- LISTA DE EVENTOS -->
+<section class="section-eventos container">
+    <h2>Próximos Eventos</h2>
+
+    <div class="eventos-grid">
+
+        <!-- Evento 1 -->
+        <div class="evento-card">
+            <div class="evento-img" style="background-image: url('img/eventosq2.png')"></div>
+
+            <div class="evento-content">
+                <h3>Festival Gastronômico de Teresópolis</h3>
+                <p class="evento-data"><i class="fa-solid fa-calendar-day"></i> 12 a 14 de Março</p>
+                <p class="evento-local"><i class="fa-solid fa-location-dot"></i> Praça Olímpica</p>
+
+                <p class="evento-descricao">
+                    O melhor da gastronomia serrana reunido em um grande evento com chefs, música ao vivo e cultura local.
+                </p>
+
+                <a href="#" class="evento-btn">Ver detalhes</a>
             </div>
         </div>
-    </section>
 
-    <section class="section-sobre dark-bg" id="sobre">
-        <div class="sobre-content">
-            <div class="sobre-image"></div>
-            <div class="sobre-text">
-                <h2>Sobre</h2>
-                <p>Este Portal foi criado para que você possa explorar a beleza dos Parques de Teresópolis, facilitando seu acesso a informações sobre Trilhas, Cachoeiras e Eventos. Contamos com apoio do Parque Natural Municipal de Teresópolis. Nosso objetivo é tornar a sua visita a Teresópolis e região, o mais tranquila e agradável possível, de forma prática e segura.</p>
+        <!-- Evento 2 -->
+        <div class="evento-card">
+    <div class="evento-img" style="background-image: url('img/eventosq.jpeg')"></div>
+
+    <div class="evento-content">
+        <h3>Festival de Música na Serra</h3>
+        <p class="evento-data"><i class="fa-solid fa-calendar-day"></i> 20 de Março</p>
+        <p class="evento-local"><i class="fa-solid fa-location-dot"></i> Parque Municipal</p>
+
+        <p class="evento-descricao">
+            Um evento ao ar livre reunindo artistas locais e regionais, food trucks, artesanato e atrações culturais
+            para toda a família.
+        </p>
+
+        <a href="#" class="evento-btn">Ver detalhes</a>
+    </div>
+</div>
+
+        <!-- Evento 3 -->
+        <div class="evento-card">
+            <div class="evento-img" style="background-image: url('img/eventosq3.jpg')"></div>
+
+            <div class="evento-content">
+                <h3>Encontro de Observadores de Aves</h3>
+                <p class="evento-data"><i class="fa-solid fa-calendar-day"></i> 5 de Abril</p>
+                <p class="evento-local"><i class="fa-solid fa-location-dot"></i> Parque dos Três Picos</p>
+
+                <p class="evento-descricao">
+                    Evento para amantes da fauna! Venha observar espécies raras e aprender com especialistas.
+                </p>
+
+                <a href="#" class="evento-btn">Ver detalhes</a>
             </div>
         </div>
-    </section>
 
-    <footer class="main-footer dark-bg">
+    </div>
+</section>
+
+<!-- VOLTAR AO TOPO -->
+<a href="#topo" id="voltarTopo" class="voltar-topo">↑</a>
+
+<footer class="main-footer dark-bg">
     <div class="container footer-grid">
         
         <div class="footer-col contact-info">
-            <h3>Terê Verde Online</h3>
-            <p>Descubra as melhores trilhas e cachoeiras de Teresópolis e região.</p>
-            <p>Email: contato@tereverdeonline.com</p>
-            <p>Telefone: (21) 99999-0000</p>
+            <h3>Circuito Terê Verde</h3>
+            <p>Descubra as melhores trilhas, cachoeiras e eventos de Teresópolis.</p>
         </div>
 
         <div class="footer-col quick-links">
@@ -107,87 +141,15 @@
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
-            </div>
-
+        </div>
     </div>
-    
+
     <div class="footer-bottom">
         <div class="container">
-            <p>&copy; 2025 Terra Verde Online. Todos os direitos reservados. | Desenvolvido por Grupo MVP 7.</p>
+            <p>&copy; 2025 Circuito Terê Verde. Todos os direitos reservados.</p>
         </div>
     </div>
 </footer>
-
-<div class="admin-area-section">
-    <div class="top-bar">
-        <span>WWW.TEREVERDEONLINE.COM</span>
-    </div>
-    <div class="admin-area container">
-        </div>
-</div>
-
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-
-    <!-- NOVO: fundo da imagem do evento -->
-    <div id="modal-background" class="modal-background"></div>
-
-    <div class="modal-text">
-      <h2 id="modal-title">Título do Evento</h2>
-      <p id="modal-description">Aqui vai a descrição detalhada do evento selecionado.</p>
-    </div>
-  </div>
-</div>
-
-
-<script>
-  // Captura os botões
-const buttons = document.querySelectorAll('.saber-mais-button'); // Seleciona todos os botões "SABER MAIS"
-const modal = document.getElementById('modal');
-const closeBtn = document.querySelector('.close-btn');
-const modalTitle = document.getElementById('modal-title');
-const modalDesc = document.getElementById('modal-description');
-const modalBackground = document.getElementById('modal-background');
-
-const eventos = [
-  {
-    titulo: "Cultura de Raiz - Teresópolis 2025",
-    descricao: "O evento “Cultura de Raiz” celebra as tradições e manifestações culturais de Teresópolis e da região serrana. Com música ao vivo de artistas locais, apresentações de dança folclórica, rodas de viola, artesanato típico e oficinas culturais, é uma experiência única para toda a família. Além disso, os visitantes podem degustar comidas e bebidas regionais, explorar exposições de arte popular e conhecer de perto a riqueza cultural que preserva a identidade da cidade. Uma verdadeira imersão nas raízes de Teresópolis, promovendo cultura, educação e diversão em um só lugar.",
-    img: "img/E_BANNER_C_R_06_03_16.jpg"
-  },
-  {
-    titulo: "Serveja Terê - Teresópolis 2025",
-    descricao: "O Serveja é o festival que celebra a cultura da cerveja artesanal em Teresópolis, reunindo apaixonados por sabores únicos e experiências gastronômicas. O evento conta com degustações de cervejas de diferentes estilos, food trucks com pratos especiais, música ao vivo e atividades interativas para os visitantes. Uma oportunidade para conhecer produtores locais, trocar experiências e aproveitar momentos de lazer com amigos e familiares em um ambiente descontraído e animado.",
-    img: "img/serveja.jpg"
-  },
-  {
-    titulo: "Feport - Teresópolis 2025",
-    descricao: "A Feport é a tradicional Feira de Produtos e Eventos de Teresópolis, reunindo cultura, gastronomia e entretenimento em um só lugar. Em 2025, o evento promete atrações para toda a família: shows ao vivo com artistas locais, exposições de artesanato regional, comidas típicas, bebidas artesanais e atividades recreativas para crianças. É a oportunidade perfeita para conhecer e valorizar a riqueza cultural e natural da cidade, enquanto aproveita momentos de lazer com amigos e familiares. Venha fazer parte dessa festa que celebra o melhor de Teresópolis!",
-    img: "img/feport.jpg"
-  }
-];
-
-buttons.forEach((btn, index) => {
-  btn.addEventListener('click', () => {
-    modalTitle.textContent = eventos[index].titulo;
-    modalDesc.textContent = eventos[index].descricao;
-    modalBackground.style.backgroundImage = `url('${eventos[index].img}')`;
-    modal.style.display = 'flex';
-  });
-});
-
-closeBtn.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
-
-window.addEventListener('click', (e) => {
-  if (e.target === modal) {
-    modal.style.display = 'none';
-  }
-});
-
-</script>
 
 </body>
 </html>
