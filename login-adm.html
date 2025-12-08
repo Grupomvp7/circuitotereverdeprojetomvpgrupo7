@@ -1,30 +1,24 @@
-<!DOCTYPE Pagina do Administrador html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Circuito Verde</title>
+    <title>Dashboard Circuito Terê Verde</title>
     <link rel="stylesheet" href="estilopaginaadm.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="script.js"></script> 
 </head>
 
 <body>
-
-    <!-- CONTAINER PRINCIPAL DA DASHBOARD -->
+    
     <div class="dashboard-container">
 
-        <!-- MENU LATERAL COM NAVEGAÇÃO -->
         <aside class="sidebar">
-
-            <!-- LOGO DO MENU LATERAL -->
             <div class="logo">
                 <i class="fas fa-leaf"></i>
                 <h3>Painel</h3>
             </div>
-
-            <!-- LINKS DO MENU QUE ALTERAM AS SEÇÕES NO PAINEL (Cada link leva para uma seção interna pelo ID (link âncora)) -->
             <nav class="nav-menu">
                 <a href="#overview" class="active"><i class="fas fa-chart-line"></i> Visão Geral</a>
                 <a href="#trilhas"><i class="fas fa-route"></i> Trilhas</a>
@@ -34,29 +28,20 @@
             </nav>
         </aside>
 
-        <!-- ÁREA PRINCIPAL DO PAINEL -->
         <main class="main-content">
 
-            <!-- CABEÇALHO DO PAINEL (NOME DO ADMIN + BOTÃO SAIR) -->
             <header class="header">
-
-                <!-- MOSTRA O USUÁRIO LOGADO -->
                 <div class="user-profile">
                     <i class="fas fa-user-circle"></i>
-                    <span>Administrador</span>
+                    <span id="adminNameDisplay">Administrador</span>
                 </div>
-
-                <!-- BOTÃO QUE FECHA A SESSÃO -->
                 <button class="btn-logout" onclick="logout()">
                     <i class="fas fa-sign-out-alt"></i> Sair
                 </button>
             </header>
 
-            <!-- SEÇÃO: VISÃO GERAL DO PAINEL -->
             <section id="overview" class="content-section active">
                 <h3>Informações dos Cadastros</h3>
-
-                <!-- CARDS COM NÚMEROS RÁPIDOS -->
                 <div class="stats-cards">
                     <div class="card"><i class="fas fa-route"></i> **Trilhas:** 9 cadastradas</div>
                     <div class="card"><i class="fas fa-water"></i> **Cachoeiras:** 4 cadastradas</div>
@@ -64,251 +49,24 @@
                 </div>
             </section>
             
-            <!-- SEÇÃO: GERENCIAMENTO DE TRILHAS -->
             <section id="trilhas" class="content-section">
                 <h3>🌿 Gestão de Trilhas</h3>
-
-                <!-- BOTÃO PARA ADICIONAR NOVA TRILHA -->
-                <div class="button-row">
-                    <button class="btn-add"><i class="fas fa-plus"></i> Cadastrar Trilha</button>
-                </div>
-
-                <!-- LISTA DE TRILHAS CADASTRADAS -->
-                <div class="list-container">
-
-                    <!-- MODELO DE TRILHA (TODAS SEGUEM ESTE PADRÃO) -->
-                    <div class="item">
-                        <h4>Trilha Mozart do Catão (Difícil)</h4>
-                        <p>18 km • 8h de duração.</p>
-
-                        <!-- BOTÕES DE AÇÃO (EDITAR / EXCLUIR) -->
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                    <!-- TODAS AS TRILHAS ABAIXO SEGUEM O MESMO PADRÃO -->
-                    <div class="item">
-                        <h4>Trilha Pedra do Sino (Difícil)</h4>
-                        <p>11 km • 6h de duração.</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                    
-                    <div class="item">
-                        <h4>Trilha Dedo de Deus (Extrema)</h4>
-                        <p>10 km • 7h de duração (com escalada).</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                    
-                    <div class="item">
-                        <h4>Trilha Pedra do Elefante (Moderada)</h4>
-                        <p>7 km • 3h de duração.</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <h4>Trilha Cabeça do Dragão (Fácil)</h4>
-                        <p>4 km • 1h de duração.</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <h4>Trilha Dois Bicos (Moderada)</h4>
-                        <p>8 km • 3.5h de duração.</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <h4>Trilha Pedra da Tartaruga (Fácil)</h4>
-                        <p>6 km • 2h de duração.</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <h4>Trilha Vidocq Casas (Difícil)</h4>
-                        <p>9 km • 4h de duração.</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <h4>Trilha Pedra Alpina (Extrema)</h4>
-                        <p>15 km • 9h de duração.</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SEÇÃO: CACHOEIRAS (MANTIDA, APENAS COMENTADA) -->
+                </section>
+            
             <section id="cachoeiras" class="content-section">
                 <h3>💧 Gestão de Cachoeiras</h3>
-
-                <!-- BOTÃO NOVA CACHOEIRA -->
-                <div class="button-row">
-                    <button class="btn-add"><i class="fas fa-plus"></i> Cadastrar Cachoeira</button>
-                </div>
-
-                <!-- LISTA DAS CACHOEIRAS CADASTRADAS -->
-                <div class="list-container">
-
-                    <div class="item">
-                        <h4>Cachoeira Poço das Duchas</h4>
-                        <p>• Acesso: Leve.</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <h4>Cachoeira Poço dos Irmãos</h4>
-                        <p>• Acesso: Leve a Moderado.</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <h4>Cachoeira Poço do Castelo</h4>
-                        <p>• Acesso: Leve.</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <h4>Cachoeira dos Frades</h4>
-                        <p>• Acesso: Leve.</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- SEÇÃO: EVENTOS -->
+                </section>
+            
             <section id="eventos" class="content-section">
                 <h3>📅 Gestão de Eventos</h3>
-
-                <!-- BOTÃO NOVO EVENTO -->
-                <div class="button-row">
-                    <button class="btn-add"><i class="fas fa-plus"></i> Cadastrar Evento</button>
-                </div>
-
-                <!-- LISTA DE EVENTOS CADASTRADOS -->
-                <div class="list-container">
-
-                    <div class="item">
-                        <h4>Evento feport 2025</h4>
-                        <p>Data: 15/Jan/2025 | Local: Centro de Convenções | Foco: Relatórios Anuais</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <h4>Festival de Inverno Sesc 2025</h4>
-                        <p>Data: 01-10/Jul/2025 | Local: Praça Central | Atividades: Shows e Exposição</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <h4>Eventos Carros Antigos</h4>
-                        <p>Data: 20/Abr/2025 | Local: Estacionamento Principal | Destaque: Exposição Clássica</p>
-                        <div class="action-buttons">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i> Excluir</button>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- SEÇÃO: RELATÓRIOS E ESTATÍSTICAS -->
+                </section>
+            
             <section id="relatorios" class="content-section">
                 <h3>👥 Relatórios de Usuários</h3>
+                </section>
 
-                <!-- CARDS DE ESTATÍSTICAS -->
-                <div class="stats-cards">
-                    <div class="card status-card">
-                        <i class="fas fa-users"></i>
-                        **Usuários Cadastrados = 10.000**
-                    </div>
-                    <div class="card status-card">
-                        <i class="fas fa-hiking"></i>
-                        **Trilhas Concluídas = 10.000**
-                    </div>
-                    <div class="card status-card">
-                        <i class="fas fa-comment-dots"></i>
-                        **Feedback dos Usuarios = 5.000**
-                    </div>
-                </div>
-
-                <!-- ESPAÇO PARA INSERIR GRÁFICOS NO FUTURO -->
-                <div class="chart-placeholder">
-                </div>
-            </section>
         </main>
     </div>
-
-    <!-- SCRIPT RESPONSÁVEL POR TROCAR AS SEÇÕES QUANDO CLICA NO MENU ( Trilhas , Cachoeiras , Etc..) -->
-    <script>
-        // Seleciona todos os links do menu
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-
-            // Adiciona evento de clique aos links
-            link.addEventListener('click', function(e) {
-                e.preventDefault(); // Evita que a página recarregue
-
-                // Remove a classe 'active' de todos os links e seções (isso serve para esconder a seção que estava aberta)
-                document.querySelectorAll('.nav-menu a').forEach(item => item.classList.remove('active'));
-                document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
-
-                // Ativa o link clicado (deixa o botão do menu marcado.)
-                this.classList.add('active');
-
-                // Obtém o ID da seção correspondente ao link ( Ex: se clicou no link "#trilhas", ele pega apenas "trilhas")
-                const targetId = this.getAttribute('href').substring(1);
-
-                // Ativa a seção correspondente
-                document.getElementById(targetId).classList.add('active');
-            });
-        });
-    </script>
 
 </body>
 </html>

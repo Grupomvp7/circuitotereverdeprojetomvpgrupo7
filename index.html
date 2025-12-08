@@ -15,16 +15,22 @@
     <script src="script.js"></script>
 </head>
 
-<body id="topo">
-    <header class="top-bar">
-    <div class="logo-container">
-    <div class="logo-circle">
-          🌿 
-        </div>
-    <h1 class="logo-text">Circuito Terê Verde</h1>
-</div>
+<header class="top-bar">
 
-        <!-- Menu Mobile -->
+    <div class="logo-container">
+        <div class="logo-circle">🌿</div>
+        <h1 class="logo-text">Circuito Terê Verde</h1>
+    </div>
+
+    <!-- Menu Mobile -->
+    <div class="menu-container">
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
         <nav class="menu">
             <a href="trilhas.html">Trilhas</a>
             <a href="cachoeiras.html">Cachoeiras</a>
@@ -34,17 +40,21 @@
         </nav>
     </div>
 
-    <!-- Nav Links Desktop -->
+    <!-- Nav Desktop -->
     <nav class="nav-links">
-        <div class="search-bar">
-            <input type="text" placeholder="Buscar..." />
-            <i class="fas fa-magnifying-glass"></i>
-        </div>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="filterContent()" />
+        <i class="fas fa-magnifying-glass"></i>
+    </div>
+</nav>
+
         <a href="login.html" class="login-icon">
-    <i class="fa-solid fa-user"></i>
-</a>
+            <i class="fa-solid fa-user"></i>
+        </a>
     </nav>
+
 </header>
+<body id="topo">
 
 
     <section class="hero-section dark-bg">
