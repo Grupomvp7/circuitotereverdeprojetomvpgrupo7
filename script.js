@@ -226,35 +226,3 @@ document.addEventListener('DOMContentLoaded', () => {
         // Nota: A proteção de acesso da página inicial é menos comum, mas pode ser adicionada se necessário.
     }
 });
-
-// ========================= FUNÇÃO DE FILTRO LOCALIZADO (REUTILIZÁVEL) =========================
-// Esta função filtra o conteúdo dentro do contêiner especificado pelo 'containerId'.
-function filterPageContent(containerId) {
-    // 1. Pega o termo de busca (deve estar em um input com id="searchInput")
-    const termoBusca = document.getElementById('searchInput').value.toUpperCase();
-    
-    // 2. Encontra o contêiner principal da lista
-    const listContainer = document.getElementById(containerId);
-
-    if (!listContainer) {
-        console.error("Contêiner de busca não encontrado com o ID: " + containerId);
-        return;
-    }
-
-    // 3. Pega todos os itens da lista dentro desse contêiner
-    // (Presumindo que os itens a serem filtrados tenham a classe '.item')
-    const items = listContainer.querySelectorAll('.item');
-
-    // 4. Itera sobre cada item e filtra
-    items.forEach(item => {
-        // Pega todo o texto do item para buscar
-        const textoItem = item.textContent || item.innerText;
-
-        // Se encontrar o termo de busca, exibe o item; caso contrário, esconde
-        if (textoItem.toUpperCase().includes(termoBusca)) {
-            item.style.display = ""; // Exibir
-        } else {
-            item.style.display = "none"; // Esconder
-        }
-    });
-}
