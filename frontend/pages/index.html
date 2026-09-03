@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circuito Terê Verde - Teresópolis</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Script principal com defer para garantir o carregamento correto do DOM -->
+    <script src="script.js" defer></script>
+</head>
+
+<body id="topo">
+
+<header class="top-bar">
+    <div class="logo-container">
+        <div class="logo-circle">🌿</div>
+        <h1 class="logo-text">Circuito Terê Verde</h1>
+    </div>
+
+    <!-- Menu Mobile / Hambúrguer -->
+    <div class="menu-container">
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="menu">
+            <a href="index.html">Home</a>
+            <a href="trilhas.html">Trilhas</a>
+            <a href="cachoeiras.html">Cachoeiras</a>
+            <a href="eventos.html">Eventos</a>
+            <a href="#sobre">Sobre</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </div>
+
+    <!-- Nav Desktop com Busca Universal e ÁREA DO USUÁRIO (Padronizada) -->
+        <nav class="nav-links">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar no site..." />
+            <i class="fas fa-magnifying-glass"></i>
+        </div>
+        
+        <!-- ÁREA DINÂMICA DO USUÁRIO (LOGIN / SAUDAÇÃO + LOGOUT) -->
+        <div id="userArea" style="display: inline-flex; align-items: center;">
+            <a href="login.html" class="login-icon" id="loginIcon">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            <span id="userGreeting" style="display: none; color: #fff; font-weight: bold; margin-left: 10px; align-items: center; gap: 8px;">
+                Olá, <span id="userNameDisplay"></span>!
+                <button onclick="logoutUser()" style="background: none; border: none; color: #ff6b6b; cursor: pointer; font-size: 1rem;" title="Sair">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </span>
+        </div>
+    </nav>
+</header>
+
+    <section class="hero-section dark-bg">
+        <div class="container text-center">
+            <!-- Imagem ou Banner -->
+            <div class="hero-image-box"></div>
+
+            <!-- Texto de Boas-Vindas -->
+            <div class="welcome-text text-center">
+                <h2>Bem-vindo ao Circuito Terê Verde!</h2>
+                <p>
+                    Descubra as belezas naturais de Teresópolis. Trilhas, cachoeiras e muito mais.
+                    Clique e explore!
+                </p>
+            </div>
+
+            <!-- Cards Principais -->
+            <div class="hero-cards">
+                <a href="trilhas.html" class="hero-icon-card">
+                    <div class="icon-circle">
+                        <i class="fas fa-hiking"></i>
+                    </div>
+                    <span>Trilhas</span>
+                </a>
+
+                <a href="cachoeiras.html" class="hero-icon-card">
+                    <div class="icon-circle">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <span>Cachoeiras</span>
+                </a>
+
+                <a href="eventos.html" class="hero-icon-card">
+                    <div class="icon-circle">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <span>Eventos</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-eventos container text-center">
+        <h2>🌿 Biodiversidade de Teresópolis</h2>
+        
+        <div class="content-block text-center">
+            <h3>O Coração Verde da Serra dos Órgãos</h3>
+            <p>
+                Aninhada entre montanhas imponentes e vales cobertos de névoa, Teresópolis é um dos tesouros ecológicos 
+                mais preciosos do Brasil. Localizada no alto da Serra dos Órgãos, a cidade abriga uma das maiores reservas 
+                de Mata Atlântica preservada do estado do Rio de Janeiro, um verdadeiro paraíso natural onde a vida pulsa em 
+                cada folha, canto e nascente.
+            </p>
+            <p>
+                Essas condições criam ecossistemas únicos, que sustentam uma impressionante variedade de espécies vegetais 
+                e animais, muitas delas endêmicas e ameaçadas de extinção.
+            </p>
+        </div>
+
+        <div class="content-block text-center">
+            <h4>Parques que Protegem Esse Patrimônio</h4>
+            <ul class="list-centered">
+                <li>🏞️ <strong>Parque Nacional da Serra dos Órgãos (PARNASO)</strong> — Um dos parques mais antigos e ricos em biodiversidade do Brasil.</li>
+                <li>🌄 <strong>Parque Estadual dos Três Picos</strong> — Florestas densas e picos monumentais formam o cenário perfeito para espécies raras.</li>
+                <li>🌳 <strong>Parque Natural Municipal Montanhas de Teresópolis</strong> — Um corredor ecológico que conecta habitats e preserva o equilíbrio ambiental.</li>
+            </ul>
+        </div>
+
+        <div class="content-block text-center">
+            <h3>🌸 Flora — O Jardim Vivo da Serra</h3>
+            <p>
+                Caminhar por Teresópolis é mergulhar em um tapete verde onde cada detalhe revela a força da vida. 
+                As matas são formadas por árvores centenárias, bromélias, orquídeas e samambaias que se espalham pelos troncos 
+                e pedras cobertas de musgo.
+            </p>
+            <h4>Espécies em Destaque</h4>
+            <ul class="list-centered">
+                <li>Ipês, quaresmeiras e jacarandás que colorem a serra com tons vibrantes;</li>
+                <li>Araucárias e cedros típicos das altitudes mais elevadas;</li>
+                <li>Bromélias e orquídeas, joias naturais que abrigam insetos, rãs e pássaros;</li>
+                <li>Musgos e liquens, indicadores da pureza do ar.</li>
+            </ul>
+        </div>
+
+        <div class="content-block text-center">
+            <h3>🐾 Fauna — A Vida que Habita a Floresta</h3>
+
+            <h4>🐦 Aves</h4>
+            <ul class="list-centered">
+                <li>Tucano-de-bico-preto, araponga, tiê-sangue, sabiá e beija-flores multicoloridos;</li>
+                <li>Mais de 250 espécies registradas, tornando a cidade um dos melhores pontos de observação do estado.</li>
+            </ul>
+
+            <h4>🐒 Mamíferos</h4>
+            <ul class="list-centered">
+                <li>Mico-leão-da-serra, bugios, quatis, ouriços, gatos-do-mato e jaguatiricas;</li>
+                <li>Roedores e morcegos frugívoros, essenciais para dispersão de sementes.</li>
+            </ul>
+
+            <h4>🐍 Répteis e Anfíbios</h4>
+            <ul class="list-centered">
+                <li>Sapos, pererecas e rãs coloridas, sensíveis à pureza da água;</li>
+                <li>Serpentes e lagartos escondidos entre folhas e rochas.</li>
+            </ul>
+
+            <h4>🦋 Insetos e Polinizadores</h4>
+            <ul class="list-centered">
+                <li>Borboletas raras, abelhas nativas e libélulas que mantêm o ciclo da vida.</li>
+            </ul>
+        </div>
+
+        <div class="content-block text-center">
+            <h3>💧 Rios, Cachoeiras e Ecossistemas</h3>
+            <ul class="list-centered">
+                <li>Florestas de encosta e neblina, sempre úmidas e cheias de epífitas;</li>
+                <li>Campos de altitude, adaptados ao frio e ao vento;</li>
+                <li>Rios cristalinos como Rio Paquequer e Rio Beija-Flor, além das cachoeiras do Parque dos Frades e Poço do Castelo.</li>
+            </ul>
+            <p>
+                Cada nascente é um fio de vida que alimenta ecossistemas, a cultura local e a própria identidade da cidade.
+            </p>
+        </div>
+
+        <div class="content-block text-center">
+            <h2>💚 Teresópolis: Onde a Natureza Respira</h2>
+            <p>
+                Visitar Teresópolis é mais do que admirar belas paisagens — é vivenciar a energia viva da Mata Atlântica. 
+                A biodiversidade da cidade inspira respeito, cuidado e amor pela vida. Em cada trilha e cada canto de pássaro, 
+                Teresópolis reafirma seu título de <strong>Coração Verde da Serra dos Órgãos</strong>.
+            </p>
+        </div>
+    </section>
+
+    <section class="section-sobre dark-bg" id="sobre">
+        <div class="sobre-content text-center">
+            <div class="sobre-image"></div>
+            <div class="sobre-text">
+                <h2>Sobre</h2>
+                <p>Este Portal foi criado para que você possa explorar a beleza dos Parques de Teresópolis, facilitando seu acesso a informações sobre Trilhas, Cachoeiras e Eventos. Contamos com apoio do Parque Natural Municipal de Teresópolis. Nosso objetivo é tornar a sua visita a Teresópolis e região, o mais tranquila e agradável possível, de forma prática e segura.</p>
+            </div>
+        </div>
+    </section>
+
+    <a href="#topo" id="voltarTopo" class="voltar-topo" aria-label="Voltar ao topo da página">↑</a>
+
+    <footer class="main-footer dark-bg">
+        <div class="container footer-grid">
+            <div class="footer-col contact-info">
+                <h3>Circuito Terê Verde</h3>
+                <p>Descubra as melhores trilhas e cachoeiras de Teresópolis e região.</p>
+                <p>Email: contato@circuitotereverde.com</p>
+                <p>Telefone: (21) 99999-0000</p>
+            </div>
+
+            <div class="footer-col quick-links">
+                <h3>Acesso Rápido</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="trilhas.html">Trilhas</a></li>
+                    <li><a href="cachoeiras.html">Cachoeiras</a></li>
+                    <li><a href="eventos.html">Eventos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col social-media">
+                <h3>Siga-nos</h3>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container text-center">
+                <p>&copy; 2025 Circuito Terê Verde. Todos os direitos reservados. | Desenvolvido por Grupo MVP 7.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

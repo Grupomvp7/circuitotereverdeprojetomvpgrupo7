@@ -1,0 +1,32 @@
+{
+  "name": "circuitotereverdeprojetomvpgrupo7",
+  "version": "1.0.0",
+  "description": "O **Circuito Terê Verde** é uma solução digital desenvolvida com o objetivo de **promover o ecoturismo e o acesso sustentável às belezas naturais de Teresópolis – RJ**.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Grupomvp7/circuitotereverdeprojetomvpgrupo7.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Grupomvp7/circuitotereverdeprojetomvpgrupo7/issues"
+  },
+  "homepage": "https://github.com/Grupomvp7/circuitotereverdeprojetomvpgrupo7#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "multer": "^2.2.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^6.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

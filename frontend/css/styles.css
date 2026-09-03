@@ -1,0 +1,1016 @@
+/* ===== 1. VARIÁVEIS E RESET ===== */
+:root {
+    --color-dark-brown: #2b3a2d;
+    --color-light-bg: #e8f3ec;
+    --color-olive-nav: #4f7942;
+    --color-orange-button: #f4a261;
+    --color-text-light: #ffffff;
+    --color-text-dark: #1b1b1b;
+    --color-login-bg: #81a97d;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom, #025822, #c2e2cd, #4fa574);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+/* ===== 2. HEADER E NAVEGAÇÃO ===== */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 5%;
+    background: linear-gradient(90deg, #1b4332, #2d6a4f);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    margin: auto;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 12px rgba(0, 255, 120, 0.4);
+}
+
+.logo-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+}
+
+.logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin: 0;
+    background: linear-gradient(90deg, #f4a261, #ffd166, #f4a261, #ffd166);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.25);
+    animation: shine 4s linear infinite;
+}
+
+.logo-text:hover {
+    transform: scale(1.05) rotate(-1deg);
+    text-shadow: 3px 3px 12px rgba(0,0,0,0.35);
+    cursor: default;
+}
+
+@keyframes shine {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.home-icon-link {
+    font-size: 1.6em;
+    color: #fff;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.home-icon-link:hover {
+    color: #f4a261;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.nav-links a {
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #f4a261;
+    color: #fff;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 2px 8px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 0.9em;
+    width: 120px;
+}
+
+.search-bar i {
+    color: #2d6a4f;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.secondary-nav {
+    background-color: var(--color-olive-nav);
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.secondary-nav .nav-links a {
+    margin: 0 10px;
+}
+
+/* ÁREA DO USUÁRIO E BOTÃO DE LOGOUT RED */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-logout {
+    background-color: #e74c3c;
+    color: #ffffff !important;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-logout:hover {
+    background-color: #c0392b !important;
+    transform: translateY(-1px);
+}
+
+/* ===== MENU MOBILE / HAMBURGER ===== */
+.menu-container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    z-index: 1001;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1002;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger:hover span {
+    background-color: #f4a261;
+}
+
+.menu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #2d6a4f;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    border-radius: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    min-width: 180px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.menu a {
+    color: #fff;
+    padding: 12px 20px;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.menu a:hover {
+    background-color: #f4a261;
+    color: #fff;
+}
+
+.menu-toggle:checked ~ .menu {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.menu-toggle:checked + .hamburger span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle:checked + .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle:checked + .hamburger span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* ===== 3. HERO SECTION ===== */
+.hero-section {
+    position: relative;
+    padding: 80px 0 100px;
+    color: #fff;
+    overflow: hidden;
+}
+
+.hero-section.dark-bg {
+    background: linear-gradient(135deg, #025822 0%, #4fa574 100%);
+    z-index: 0;
+}
+
+.hero-section.dark-bg::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.35);
+    z-index: 0;
+}
+
+.hero-section .container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    z-index: 1;
+}
+
+.hero-image-box {
+    flex: 1 1 300px;
+    min-width: 280px;
+    height: 250px;
+    border-radius: 20px;
+    background-image: url('img/Dedo_de_Deus_vista_do_Soberbo.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.hero-image-box:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.45);
+}
+
+.welcome-text {
+    flex: 1 1 400px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.3s;
+}
+
+.welcome-text h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    text-shadow: 2px 3px 8px rgba(0,0,0,0.6);
+}
+
+.welcome-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+.hero-cards {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    margin-top: 31px;
+}
+
+.hero-icon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #2b3a2d;
+    color: #fff;
+    padding: 25px;
+    width: 140px;
+    height: 140px;
+    border-radius: 25px;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+.hero-icon-card:nth-child(1) { animation-delay: 0.5s; }
+.hero-icon-card:nth-child(2) { animation-delay: 0.7s; }
+.hero-icon-card:nth-child(3) { animation-delay: 0.9s; }
+
+.hero-icon-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    background-color: #1b4332;
+}
+
+.icon-circle {
+    background: linear-gradient(135deg, #78b268, #4fa574);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-icon-card:hover .icon-circle {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(120, 178, 104, 0.7),
+                0 0 25px rgba(79, 165, 116, 0.5);
+}
+
+.icon-circle i {
+    font-size: 28px;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.hero-icon-card span {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== 4. SEÇÃO SOBRE ===== */
+.section-sobre {
+    padding: 80px 5%;
+    background: linear-gradient(135deg, #1b4332, #2d6a4f);
+    color: #fff;
+    border-radius: 12px;
+    margin: 40px auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.sobre-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.sobre-image {
+    flex: 1 1 400px;
+    min-height: 250px;
+    background-image: url('img/sobre.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.sobre-text {
+    flex: 1 1 400px;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.sobre-text h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #f4a261;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.sobre-text p {
+    line-height: 1.6;
+    font-size: 1em;
+    color: #e8f3ec;
+}
+
+/* ===== 5. SEÇÃO EVENTOS E BIODIVERSIDADE ===== */
+.section-eventos {
+    padding: 60px 20px;
+    background: #f5f5f5;
+    border-radius: 20px;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.eventos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.evento-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.evento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+}
+
+.evento-img {
+    width: 100%;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+}
+
+.evento-content {
+    padding: 20px;
+    text-align: left;
+}
+
+.evento-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #2b3a2d;
+}
+
+.evento-content p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.evento-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background: #4f7942;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.evento-btn:hover {
+    background: #81a77f;
+}
+
+/* ===== 6. TRILHAS E CACHOEIRAS ===== */
+.parque-section {
+    margin: 20px auto;
+    padding: 60px 8%;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    max-width: 1100px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.parque-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+}
+
+#trespicos { background: linear-gradient(180deg, #f6fff8 0%, #e9f5ec 100%); }
+#montanhas { background: linear-gradient(180deg, #f6fff8 0%, #e9f5ec 100%); }
+#serraorgaos { background: linear-gradient(180deg, #f6fff8 0%, #e9f5ec 100%); }
+#novas-cachoeiras { background: linear-gradient(180deg, #f6fff8 0%, #e9f5ec 100%); }
+#novas-trilhas { background: linear-gradient(180deg, #f6fff8 0%, #e9f5ec 100%); }
+
+.trilhas-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.trilha-card {
+    background-color: #fff;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.cachoeiras-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cachoeira-item {
+    display: flex;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.cachoeira-img-placeholder {
+    width: 100px;
+    height: 100px;
+    background-color: #aaa;
+    flex-shrink: 0;
+    margin-right: 15px;
+    background-image: url('/img/cachoeira-rio-dos-frades.jpeg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 6px;
+}
+
+/* ===== 7. CARROSSEL ===== */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.carousel-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-track img {
+    width: 100%;
+    max-width: 100%;
+    height: 480px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 12px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 50%;
+    z-index: 10;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(244, 162, 97, 0.9);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev { 
+    left: 15px; 
+}
+
+.carousel-btn.next { 
+    right: 15px; 
+}
+
+/* ===== 8. TABELAS ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 40px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+table th {
+    background-color: #2d6a4f;
+    color: #fff;
+    text-align: left;
+    padding: 12px;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+table tr:hover { background-color: #f1f3f2; }
+
+/* ===== 9. FOOTER ===== */
+.main-footer {
+    background: rgba(43, 58, 45, 0.95);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 50px 5%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -8px 25px rgba(0,0,0,0.3);
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 30px;
+}
+
+.footer-col {
+    flex: 1 1 260px;
+    text-align: left;
+}
+
+.footer-col h3 {
+    color: var(--color-orange-button);
+    font-size: 1.15em;
+    margin-bottom: 12px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h3::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--color-orange-button);
+    border-radius: 2px;
+}
+
+.footer-col p {
+    color: #dcdccb;
+    font-size: 0.92em;
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.quick-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.quick-links ul li {
+    margin-bottom: 10px;
+}
+
+.quick-links ul li a {
+    color: #dcdccb;
+    text-decoration: none;
+    font-size: 0.92em;
+    transition: color 0.25s ease;
+}
+
+.quick-links ul li a:hover {
+    color: var(--color-orange-button);
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.social-icons a {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.social-icons a:hover {
+    background-color: var(--color-orange-button);
+    transform: translateY(-3px);
+}
+
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding: 15px 0 0;
+    text-align: center;
+    font-size: 0.85em;
+    color: #ccc;
+}
+
+/* ===== 10. MEDIA QUERIES (RESPONSIVIDADE) ===== */
+@media (max-width: 1050px) {
+    .hero-section .container,
+    .footer-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cachoeiras-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hero-cards {
+        gap: 15px;
+    }
+
+    .hero-icon-card {
+        width: 120px;
+        height: 120px;
+        padding: 20px;
+    }
+
+    .icon-circle {
+        width: 60px;
+        height: 60px;
+    }
+
+    .icon-circle i {
+        font-size: 24px;
+    }
+
+    .sobre-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .sobre-text {
+        padding: 15px;
+    }
+
+    .sobre-text h2 {
+        text-align: center;
+    }
+
+    .trilhas-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .carousel-track img {
+        height: 320px;
+    }
+
+    .voltar-topo,
+    #voltarTopo {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+}
+
+/* ===== 11. CENTRALIZAÇÃO E CONTEÚDO EXPANDIDO ===== */
+.text-center {
+    text-align: center !important;
+}
+
+.content-block {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    padding: 0 15px;
+}
+
+.content-block h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #1b4332;
+}
+
+.content-block h3 {
+    font-size: 1.6rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2d6a4f;
+}
+
+.content-block h4 {
+    font-size: 1.25rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: #4f7942;
+}
+
+.content-block p {
+    text-align: center;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    color: #2b3a2d;
+    margin-bottom: 1.2rem;
+}
+
+.list-centered {
+    display: inline-block;
+    text-align: left;
+    margin: 0 auto 1.8rem auto;
+    padding-left: 1.5rem;
+    max-width: 100%;
+}
+
+.list-centered li {
+    margin-bottom: 0.7rem;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #2b3a2d;
+}
+
+.welcome-text {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+/* ===== 12. DESTAQUE DE BUSCA ===== */
+.search-highlight {
+    outline: 3px solid #f4a261 !important;
+    box-shadow: 0 0 15px rgba(244, 162, 97, 0.8) !important;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    animation: pulseHighlight 1.5s infinite alternate;
+}
+
+@keyframes pulseHighlight {
+    0% {
+        box-shadow: 0 0 10px rgba(244, 162, 97, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(244, 162, 97, 1);
+    }
+}
+
+/* ===== 13. BOTÃO VOLTAR AO TOPO (TRANSPARENTE ATÉ CHEGAR AO FINAL) ===== */
+.voltar-topo,
+#voltarTopo {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-orange-button);
+    color: #ffffff !important;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    border: 2px solid #ffffff;
+    z-index: 9999;
+    text-decoration: none;
+    
+    /* Estado inicial: invisível/transparente */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.3s ease;
+}
+
+/* Classe ativada via JavaScript ao rolar até o final da página */
+.voltar-topo.ativo,
+#voltarTopo.ativo {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.voltar-topo.ativo:hover,
+#voltarTopo.ativo:hover {
+    background-color: #e07a38;
+    transform: translateY(-5px) scale(1.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+    color: #ffffff !important;
+}
+
+/* Caixinha da descrição da trilha */
+.descricao-trilha {
+    background-color: #ffffff;
+    border-left: 5px solid var(--color-olive-nav);
+    border-radius: 8px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+/* Título das seções dentro da trilha (Dicas, Horário de Funcionamento, etc.) */
+.trilha-section h3 {
+    color: var(--color-olive-nav);
+    font-size: 1.3em;
+    margin: 30px 0 15px 0;
+    padding-left: 12px;
+    border-left: 5px solid var(--color-olive-nav);
+}
+
+/* Caixinhas de Dicas e Horário de Funcionamento */
+.dicas-lista,
+.horarios-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dicas-lista li,
+.horarios-lista li {
+    background-color: #ffffff;
+    border-left: 5px solid var(--color-orange-button);
+    border-radius: 8px;
+    padding: 14px 18px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    font-size: 1rem;
+    color: var(--color-text-dark);
+}

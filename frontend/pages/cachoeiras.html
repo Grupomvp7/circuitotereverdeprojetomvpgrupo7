@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cachoeiras - Circuito Terê Verde</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+
+<body id="topo">
+    <header class="top-bar">
+        <div class="logo-container">
+            <div class="logo-circle">🌿</div>
+            <h1 class="logo-text">Circuito Terê Verde</h1>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div class="menu-container">
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav class="menu">
+                <a href="index.html">Home</a>
+                <a href="trilhas.html">Trilhas</a>
+                <a href="eventos.html">Eventos</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+
+        <!-- Navegação Desktop -->
+         <nav class="nav-links">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Buscar..." aria-label="Buscar" onkeyup="filterContent()" />
+                <i class="fas fa-magnifying-glass"></i>
+            </div>
+            
+            <!-- ÁREA DINÂMICA DO USUÁRIO (PADRONIZADA COM EVENTOS/INDEX) -->
+            <div id="userArea" style="display: inline-flex; align-items: center;">
+                <a href="login.html" class="login-icon" id="loginIcon" aria-label="Página de login">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <span id="userGreeting" style="display: none; color: #fff; font-weight: bold; margin-left: 10px; align-items: center; gap: 8px;">
+                    Olá, <span id="userNameDisplay"></span>!
+                    <button onclick="logoutUser()" style="background: none; border: none; color: #ff6b6b; cursor: pointer; font-size: 1rem;" title="Sair" aria-label="Sair da conta">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container trilhas">
+
+                <!-- PARQUE TRÊS PICOS -->
+        <section class="parque-section" id="trespicos">
+            <h1>Parque Estadual dos Três Picos</h1>
+            <p class="parque-descricao">
+                O Parque Estadual dos Três Picos é uma das maiores e mais importantes unidades de conservação do estado do Rio de Janeiro,
+                abrangendo áreas de Nova Friburgo, Teresópolis e Cachoeiras de Macacu. É conhecido por suas formações rochosas impressionantes,
+                trilhas deslumbrantes e ampla biodiversidade.
+            </p>
+            <div id="cachoeiras-tres-picos"></div>
+        </section>
+
+        <!-- PARQUE NACIONAL DA SERRA DOS ÓRGÃOS -->
+        <section class="parque-section" id="serraorgaos">
+            <h1>Parque Nacional da Serra dos Órgãos</h1>
+            <p class="parque-descricao">
+                O Parque Nacional da Serra dos Órgãos (PARNASO) é uma das mais antigas unidades de conservação do Brasil,
+                famoso pelo icônico Dedo de Deus e por suas trilhas lendárias como a Travessia Petrópolis-Teresópolis.
+            </p>
+            <div id="cachoeiras-serraorgaos"></div>
+        </section>
+                
+        <a href="#topo" id="voltarTopo" class="voltar-topo" aria-label="Voltar ao topo da página">↑</a>
+
+    </main>
+
+    <footer class="main-footer dark-bg">
+        <div class="container footer-grid">
+            <div class="footer-col contact-info">
+                <h3>Circuito Terê Verde</h3>
+                <p>Descubra as melhores trilhas e cachoeiras de Teresópolis e região.</p>
+                <p>Email: contato@circuitotereverde.com</p>
+                <p>Telefone: (21) 99999-0000</p>
+            </div>
+
+            <div class="footer-col quick-links">
+                <h3>Acesso Rápido</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="trilhas.html">Trilhas</a></li>
+                    <li><a href="eventos.html">Eventos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col social-media">
+                <h3>Siga-nos</h3>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container text-center">
+                <p>&copy; 2025 Circuito Terê Verde. Todos os direitos reservados. | Desenvolvido por Grupo MVP 7.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== CARROSSEL =====
+        document.querySelectorAll('.carousel').forEach(carousel => {
+            const track = carousel.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const nextBtn = carousel.querySelector('.next');
+            const prevBtn = carousel.querySelector('.prev');
+            let currentIndex = 0;
+
+            const updateSlide = () => {
+                if (!track || slides.length === 0) return;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            };
+
+            if (nextBtn && prevBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    updateSlide();
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    updateSlide();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

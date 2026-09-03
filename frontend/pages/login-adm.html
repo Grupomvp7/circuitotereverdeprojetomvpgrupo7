@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Circuito Verde</title>
+    <link rel="stylesheet" href="estilopaginaadm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos para a tabela de usuários */
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 1rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .data-table th, .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .data-table th {
+            background-color: #f4f7f6;
+            color: #2e7d32;
+        }
+        .data-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        .badge-user {
+            background-color: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .badge-admin {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        /* Força a cor vermelha bem visível nos botões de excluir */
+        .btn-delete, .btn-delete-item, button.btn-delete, button.btn-delete-item {
+            background-color: #d32f2f !important;
+            color: #ffffff !important;
+            border: 1px solid #b71c1c !important;
+            padding: 6px 14px !important;
+            border-radius: 4px !important;
+            cursor: pointer !important;
+            font-weight: bold !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+            transition: background 0.2s, transform 0.1s !important;
+        }
+
+        .btn-delete:hover, .btn-delete-item:hover, button.btn-delete:hover, button.btn-delete-item:hover {
+            background-color: #b71c1c !important;
+            color: #ffffff !important;
+            transform: scale(1.02);
+        }
+
+        /* Modal de cadastro/edição de cachoeira */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .modal-box h3 {
+            margin-bottom: 15px;
+            color: #2e7d32;
+        }
+        .modal-box label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 4px;
+            font-weight: 600;
+            color: #2f2f2f;
+        }
+        .modal-box input,
+        .modal-box textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+                .modal-buttons button {
+            flex: 1;
+        }
+
+        .lista-chips-imagens {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .imagem-chip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            background: #f1f1ea;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 0.82em;
+        }
+
+        .imagem-chip span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .imagem-chip button {
+            background: #e5484d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .imagem-chip button:hover {
+            background: #c62828;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CONTAINER PRINCIPAL DA DASHBOARD -->
+    <div class="dashboard-container">
+
+        <!-- MENU LATERAL COM NAVEGAÇÃO -->
+        <aside class="sidebar">
+
+            <!-- LOGO DO MENU LATERAL -->
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <h3>Painel</h3>
+            </div>
+
+            <!-- LINKS DO MENU -->
+            <nav class="nav-menu">
+                <a href="#overview" class="active"><i class="fas fa-chart-line"></i> Visão Geral</a>
+                <a href="#trilhas"><i class="fas fa-route"></i> Trilhas</a>
+                <a href="#cachoeiras"><i class="fas fa-water"></i> Cachoeiras</a>
+                <a href="#eventos"><i class="fas fa-calendar-alt"></i> Eventos</a>
+                <a href="#usuarios"><i class="fas fa-user-cog"></i> Gestão de Usuários</a>
+                <a href="#relatorios"><i class="fas fa-chart-pie"></i> Relatórios de Usuários</a>
+            </nav>
+        </aside>
+
+        <!-- ÁREA PRINCIPAL DO PAINEL -->
+        <main class="main-content">
+
+            <!-- CABEÇALHO DO PAINEL -->
+            <header class="header">
+                <div class="user-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Administrador</span>
+                </div>
+
+                <button class="btn-logout" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </button>
+            </header>
+
+            <!-- SEÇÃO: VISÃO GERAL DO PAINEL -->
+            <section id="overview" class="content-section active">
+                <h3>Informações dos Cadastros</h3>
+
+                <div class="stats-cards">
+                    <div class="card"><i class="fas fa-route"></i> <strong>Trilhas:</strong> <span id="total-trilhas-overview">0</span> cadastradas</div>
+                    <div class="card"><i class="fas fa-water"></i> <strong>Cachoeiras:</strong> <span id="total-cachoeiras-overview">0</span> cadastradas</div>
+                    <div class="card"><i class="fas fa-calendar-alt"></i> <strong>Eventos:</strong> <span id="total-eventos-overview">0</span> cadastrados</div> 
+                    <div class="card"><i class="fas fa-users"></i> <strong>Usuários:</strong> <span id="total-usuarios-overview">0</span> registrados</div> 
+                </div>
+            </section>
+            
+            <!-- SEÇÃO: GERENCIAMENTO DE TRILHAS (6 TRILHAS ORIGINAIS) -->
+            <section id="trilhas" class="content-section">
+                <h3>🌿 Gestão de Trilhas</h3>
+                <div class="button-row">
+                    <button class="btn-add" onclick="abrirModalTrilha()"><i class="fas fa-plus"></i> Cadastrar Trilha</button>
+                </div>
+                <div class="list-container" id="lista-trilhas"></div>
+            </section>
+
+            <!-- SEÇÃO: CACHOEIRAS -->
+            <section id="cachoeiras" class="content-section">
+                <h3>💧 Gestão de Cachoeiras</h3>
+                <div class="button-row">
+                   <button class="btn-add" onclick="abrirModalCachoeira()"><i class="fas fa-plus"></i> Cadastrar Cachoeira</button> 
+                </div>
+                <div class="list-container" id="lista-cachoeiras"></div>
+            </section>
+
+            <!-- SEÇÃO: GESTÃO DE EVENTOS -->
+            <section id="eventos" class="content-section">
+                <h3>📅 Gestão de Eventos</h3>
+                <div class="button-row">
+                    <button class="btn-add" onclick="abrirModalEvento()"><i class="fas fa-plus"></i> Cadastrar Evento</button>
+                </div>
+                <div class="list-container" id="lista-eventos">
+                   </div>  
+            </section>
+
+            <!-- SEÇÃO: GESTÃO DE USUÁRIOS -->
+            <section id="usuarios" class="content-section">
+                <h3>👤 Usuários Cadastrados no Sistema</h3>
+
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th>Tipo</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-usuarios">
+                            <!-- Os usuários serão carregados dinamicamente do SQLite aqui -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SEÇÃO: RELATÓRIOS DE USUÁRIOS (TEXTO FORMATADO EM LINHA DENTRO DOS CARDS) -->
+            <section id="relatorios" class="content-section">
+                <h3>👥 Relatórios de Usuários</h3>
+                <div class="stats-cards">
+                    <div class="card status-card">
+                        <i class="fas fa-users"></i>
+                        <span><strong>Usuários Cadastrados:</strong> <span id="total-usuarios-relatorio">0</span></span>
+                    </div>
+                    <div class="card status-card">
+                        <i class="fas fa-hiking"></i>
+                        <span><strong>Trilhas Concluídas:</strong> 10.000</span>
+                    </div>
+                    <div class="card status-card">
+                        <i class="fas fa-comment-dots"></i>
+                        <span><strong>Feedback dos Usuários:</strong> 5.000</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- MODAL DE CADASTRO/EDIÇÃO DE EVENTO -->
+    <div id="modalEvento" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <h3 id="modalEventoTitulo">Cadastrar Evento</h3>
+
+            <input type="hidden" id="eventoId">
+
+            <label>Título do Evento</label>
+            <input type="text" id="eventoTitulo" placeholder="Ex: Festival de Inverno da Serra">
+
+            <label>Enviar imagem do computador</label>
+            <input type="file" id="eventoImagemArquivo" accept="image/*">
+
+            <label>Ou cole o link da imagem (URL)</label>
+            <input type="text" id="eventoImagem" placeholder="img/evento-exemplo.jpg">
+
+            <label>Data</label>
+            <input type="text" id="eventoData" placeholder="Ex: 15 de Junho">
+
+            <label>Local</label>
+            <input type="text" id="eventoLocal" placeholder="Ex: Praça Baltazar da Silveira">
+
+            <label>Descrição</label>
+            <textarea id="eventoDescricao" rows="4" placeholder="Descrição completa do evento..."></textarea>
+
+            <div class="modal-buttons">
+                <button class="btn-add" onclick="salvarEvento()"><i class="fas fa-save"></i> Salvar</button>
+                <button class="btn-delete" onclick="fecharModalEvento()"><i class="fas fa-times"></i> Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE CADASTRO/EDIÇÃO DE TRILHA -->
+    <div id="modalTrilha" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <h3 id="modalTrilhaTitulo">Cadastrar Trilha</h3>
+
+            <input type="hidden" id="trilhaId">
+
+            <label>Título da Trilha</label>
+            <input type="text" id="trilhaTitulo" placeholder="Ex: Trilha da Pedra do Sino">
+
+            <label>Parque / Região</label>
+            <input type="text" id="trilhaParque" placeholder="Ex: Parque Nacional da Serra dos Órgãos">
+
+            <label>Distância</label>
+            <input type="text" id="trilhaDistancia" placeholder="Ex: 5 km">
+
+            <label>Duração</label>
+            <input type="text" id="trilhaDuracao" placeholder="Ex: 3h 30min">
+
+            <label>Dificuldade</label>
+            <input type="text" id="trilhaDificuldade" placeholder="Ex: Fácil, Médio, Difícil">
+
+            <label>Descrição (separe parágrafos com uma linha em branco)</label>
+            <textarea id="trilhaDescricao" rows="5" placeholder="Descrição completa da trilha..."></textarea>
+
+            <label>Localização</label>
+            <input type="text" id="trilhaLocalizacao" placeholder="Ex: Sede Teresópolis do PARNASO">
+
+            <label>Altitude</label>
+            <input type="text" id="trilhaAltitude" placeholder="Ex: Aprox. 1.470 m">
+
+            <label>Tipo de atividade</label>
+            <input type="text" id="trilhaTipoAtividade" placeholder="Ex: Trilha de montanha / caminhada ecológica">
+
+            <label>Acesso</label>
+            <input type="text" id="trilhaAcesso" placeholder="Ex: Pela portaria principal, km 5...">
+
+            <label>Ponto final</label>
+            <input type="text" id="trilhaPontoFinal" placeholder="Ex: Mirante natural com vista para a serra">
+
+            <label>Ambiente natural</label>
+            <input type="text" id="trilhaAmbienteNatural" placeholder="Ex: Mata Atlântica montana e campos de altitude">
+
+            <label>Sinalização</label>
+            <input type="text" id="trilhaSinalizacao" placeholder="Ex: Boa — setas e totens de pedra">
+
+            <label>Melhor época</label>
+            <input type="text" id="trilhaMelhorEpoca" placeholder="Ex: Abril a setembro">
+
+            <label>Infraestrutura</label>
+            <input type="text" id="trilhaInfraestrutura" placeholder="Ex: Estacionamento, banheiros, guarda-parques">
+
+            <label>Administração</label>
+            <input type="text" id="trilhaAdministracao" placeholder="Ex: INEA / Prefeitura de Teresópolis">
+
+            <label>Indicação</label>
+            <input type="text" id="trilhaIndicacao" placeholder="Ex: Famílias, iniciantes, amantes de trilha">
+
+            <label>Enviar imagens do computador</label>
+            <input type="file" id="trilhaImagensArquivo" accept="image/*" multiple>
+
+            <label>Ou cole o link de imagens (uma URL por linha)</label>
+            <textarea id="trilhaImagens" rows="3" placeholder="img/exemplo1.jpg&#10;img/exemplo2.jpg" oninput="renderizarChipsImagens('trilhaImagens', 'trilhaImagensLista')"></textarea>
+
+            <label>Imagens atuais</label>
+            <div id="trilhaImagensLista" class="lista-chips-imagens"></div>
+
+            <label>Dicas (uma por linha)</label>
+            <textarea id="trilhaDicas" rows="3" placeholder="Leve água suficiente&#10;Use botas de trilha"></textarea>
+
+            <label>Horário de Funcionamento (uma linha por dia)</label>
+            <textarea id="trilhaHorarios" rows="4" placeholder="Segunda-Feira: Fechado&#10;Terça-Feira: 07:00 – 16:00&#10;Quarta-Feira: 07:00 – 16:00"></textarea>
+
+            <div class="modal-buttons">
+                <button class="btn-add" onclick="salvarTrilha()"><i class="fas fa-save"></i> Salvar</button>
+                <button class="btn-delete" onclick="fecharModalTrilha()"><i class="fas fa-times"></i> Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+<!-- MODAL DE CADASTRO/EDIÇÃO DE CACHOEIRA -->
+    <div id="modalCachoeira" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <h3 id="modalCachoeiraTitulo">Cadastrar Cachoeira</h3>
+
+            <input type="hidden" id="cachoeiraId">
+
+            <label>Título da Cachoeira</label>
+            <input type="text" id="cachoeiraTitulo" placeholder="Ex: Cachoeira do Véu da Noiva">
+
+            <label>Parque / Região</label>
+            <input type="text" id="cachoeiraParque" placeholder="Ex: Parque Estadual dos Três Picos">
+
+            <label>Descrição</label>
+            <textarea id="cachoeiraDescricao" rows="4" placeholder="Descrição completa da cachoeira..."></textarea>
+
+            <label>Localização</label>
+            <input type="text" id="cachoeiraLocalizacao" placeholder="Ex: Vale dos Frades, zona rural...">
+
+            <label>Acesso</label>
+            <input type="text" id="cachoeiraAcesso" placeholder="Ex: Pela RJ-130, km 19...">
+
+                       <label>Dificuldade</label>
+            <input type="text" id="cachoeiraDificuldade" placeholder="Ex: Fácil, Moderado, Difícil">
+
+            <label>Altitude média</label>
+            <input type="text" id="cachoeiraAltitude" placeholder="Ex: Aprox. 900 m">
+
+            <label>Extensão da trilha de acesso</label>
+            <input type="text" id="cachoeiraExtensao" placeholder="Ex: 300 metros (5 minutos de caminhada)">
+
+            <label>Tempo médio de percurso</label>
+            <input type="text" id="cachoeiraTempoMedio" placeholder="Ex: 5 a 10 minutos">
+
+            <label>Tipo de atrativo</label>
+            <input type="text" id="cachoeiraTipoAtrativo" placeholder="Ex: Cachoeira de 10m com poço natural">
+
+            <label>Ambiente</label>
+            <input type="text" id="cachoeiraAmbiente" placeholder="Ex: Mata Atlântica densa e preservada">
+
+            <label>Destaque</label>
+            <input type="text" id="cachoeiraDestaque" placeholder="Ex: Ótimo para fotos e descanso">
+
+            <label>Estrutura de apoio</label>
+            <input type="text" id="cachoeiraEstrutura" placeholder="Ex: Estacionamento e banheiros próximos">
+
+            <label>Melhor época</label>
+            <input type="text" id="cachoeiraMelhorEpoca" placeholder="Ex: Setembro a abril">
+
+            <label>Enviar imagens do computador</label>
+            <input type="file" id="cachoeiraImagensArquivo" accept="image/*" multiple>
+
+             <label>Ou cole o link de imagens (uma URL por linha)</label>
+            <textarea id="cachoeiraImagens" rows="3" placeholder="img/exemplo1.jpg&#10;img/exemplo2.jpg" oninput="renderizarChipsImagens('cachoeiraImagens', 'cachoeiraImagensLista')"></textarea>
+
+            <label>Imagens atuais</label>
+            <div id="cachoeiraImagensLista" class="lista-chips-imagens"></div>
+
+                        <label>Dicas (uma por linha)</label>
+            <textarea id="cachoeiraDicas" rows="3" placeholder="Leve protetor solar&#10;Use calçado antiderrapante"></textarea>
+
+            <label>Horário de Funcionamento (uma linha por dia)</label>
+            <textarea id="cachoeiraHorarios" rows="4" placeholder="Segunda-Feira: Fechado&#10;Terça-Feira: 07:00 – 16:00&#10;Quarta-Feira: 07:00 – 16:00"></textarea>
+
+            <div class="modal-buttons">
+                <button class="btn-add" onclick="salvarCachoeira()"><i class="fas fa-save"></i> Salvar</button>
+                <button class="btn-delete" onclick="fecharModalCachoeira()"><i class="fas fa-times"></i> Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <!-- SCRIPT INTEGRADO COM O NODE.JS (PORTA 3000) E CONTADORES EM TEMPO REAL -->
+    <script>
+        const API_URL = `${window.location.protocol}//${window.location.hostname}:3000/api`;
+
+        // ================= PROTEÇÃO DE ACESSO AO PAINEL =================
+        const ADMIN_TOKEN = localStorage.getItem('adminToken');
+
+        // Se não existe token nenhum, manda direto pro login
+        if (!ADMIN_TOKEN) {
+            window.location.href = 'login.html';
+        }
+
+        // Faz TODA chamada fetch feita a partir daqui incluir o token de admin automaticamente,
+        // sem precisar alterar cada função individualmente
+        const fetchOriginal = window.fetch;
+        window.fetch = function (url, options = {}) {
+            if (typeof url === 'string' && url.startsWith(API_URL)) {
+                options.headers = { ...(options.headers || {}), 'Authorization': `Bearer ${ADMIN_TOKEN}` };
+            }
+            return fetchOriginal(url, options);
+        };
+
+        // Confirma no servidor que o token realmente é válido
+        async function verificarSessaoAdmin() {
+            try {
+                const response = await fetch(`${API_URL}/verify-admin`);
+                if (!response.ok) {
+                    localStorage.removeItem('adminToken');
+                    sessionStorage.removeItem('isAdminLoggedIn');
+                    window.location.href = 'login.html';
+                    return false;
+                }
+                return true;
+            } catch (error) {
+                console.error('Erro ao verificar sessão:', error);
+                window.location.href = 'login.html';
+                return false;
+            }
+        }
+
+        // Alternar abas do menu lateral
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-menu a').forEach(item => item.classList.remove('active'));
+                document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+
+                this.classList.add('active');
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Contadores Dinâmicos em Tempo Real para a aba "Visão Geral"
+        function atualizarEstatisticasVisaoGeral() {
+            const numTrilhas = document.querySelectorAll('#lista-trilhas .item').length;
+            const numCachoeiras = document.querySelectorAll('#lista-cachoeiras .item').length;
+            const numEventos = document.querySelectorAll('#lista-eventos .item').length;
+
+            document.getElementById('total-trilhas-overview').textContent = numTrilhas;
+            document.getElementById('total-cachoeiras-overview').textContent = numCachoeiras;
+            document.getElementById('total-eventos-overview').textContent = numEventos;
+        }
+
+        // Atualiza os contadores de total de usuários na interface
+        function atualizarContadoresUsuarios(total) {
+            const overviewElem = document.getElementById('total-usuarios-overview');
+            const relatorioElem = document.getElementById('total-usuarios-relatorio');
+            
+            if (overviewElem) overviewElem.textContent = total;
+            if (relatorioElem) relatorioElem.textContent = total;
+        }
+
+        // 1. Função para carregar os usuários reais do SQLite em ordem
+        async function carregarUsuarios() {
+            const tabela = document.getElementById('lista-usuarios');
+            if (!tabela) return;
+
+            try {
+                const response = await fetch(`${API_URL}/users`);
+                if (!response.ok) throw new Error('Falha ao buscar usuários do servidor.');
+
+                let usuarios = await response.json();
+                tabela.innerHTML = ''; // Limpa tabela
+
+                // Atualiza o valor real nos dois cards de relatório/visão geral
+                atualizarContadoresUsuarios(usuarios.length);
+
+                if (usuarios.length === 0) {
+                    tabela.innerHTML = '<tr><td colspan="5" style="text-align:center;">Nenhum usuário cadastrado.</td></tr>';
+                    return;
+                }
+
+                // Ordena do menor ID para o maior (ordem de chegada/cadastro)
+                usuarios.sort((a, b) => a.id - b.id);
+
+                // Renderiza cada usuário com número sequencial (index + 1)
+                usuarios.forEach((user, index) => {
+                    const tr = document.createElement('tr');
+                    tr.id = `user-${user.id}`;
+
+                    const isAdmin = user.role === 'admin';
+                    const badgeClass = isAdmin ? 'badge-admin' : 'badge-user';
+                    const roleText = isAdmin ? 'Admin' : 'Cliente';
+
+                    const numeroSequencial = index + 1;
+
+                    tr.innerHTML = `
+                        <td>#${numeroSequencial}</td>
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                        <td><span class="${badgeClass}">${roleText}</span></td>
+                        <td>
+                            <button class="btn-delete" onclick="deletarUsuario(${user.id}, '${user.name.replace(/'/g, "\\'")}')">
+                                <i class="fas fa-trash-alt"></i> Excluir
+                            </button>
+                        </td>
+                    `;
+                    tabela.appendChild(tr);
+                });
+            } catch (erro) {
+                console.error("Erro ao carregar lista de usuários:", erro);
+                tabela.innerHTML = '<tr><td colspan="5" style="text-align:center; color:red;">Erro ao carregar usuários. Verifique se o backend está ligado.</td></tr>';
+            }
+        }
+
+        // 2. Função para excluir usuário do banco de dados
+        async function deletarUsuario(userId, nome) {
+            const confirmar = confirm(`Tem certeza que deseja apagar o usuário "${nome}"?`);
+            
+            if (confirmar) {
+                try {
+                    const response = await fetch(`${API_URL}/users/${userId}`, {
+                        method: 'DELETE'
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert(result.message || 'Usuário removido com sucesso!');
+                        carregarUsuarios();
+                    } else {
+                        alert(result.error || 'Erro ao tentar excluir o usuário.');
+                    }
+                } catch (erro) {
+                    console.error("Erro na comunicação com o servidor:", erro);
+                    alert("Não foi possível conectar ao servidor para excluir.");
+                }
+            }
+        }
+                // Desenha a listinha de imagens atuais com botão de remover, lendo o campo de texto
+        function renderizarChipsImagens(textareaId, listaId) {
+            const textarea = document.getElementById(textareaId);
+            const lista = document.getElementById(listaId);
+            if (!textarea || !lista) return;
+
+            const linhas = textarea.value.split('\n').map(s => s.trim()).filter(s => s.length > 0);
+            lista.innerHTML = '';
+
+            if (linhas.length === 0) {
+                lista.innerHTML = '<p style="font-size:0.82em;color:#888;margin:0;">Nenhuma imagem adicionada ainda.</p>';
+                return;
+            }
+
+            linhas.forEach((url, index) => {
+                const chip = document.createElement('div');
+                chip.className = 'imagem-chip';
+                chip.innerHTML = `
+                    <span title="${url}">${url}</span>
+                    <button type="button" title="Remover esta imagem" onclick="removerImagem('${textareaId}', '${listaId}', ${index})"><i class="fas fa-times"></i></button>
+                `;
+                lista.appendChild(chip);
+            });
+        }
+
+        // Remove uma imagem específica da lista (pelo índice) e atualiza o campo de texto
+        function removerImagem(textareaId, listaId, index) {
+            const textarea = document.getElementById(textareaId);
+            const linhas = textarea.value.split('\n').map(s => s.trim()).filter(s => s.length > 0);
+            linhas.splice(index, 1);
+            textarea.value = linhas.join('\n');
+            renderizarChipsImagens(textareaId, listaId);
+        }
+
+        // Envia um arquivo de imagem pro servidor e retorna o caminho salvo (ex: img/12345-foto.jpg)
+        async function enviarImagem(arquivo) {
+            const formData = new FormData();
+            formData.append('imagem', arquivo);
+
+            const response = await fetch(`${API_URL}/upload`, {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error || 'Erro ao enviar imagem.');
+            return data.url;
+        }
+
+// 2.1 Carrega as cachoeiras cadastradas no banco (mantém os itens fixos já existentes)
+        async function carregarCachoeirasAdmin() {
+            const container = document.getElementById('lista-cachoeiras');
+            if (!container) return;
+
+            // Remove apenas os itens carregados do banco, sem tocar nos 4 itens fixos já existentes
+            container.querySelectorAll('.item-db').forEach(el => el.remove());
+
+            try {
+                const response = await fetch(`${API_URL}/cachoeiras`);
+                if (!response.ok) throw new Error('Falha ao buscar cachoeiras.');
+
+                const cachoeiras = await response.json();
+
+                cachoeiras.forEach(c => {
+                    const div = document.createElement('div');
+                    div.className = 'item item-db';
+                    div.id = `cachoeira-${c.id}`;
+                    div.innerHTML = `
+                        <h4>${c.titulo}</h4>
+                        <p>• Acesso: ${c.acesso || 'Não informado'}</p>
+                        <div class="action-buttons">
+                            <button class="btn-edit" onclick="editarCachoeira(${c.id})"><i class="fas fa-edit"></i> Editar</button>
+                            <button class="btn-delete-item" onclick="excluirCachoeira(${c.id}, '${c.titulo.replace(/'/g, "\\'")}')"><i class="fas fa-trash-alt"></i> Excluir</button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+
+                atualizarEstatisticasVisaoGeral();
+            } catch (error) {
+                console.error('Erro ao carregar cachoeiras do banco:', error);
+            }
+        }
+
+        function abrirModalCachoeira() {
+            document.getElementById('modalCachoeiraTitulo').textContent = 'Cadastrar Cachoeira';
+            document.getElementById('cachoeiraId').value = '';
+            document.getElementById('cachoeiraTitulo').value = '';
+            document.getElementById('cachoeiraParque').value = '';
+            document.getElementById('cachoeiraDescricao').value = '';
+            document.getElementById('cachoeiraLocalizacao').value = '';
+            document.getElementById('cachoeiraAcesso').value = '';
+            document.getElementById('cachoeiraDificuldade').value = '';
+            document.getElementById('cachoeiraAltitude').value = '';
+            document.getElementById('cachoeiraExtensao').value = '';
+            document.getElementById('cachoeiraTempoMedio').value = '';
+            document.getElementById('cachoeiraTipoAtrativo').value = '';
+            document.getElementById('cachoeiraAmbiente').value = '';
+            document.getElementById('cachoeiraDestaque').value = '';
+            document.getElementById('cachoeiraEstrutura').value = '';
+            document.getElementById('cachoeiraMelhorEpoca').value = '';
+            document.getElementById('cachoeiraImagens').value = '';
+            document.getElementById('cachoeiraImagensArquivo').value = '';
+            renderizarChipsImagens('cachoeiraImagens', 'cachoeiraImagensLista');
+            document.getElementById('cachoeiraDicas').value = '';
+            document.getElementById('cachoeiraHorarios').value = '';
+            document.getElementById('modalCachoeira').style.display = 'flex';
+        }
+
+        function fecharModalCachoeira() {
+            document.getElementById('modalCachoeira').style.display = 'none';
+        }
+
+        async function salvarCachoeira() {
+            const id = document.getElementById('cachoeiraId').value;
+            const titulo = document.getElementById('cachoeiraTitulo').value.trim();
+            const parque = document.getElementById('cachoeiraParque').value.trim();
+            const descricao = document.getElementById('cachoeiraDescricao').value.trim();
+            const localizacao = document.getElementById('cachoeiraLocalizacao').value.trim();
+            const acesso = document.getElementById('cachoeiraAcesso').value.trim();
+            const dificuldade = document.getElementById('cachoeiraDificuldade').value.trim();
+            const altitude_media = document.getElementById('cachoeiraAltitude').value.trim();
+            const extensao_trilha = document.getElementById('cachoeiraExtensao').value.trim();
+            const tempo_medio = document.getElementById('cachoeiraTempoMedio').value.trim();
+            const tipo_atrativo = document.getElementById('cachoeiraTipoAtrativo').value.trim();
+            const ambiente = document.getElementById('cachoeiraAmbiente').value.trim();
+            const destaque = document.getElementById('cachoeiraDestaque').value.trim();
+            const estrutura = document.getElementById('cachoeiraEstrutura').value.trim();
+            const melhor_epoca = document.getElementById('cachoeiraMelhorEpoca').value.trim();
+
+          const imagens = document.getElementById('cachoeiraImagens').value
+                .split('\n').map(s => s.trim()).filter(s => s.length > 0);
+
+                        const dicas = document.getElementById('cachoeiraDicas').value
+                .split('\n').map(s => s.trim()).filter(s => s.length > 0);
+
+            const horarios = document.getElementById('cachoeiraHorarios').value
+                .split('\n').map(s => s.trim()).filter(s => s.length > 0);
+
+            if (!titulo || !descricao) {
+                alert('Preencha ao menos o título e a descrição da cachoeira.');
+                return;
+            }
+
+            // Envia os arquivos escolhidos do computador (se houver) e junta com as URLs digitadas
+            const arquivosCachoeira = document.getElementById('cachoeiraImagensArquivo').files;
+            for (const arquivo of arquivosCachoeira) {
+                try {
+                    const url = await enviarImagem(arquivo);
+                    imagens.push(url);
+                } catch (error) {
+                    alert('Erro ao enviar uma das imagens: ' + error.message);
+                    return;
+                }
+            }
+                        document.getElementById('cachoeiraImagens').value = imagens.join('\n');
+            document.getElementById('cachoeiraImagensArquivo').value = '';
+            renderizarChipsImagens('cachoeiraImagens', 'cachoeiraImagensLista');
+            const payload = {
+                titulo, parque, descricao, localizacao, acesso, dificuldade, imagens, dicas, horarios,
+                altitude_media, extensao_trilha, tempo_medio, tipo_atrativo, ambiente, destaque, estrutura, melhor_epoca
+            };
+
+            try {
+                const url = id ? `${API_URL}/cachoeiras/${id}` : `${API_URL}/cachoeiras`;
+                const method = id ? 'PUT' : 'POST';
+
+                const response = await fetch(url, {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message || 'Cachoeira salva com sucesso!');
+                    fecharModalCachoeira();
+                    carregarCachoeirasAdmin();
+                } else {
+                    alert(data.error || 'Erro ao salvar cachoeira.');
+                }
+            } catch (error) {
+                console.error('Erro ao salvar cachoeira:', error);
+                alert('Não foi possível conectar ao servidor.');
+            }
+        }
+
+        async function editarCachoeira(id) {
+            try {
+                const response = await fetch(`${API_URL}/cachoeiras/${id}`);
+                if (!response.ok) throw new Error('Cachoeira não encontrada.');
+
+                const c = await response.json();
+
+                document.getElementById('modalCachoeiraTitulo').textContent = 'Editar Cachoeira';
+                document.getElementById('cachoeiraId').value = c.id;
+                document.getElementById('cachoeiraTitulo').value = c.titulo || '';
+                document.getElementById('cachoeiraParque').value = c.parque || '';
+                document.getElementById('cachoeiraDescricao').value = c.descricao || '';
+                document.getElementById('cachoeiraLocalizacao').value = c.localizacao || '';
+                document.getElementById('cachoeiraAcesso').value = c.acesso || '';
+                document.getElementById('cachoeiraDificuldade').value = c.dificuldade || '';
+                document.getElementById('cachoeiraImagens').value = (c.imagens || []).join('\n');
+                document.getElementById('cachoeiraImagensArquivo').value = '';
+                renderizarChipsImagens('cachoeiraImagens', 'cachoeiraImagensLista');
+                document.getElementById('cachoeiraDicas').value = (c.dicas || []).join('\n');
+                document.getElementById('cachoeiraHorarios').value = (c.horarios || []).join('\n');
+                document.getElementById('cachoeiraAltitude').value = c.altitude_media || '';
+                document.getElementById('cachoeiraExtensao').value = c.extensao_trilha || '';
+                document.getElementById('cachoeiraTempoMedio').value = c.tempo_medio || '';
+                document.getElementById('cachoeiraTipoAtrativo').value = c.tipo_atrativo || '';
+                document.getElementById('cachoeiraAmbiente').value = c.ambiente || '';
+                document.getElementById('cachoeiraDestaque').value = c.destaque || '';
+                document.getElementById('cachoeiraEstrutura').value = c.estrutura || '';
+                document.getElementById('cachoeiraMelhorEpoca').value = c.melhor_epoca || '';
+
+                document.getElementById('modalCachoeira').style.display = 'flex';
+            } catch (error) {
+                console.error('Erro ao carregar cachoeira para edição:', error);
+                alert('Não foi possível carregar os dados dessa cachoeira.');
+            }
+        }
+
+        async function excluirCachoeira(id, nome) {
+            const confirmar = confirm(`Tem certeza que deseja excluir a cachoeira "${nome}"?`);
+            if (!confirmar) return;
+
+            try {
+                const response = await fetch(`${API_URL}/cachoeiras/${id}`, { method: 'DELETE' });
+                const data = await response.json();
+
+                if (response.ok) {
+                    const el = document.getElementById(`cachoeira-${id}`);
+                    if (el) el.remove();
+                    alert(data.message || 'Cachoeira removida com sucesso!');
+                    atualizarEstatisticasVisaoGeral();
+                } else {
+                    alert(data.error || 'Erro ao excluir cachoeira.');
+                }
+            } catch (error) {
+                console.error('Erro ao excluir cachoeira:', error);
+                alert('Não foi possível conectar ao servidor.');
+            }
+        }
+
+        // 2.2 Carrega as trilhas cadastradas no banco (mantém os itens fixos já existentes)
+        async function carregarTrilhasAdmin() {
+            const container = document.getElementById('lista-trilhas');
+            if (!container) return;
+
+            // Remove apenas os itens carregados do banco, sem tocar nos itens fixos já existentes
+            container.querySelectorAll('.item-db').forEach(el => el.remove());
+
+            try {
+                const response = await fetch(`${API_URL}/trilhas`);
+                if (!response.ok) throw new Error('Falha ao buscar trilhas.');
+
+                const trilhas = await response.json();
+
+                trilhas.forEach(t => {
+                    const div = document.createElement('div');
+                    div.className = 'item item-db';
+                    div.id = `trilha-${t.id}`;
+                    div.innerHTML = `
+                        <h4>${t.titulo}${t.dificuldade ? ` (${t.dificuldade})` : ''}</h4>
+                        <p>${t.distancia ? t.distancia + ' • ' : ''}${t.duracao ? t.duracao + ' de duração.' : ''}</p>
+                        <div class="action-buttons">
+                            <button class="btn-edit" onclick="editarTrilha(${t.id})"><i class="fas fa-edit"></i> Editar</button>
+                            <button class="btn-delete-item" onclick="excluirTrilha(${t.id}, '${t.titulo.replace(/'/g, "\\'")}')"><i class="fas fa-trash-alt"></i> Excluir</button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+
+                atualizarEstatisticasVisaoGeral();
+            } catch (error) {
+                console.error('Erro ao carregar trilhas do banco:', error);
+            }
+        }
+
+        function abrirModalTrilha() {
+            document.getElementById('modalTrilhaTitulo').textContent = 'Cadastrar Trilha';
+            document.getElementById('trilhaId').value = '';
+            document.getElementById('trilhaTitulo').value = '';
+            document.getElementById('trilhaParque').value = '';
+            document.getElementById('trilhaDistancia').value = '';
+            document.getElementById('trilhaDuracao').value = '';
+            document.getElementById('trilhaDificuldade').value = '';
+            document.getElementById('trilhaDescricao').value = '';
+            document.getElementById('trilhaLocalizacao').value = '';
+            document.getElementById('trilhaAcesso').value = '';
+            document.getElementById('trilhaAltitude').value = '';
+            document.getElementById('trilhaTipoAtividade').value = '';
+            document.getElementById('trilhaPontoFinal').value = '';
+            document.getElementById('trilhaAmbienteNatural').value = '';
+            document.getElementById('trilhaSinalizacao').value = '';
+            document.getElementById('trilhaMelhorEpoca').value = '';
+            document.getElementById('trilhaInfraestrutura').value = '';
+            document.getElementById('trilhaAdministracao').value = '';
+            document.getElementById('trilhaIndicacao').value = '';
+            document.getElementById('trilhaHorarios').value = '';
+            document.getElementById('trilhaImagens').value = '';
+            document.getElementById('trilhaImagensArquivo').value = '';
+            renderizarChipsImagens('trilhaImagens', 'trilhaImagensLista');
+            document.getElementById('trilhaDicas').value = '';
+            document.getElementById('modalTrilha').style.display = 'flex';
+        }
+
+        function fecharModalTrilha() {
+            document.getElementById('modalTrilha').style.display = 'none';
+        }
+
+        async function salvarTrilha() {
+            const id = document.getElementById('trilhaId').value;
+            const titulo = document.getElementById('trilhaTitulo').value.trim();
+            const parque = document.getElementById('trilhaParque').value.trim();
+            const distancia = document.getElementById('trilhaDistancia').value.trim();
+            const duracao = document.getElementById('trilhaDuracao').value.trim();
+            const dificuldade = document.getElementById('trilhaDificuldade').value.trim();
+            const descricao = document.getElementById('trilhaDescricao').value.trim();
+            const localizacao = document.getElementById('trilhaLocalizacao').value.trim();
+            const acesso = document.getElementById('trilhaAcesso').value.trim();
+            const altitude = document.getElementById('trilhaAltitude').value.trim();
+            const tipo_atividade = document.getElementById('trilhaTipoAtividade').value.trim();
+            const ponto_final = document.getElementById('trilhaPontoFinal').value.trim();
+            const ambiente_natural = document.getElementById('trilhaAmbienteNatural').value.trim();
+            const sinalizacao = document.getElementById('trilhaSinalizacao').value.trim();
+            const melhor_epoca = document.getElementById('trilhaMelhorEpoca').value.trim();
+            const infraestrutura = document.getElementById('trilhaInfraestrutura').value.trim();
+            const administracao = document.getElementById('trilhaAdministracao').value.trim();
+            const indicacao = document.getElementById('trilhaIndicacao').value.trim();
+            const imagens = document.getElementById('trilhaImagens').value
+                .split('\n').map(s => s.trim()).filter(s => s.length > 0);
+
+            const dicas = document.getElementById('trilhaDicas').value
+                .split('\n').map(s => s.trim()).filter(s => s.length > 0);
+
+            const horarios = document.getElementById('trilhaHorarios').value
+                .split('\n').map(s => s.trim()).filter(s => s.length > 0);
+
+            if (!titulo || !descricao) {
+                alert('Preencha ao menos o título e a descrição da trilha.');
+                return;
+            }
+
+            // Envia os arquivos escolhidos do computador (se houver) e junta com as URLs digitadas
+            const arquivosTrilha = document.getElementById('trilhaImagensArquivo').files;
+            for (const arquivo of arquivosTrilha) {
+                try {
+                    const url = await enviarImagem(arquivo);
+                    imagens.push(url);
+                } catch (error) {
+                    alert('Erro ao enviar uma das imagens: ' + error.message);
+                    return;
+                }
+            }
+            document.getElementById('trilhaImagens').value = imagens.join('\n');
+            document.getElementById('trilhaImagensArquivo').value = '';
+            renderizarChipsImagens('trilhaImagens', 'trilhaImagensLista');
+            document.getElementById('trilhaImagens').value = imagens.join('\n');
+            document.getElementById('trilhaImagensArquivo').value = '';
+            renderizarChipsImagens('trilhaImagens', 'trilhaImagensLista');
+
+            const payload = {
+                titulo, parque, distancia, duracao, dificuldade, descricao, localizacao, acesso, imagens, dicas,
+                altitude, tipo_atividade, ponto_final, ambiente_natural, sinalizacao, melhor_epoca, infraestrutura, administracao, indicacao, horarios
+            };
+            try {
+                const url = id ? `${API_URL}/trilhas/${id}` : `${API_URL}/trilhas`;
+                const method = id ? 'PUT' : 'POST';
+
+                const response = await fetch(url, {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message || 'Trilha salva com sucesso!');
+                    fecharModalTrilha();
+                    carregarTrilhasAdmin();
+                } else {
+                    alert(data.error || 'Erro ao salvar trilha.');
+                }
+            } catch (error) {
+                console.error('Erro ao salvar trilha:', error);
+                alert('Não foi possível conectar ao servidor.');
+            }
+        }
+
+        async function editarTrilha(id) {
+            try {
+                const response = await fetch(`${API_URL}/trilhas/${id}`);
+                if (!response.ok) throw new Error('Trilha não encontrada.');
+
+                const t = await response.json();
+
+                document.getElementById('modalTrilhaTitulo').textContent = 'Editar Trilha';
+                document.getElementById('trilhaId').value = t.id;
+                document.getElementById('trilhaTitulo').value = t.titulo || '';
+                document.getElementById('trilhaParque').value = t.parque || '';
+                document.getElementById('trilhaDistancia').value = t.distancia || '';
+                document.getElementById('trilhaDuracao').value = t.duracao || '';
+                document.getElementById('trilhaDificuldade').value = t.dificuldade || '';
+                document.getElementById('trilhaDescricao').value = t.descricao || '';
+                document.getElementById('trilhaLocalizacao').value = t.localizacao || '';
+                document.getElementById('trilhaAcesso').value = t.acesso || '';
+                document.getElementById('trilhaAltitude').value = t.altitude || '';
+                document.getElementById('trilhaTipoAtividade').value = t.tipo_atividade || '';
+                document.getElementById('trilhaPontoFinal').value = t.ponto_final || '';
+                document.getElementById('trilhaAmbienteNatural').value = t.ambiente_natural || '';
+                document.getElementById('trilhaSinalizacao').value = t.sinalizacao || '';
+                document.getElementById('trilhaMelhorEpoca').value = t.melhor_epoca || '';
+                document.getElementById('trilhaInfraestrutura').value = t.infraestrutura || '';
+                document.getElementById('trilhaAdministracao').value = t.administracao || '';
+                document.getElementById('trilhaIndicacao').value = t.indicacao || '';
+                document.getElementById('trilhaImagens').value = (t.imagens || []).join('\n');
+                document.getElementById('trilhaImagensArquivo').value = '';
+                renderizarChipsImagens('trilhaImagens', 'trilhaImagensLista');
+                document.getElementById('trilhaHorarios').value = (t.horarios || []).join('\n');
+                document.getElementById('trilhaDicas').value = (t.dicas || []).join('\n');
+
+                document.getElementById('modalTrilha').style.display = 'flex';
+            } catch (error) {
+                console.error('Erro ao carregar trilha para edição:', error);
+                alert('Não foi possível carregar os dados dessa trilha.');
+            }
+        }
+
+        async function excluirTrilha(id, nome) {
+            const confirmar = confirm(`Tem certeza que deseja excluir a trilha "${nome}"?`);
+            if (!confirmar) return;
+
+            try {
+                const response = await fetch(`${API_URL}/trilhas/${id}`, { method: 'DELETE' });
+                const data = await response.json();
+
+                if (response.ok) {
+                    const el = document.getElementById(`trilha-${id}`);
+                    if (el) el.remove();
+                    alert(data.message || 'Trilha removida com sucesso!');
+                    atualizarEstatisticasVisaoGeral();
+                } else {
+                    alert(data.error || 'Erro ao excluir trilha.');
+                }
+            } catch (error) {
+                console.error('Erro ao excluir trilha:', error);
+                alert('Não foi possível conectar ao servidor.');
+            }
+        }
+
+        // 2.3 Carrega os eventos cadastrados no banco (mantém os itens fixos já existentes)
+        async function carregarEventosAdmin() {
+            const container = document.getElementById('lista-eventos');
+            if (!container) return;
+
+            container.querySelectorAll('.item-db').forEach(el => el.remove());
+
+            try {
+                const response = await fetch(`${API_URL}/eventos`);
+                if (!response.ok) throw new Error('Falha ao buscar eventos.');
+
+                const eventos = await response.json();
+
+                eventos.forEach(e => {
+                    const div = document.createElement('div');
+                    div.className = 'item item-db';
+                    div.id = `evento-${e.id}`;
+                    div.innerHTML = `
+                        <h4>${e.titulo}</h4>
+                        <p>Data: ${e.data_evento || 'A definir'} | Local: ${e.local || 'A definir'}</p>
+                        <div class="action-buttons">
+                            <button class="btn-edit" onclick="editarEvento(${e.id})"><i class="fas fa-edit"></i> Editar</button>
+                            <button class="btn-delete-item" onclick="excluirEvento(${e.id}, '${e.titulo.replace(/'/g, "\\'")}')"><i class="fas fa-trash-alt"></i> Excluir</button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+
+                atualizarEstatisticasVisaoGeral();
+            } catch (error) {
+                console.error('Erro ao carregar eventos do banco:', error);
+            }
+        }
+
+        function abrirModalEvento() {
+            document.getElementById('modalEventoTitulo').textContent = 'Cadastrar Evento';
+            document.getElementById('eventoId').value = '';
+            document.getElementById('eventoTitulo').value = '';
+            document.getElementById('eventoImagem').value = '';
+            document.getElementById('eventoImagemArquivo').value = '';
+            document.getElementById('eventoData').value = '';
+            document.getElementById('eventoLocal').value = '';
+            document.getElementById('eventoDescricao').value = '';
+            document.getElementById('modalEvento').style.display = 'flex';
+        }
+
+        function fecharModalEvento() {
+            document.getElementById('modalEvento').style.display = 'none';
+        }
+
+        async function salvarEvento() {
+            const id = document.getElementById('eventoId').value;
+            const titulo = document.getElementById('eventoTitulo').value.trim();
+            let imagem = document.getElementById('eventoImagem').value.trim();
+            const data_evento = document.getElementById('eventoData').value.trim();
+            const local = document.getElementById('eventoLocal').value.trim();
+            const descricao = document.getElementById('eventoDescricao').value.trim();
+
+            if (!titulo || !descricao) {
+                alert('Preencha ao menos o título e a descrição do evento.');
+                return;
+            }
+
+            // Se um arquivo foi escolhido do computador, ele tem prioridade sobre a URL digitada
+            const arquivoEvento = document.getElementById('eventoImagemArquivo').files[0];
+            if (arquivoEvento) {
+                try {
+                    imagem = await enviarImagem(arquivoEvento);
+                } catch (error) {
+                    alert('Erro ao enviar a imagem: ' + error.message);
+                    return;
+                }
+            }
+            const payload = { titulo, imagem, data_evento, local, descricao };
+
+            try {
+                const url = id ? `${API_URL}/eventos/${id}` : `${API_URL}/eventos`;
+                const method = id ? 'PUT' : 'POST';
+
+                const response = await fetch(url, {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message || 'Evento salvo com sucesso!');
+                    fecharModalEvento();
+                    carregarEventosAdmin();
+                } else {
+                    alert(data.error || 'Erro ao salvar evento.');
+                }
+            } catch (error) {
+                console.error('Erro ao salvar evento:', error);
+                alert('Não foi possível conectar ao servidor.');
+            }
+        }
+
+        async function editarEvento(id) {
+            try {
+                const response = await fetch(`${API_URL}/eventos/${id}`);
+                if (!response.ok) throw new Error('Evento não encontrado.');
+
+                const e = await response.json();
+
+                document.getElementById('modalEventoTitulo').textContent = 'Editar Evento';
+                document.getElementById('eventoId').value = e.id;
+                document.getElementById('eventoTitulo').value = e.titulo || '';
+                document.getElementById('eventoImagem').value = e.imagem || '';
+                document.getElementById('eventoData').value = e.data_evento || '';
+                document.getElementById('eventoLocal').value = e.local || '';
+                document.getElementById('eventoDescricao').value = e.descricao || '';
+
+                document.getElementById('modalEvento').style.display = 'flex';
+            } catch (error) {
+                console.error('Erro ao carregar evento para edição:', error);
+                alert('Não foi possível carregar os dados desse evento.');
+            }
+        }
+
+        async function excluirEvento(id, nome) {
+            const confirmar = confirm(`Tem certeza que deseja excluir o evento "${nome}"?`);
+            if (!confirmar) return;
+
+            try {
+                const response = await fetch(`${API_URL}/eventos/${id}`, { method: 'DELETE' });
+                const data = await response.json();
+
+                if (response.ok) {
+                    const el = document.getElementById(`evento-${id}`);
+                    if (el) el.remove();
+                    alert(data.message || 'Evento removido com sucesso!');
+                    atualizarEstatisticasVisaoGeral();
+                } else {
+                    alert(data.error || 'Erro ao excluir evento.');
+                }
+            } catch (error) {
+                console.error('Erro ao excluir evento:', error);
+                alert('Não foi possível conectar ao servidor.');
+            }
+        }
+
+        // 3. Função de Logout
+        async function logout() {
+            try {
+                await fetch(`${API_URL}/logout`, { method: 'POST' });
+            } catch (error) {
+                // Mesmo que falhe, limpamos localmente
+            }
+            localStorage.removeItem('adminToken');
+            sessionStorage.removeItem('isAdminLoggedIn');
+            alert('Sessão encerrada.');
+            window.location.href = 'login.html';
+        }
+
+        // Executa ao carregar a página
+        document.addEventListener('DOMContentLoaded', async () => {
+            const sessaoValida = await verificarSessaoAdmin();
+            if (!sessaoValida) return;
+
+            carregarUsuarios();
+            atualizarEstatisticasVisaoGeral();
+            carregarCachoeirasAdmin();
+            carregarTrilhasAdmin();
+            carregarEventosAdmin();
+        });
+        
+    </script>
+</body>
+</html>
