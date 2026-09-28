@@ -16,6 +16,30 @@ const API_URL = `${window.location.protocol}//${window.location.hostname}:3000/a
 // =================================================================
 // 📅 EVENTOS CADASTRADOS PELO PAINEL ADMIN (EXIBIÇÃO PÚBLICA)
 // =================================================================
+// Verifica se o usuário está logado antes de mostrar os detalhes de um evento
+async function verDetalhesEvento(id) {
+    const logado = sessionStorage.getItem('isUserLoggedIn') === 'true';
+
+    if (!logado) {
+        sessionStorage.setItem('redirectAfterLogin', window.location.pathname);
+        sessionStorage.setItem('eventoPendente', id);
+        await avisarEAguardar('Você precisa estar logado para ver os detalhes deste evento.');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_URL}/eventos/${id}`);
+        if (!response.ok) throw new Error('Evento não encontrado.');
+
+        const evento = await response.json();
+        mostrarDetalheEvento(evento);
+    } catch (error) {
+        console.error('Erro ao carregar detalhes do evento:', error);
+        alert('Não foi possível carregar os detalhes desse evento.');
+    }
+}
+
 async function carregarEventosPublico() {
     const grid = document.querySelector('.eventos-grid');
     if (!grid) return;
@@ -36,11 +60,18 @@ async function carregarEventosPublico() {
                     <p class="evento-data"><i class="fa-solid fa-calendar-day"></i> ${e.data_evento || 'A definir'}</p>
                     <p class="evento-local"><i class="fa-solid fa-location-dot"></i> ${e.local || 'A definir'}</p>
                     <p class="evento-descricao">${e.descricao || ''}</p>
-                    <a href="#" class="evento-btn">Ver detalhes</a>
+                    <button type="button" class="evento-btn" onclick="verDetalhesEvento(${e.id})">Ver detalhes</button>
                 </div>
             `;
-            grid.appendChild(card);
+                       grid.appendChild(card);
         });
+
+        // Se a pessoa tinha tentado ver um evento antes de logar, reabre ele automaticamente agora
+        const idPendente = sessionStorage.getItem('eventoPendente');
+        if (idPendente) {
+            sessionStorage.removeItem('eventoPendente');
+            verDetalhesEvento(idPendente);
+        }
 
     } catch (error) {
         console.error('Erro ao carregar eventos públicos:', error);
@@ -530,8 +561,10 @@ async function loginUser() {
             sessionStorage.setItem('isUserLoggedIn', 'true');
             sessionStorage.setItem('userName', data.user.name);
 
-            // Redireciona para o index.html
-            window.location.href = 'index.html';
+            // Volta para a página em que a pessoa estava antes de precisar logar (se houver), senão vai para o index.html
+            const destino = sessionStorage.getItem('redirectAfterLogin') || 'index.html';
+            sessionStorage.removeItem('redirectAfterLogin');
+            window.location.href = destino;
         } else {
             alert("❌ " + (data.error || "Credenciais de Usuário inválidas."));
         }
@@ -686,6 +719,24 @@ function logout() { // Chamado pelo botão SAIR do dashboard do Administrador
 // =================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    
+// Permite logar apertando Enter, tanto no login de usuário quanto no de administrador
+    
+   function ativarEnterParaLogar(idCampo1, idCampo2, funcaoLogin) {
+        [idCampo1, idCampo2].forEach(id => {
+            const campo = document.getElementById(id);
+            if (!campo) return;
+            campo.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    funcaoLogin();
+                }
+            });
+        });
+    }
+
+    ativarEnterParaLogar('userLoginUser', 'userLoginPass', loginUser);
+    ativarEnterParaLogar('loginUser', 'loginPass', loginAdmin);
     // 0. Inicializa os carrosséis presentes na página
     inicializarCarrosseis();
     // 0. Inicializa os carrosséis presentes na página

@@ -89,9 +89,81 @@
             box-shadow: 0 8px 20px rgba(244, 162, 97, 0.3);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .alerta-botao:hover {
+                .alerta-botao:hover {
             transform: translateY(-2px);
             box-shadow: 0 12px 26px rgba(244, 162, 97, 0.42);
+        }
+
+        .alerta-botoes {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        .alerta-botao-secundario {
+            background: transparent;
+            color: #dcebdd;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: none;
+        }
+        .alerta-botao-secundario:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+            box-shadow: none;
+        }
+        .alerta-botao-perigo {
+            background: linear-gradient(135deg, #e5484d, #c62828);
+            color: #ffffff;
+            box-shadow: 0 8px 20px rgba(229, 72, 77, 0.35);
+        }
+        .alerta-botao-perigo:hover {
+            box-shadow: 0 12px 26px rgba(229, 72, 77, 0.45);
+        }
+
+                .evento-detalhe-caixa {
+            max-width: 480px;
+            text-align: left;
+            position: relative;
+        }
+        .evento-detalhe-caixa .alerta-titulo,
+        .evento-detalhe-caixa .alerta-mensagem {
+            text-align: left;
+        }
+        .evento-detalhe-fechar {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1.3rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .evento-detalhe-fechar:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .evento-detalhe-img {
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 16px;
+        }
+        .evento-detalhe-meta {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+            font-size: 0.85rem;
+            color: #b9dabc;
+        }
+        .evento-detalhe-meta i {
+            color: #f4a261;
+            margin-right: 6px;
         }
 
         @keyframes alertaFundo {
@@ -176,9 +248,143 @@
         botao.focus();
     }
 
-    // Troca o alert() padrão do navegador pelo novo
+        // Troca o alert() padrão do navegador pelo novo
     window.alert = function (mensagem) {
         fila.push(String(mensagem === undefined ? '' : mensagem));
         mostrarProximo();
+    };
+
+            // Mostra um aviso e só continua o código depois que a pessoa clicar OK
+    // (diferente do alert(), que não espera nada)
+    window.avisarEAguardar = function (mensagem) {
+        return new Promise(function (resolve) {
+            const tipo = detectarTipo(mensagem);
+            const texto = mensagem.replace(/^[\s\u274C\u2705\u26A0\uFE0F\u2757]+/, '');
+
+            const icones = { erro: 'fa-times-circle', sucesso: 'fa-check-circle', aviso: 'fa-exclamation-triangle' };
+            const titulos = { erro: 'Ops, algo deu errado', sucesso: 'Tudo certo!', aviso: 'Atenção' };
+
+            const overlay = document.createElement('div');
+            overlay.className = 'alerta-overlay';
+            overlay.innerHTML = `
+                <div class="alerta-caixa alerta-${tipo}" role="alertdialog" aria-modal="true">
+                    <div class="alerta-icone"><i class="fas ${icones[tipo]}"></i></div>
+                    <h3 class="alerta-titulo">${titulos[tipo]}</h3>
+                    <p class="alerta-mensagem"></p>
+                    <button type="button" class="alerta-botao">OK</button>
+                </div>
+            `;
+            overlay.querySelector('.alerta-mensagem').textContent = texto;
+            document.body.appendChild(overlay);
+
+            const botao = overlay.querySelector('.alerta-botao');
+            let fechado = false;
+
+            function fechar() {
+                if (fechado) return;
+                fechado = true;
+                document.removeEventListener('keydown', aoTeclar, true);
+                overlay.classList.add('alerta-saindo');
+                setTimeout(function () {
+                    overlay.remove();
+                    resolve();
+                }, 180);
+            }
+
+            function aoTeclar(e) {
+                if (e.key === 'Escape' || e.key === 'Enter') { e.preventDefault(); fechar(); }
+            }
+
+            botao.addEventListener('click', fechar);
+            overlay.addEventListener('click', function (e) { if (e.target === overlay) fechar(); });
+            document.addEventListener('keydown', aoTeclar, true);
+            botao.focus();
+        });
+    };
+
+    // Mostra os detalhes completos de um evento num cartão, no estilo do site
+    window.mostrarDetalheEvento = function (evento) {
+        const overlay = document.createElement('div');
+        overlay.className = 'alerta-overlay';
+        overlay.innerHTML = `
+            <div class="alerta-caixa evento-detalhe-caixa" role="dialog" aria-modal="true">
+                <button type="button" class="evento-detalhe-fechar" aria-label="Fechar">&times;</button>
+                <div class="evento-detalhe-img" style="background-image: url('${evento.imagem || 'img/eventosq.jpeg'}')"></div>
+                <h3 class="alerta-titulo"></h3>
+                <div class="evento-detalhe-meta">
+                    <span><i class="fa-solid fa-calendar-day"></i></span>
+                    <span><i class="fa-solid fa-location-dot"></i></span>
+                </div>
+                <p class="alerta-mensagem"></p>
+                <button type="button" class="alerta-botao">Fechar</button>
+            </div>
+        `;
+        overlay.querySelector('.alerta-titulo').textContent = evento.titulo || '';
+        overlay.querySelectorAll('.evento-detalhe-meta span')[0].append(evento.data_evento || 'Data a definir');
+        overlay.querySelectorAll('.evento-detalhe-meta span')[1].append(evento.local || 'Local a definir');
+        overlay.querySelector('.alerta-mensagem').textContent = evento.descricao || '';
+        document.body.appendChild(overlay);
+
+        function fechar() {
+            overlay.classList.add('alerta-saindo');
+            setTimeout(() => overlay.remove(), 180);
+            document.removeEventListener('keydown', aoTeclar, true);
+        }
+        function aoTeclar(e) {
+            if (e.key === 'Escape') fechar();
+        }
+
+        overlay.querySelector('.evento-detalhe-fechar').addEventListener('click', fechar);
+        overlay.querySelector('.alerta-botao').addEventListener('click', fechar);
+        overlay.addEventListener('click', (e) => { if (e.target === overlay) fechar(); });
+        document.addEventListener('keydown', aoTeclar, true);
+    };
+
+    // Janela de confirmação bonita, no lugar do confirm() nativo do navegador.
+    // Diferente do alert(), essa função precisa ser usada com "await" (ela retorna uma Promise).
+    window.confirmarExclusao = function (mensagem) {
+        return new Promise(function (resolve) {
+            const overlay = document.createElement('div');
+            overlay.className = 'alerta-overlay';
+            overlay.innerHTML = `
+                <div class="alerta-caixa alerta-erro" role="alertdialog" aria-modal="true">
+                    <div class="alerta-icone"><i class="fas fa-trash-alt"></i></div>
+                    <h3 class="alerta-titulo">Confirmar exclusão</h3>
+                    <p class="alerta-mensagem"></p>
+                    <div class="alerta-botoes">
+                        <button type="button" class="alerta-botao alerta-botao-secundario">Cancelar</button>
+                        <button type="button" class="alerta-botao alerta-botao-perigo">Excluir</button>
+                    </div>
+                </div>
+            `;
+            overlay.querySelector('.alerta-mensagem').textContent = mensagem;
+            document.body.appendChild(overlay);
+
+            const btnCancelar = overlay.querySelector('.alerta-botao-secundario');
+            const btnConfirmar = overlay.querySelector('.alerta-botao-perigo');
+            let resolvido = false;
+
+            function fechar(resultado) {
+                if (resolvido) return;
+                resolvido = true;
+                document.removeEventListener('keydown', aoTeclar, true);
+                overlay.classList.add('alerta-saindo');
+                setTimeout(function () {
+                    overlay.remove();
+                    resolve(resultado);
+                }, 180);
+            }
+
+            function aoTeclar(e) {
+                if (e.key === 'Escape') { e.preventDefault(); fechar(false); }
+                if (e.key === 'Enter') { e.preventDefault(); fechar(true); }
+            }
+
+            btnCancelar.addEventListener('click', function () { fechar(false); });
+            btnConfirmar.addEventListener('click', function () { fechar(true); });
+            overlay.addEventListener('click', function (e) { if (e.target === overlay) fechar(false); });
+            document.addEventListener('keydown', aoTeclar, true);
+            btnConfirmar.focus();
+        });
     };
 })();

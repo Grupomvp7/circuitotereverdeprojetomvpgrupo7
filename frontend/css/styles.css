@@ -525,9 +525,13 @@ a {
     padding: 10px 18px;
     background: #4f7942;
     color: #fff;
+    border: none;
     border-radius: 8px;
     text-decoration: none;
+    font-family: inherit;
+    font-size: 1rem;
     font-weight: 600;
+    cursor: pointer;
     transition: background 0.3s;
 }
 

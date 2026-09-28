@@ -594,7 +594,7 @@
 
         // 2. Função para excluir usuário do banco de dados
         async function deletarUsuario(userId, nome) {
-            const confirmar = confirm(`Tem certeza que deseja apagar o usuário "${nome}"?`);
+            const confirmar = await confirmarExclusao(`Tem certeza que deseja apagar o usuário "${nome}"?`);
             
             if (confirmar) {
                 try {
@@ -841,7 +841,7 @@
         }
 
         async function excluirCachoeira(id, nome) {
-            const confirmar = confirm(`Tem certeza que deseja excluir a cachoeira "${nome}"?`);
+            const confirmar = await confirmarExclusao(`Tem certeza que deseja excluir a cachoeira "${nome}"?`);
             if (!confirmar) return;
 
             try {
@@ -1048,8 +1048,8 @@
             }
         }
 
-        async function excluirTrilha(id, nome) {
-            const confirmar = confirm(`Tem certeza que deseja excluir a trilha "${nome}"?`);
+            async function excluirTrilha(id, nome) {
+            const confirmar = await confirmarExclusao(`Tem certeza que deseja excluir a trilha "${nome}"?`);
             if (!confirmar) return;
 
             try {
@@ -1193,7 +1193,7 @@
         }
 
         async function excluirEvento(id, nome) {
-            const confirmar = confirm(`Tem certeza que deseja excluir o evento "${nome}"?`);
+            const confirmar = await confirmarExclusao(`Tem certeza que deseja excluir o evento "${nome}"?`);
             if (!confirmar) return;
 
             try {
