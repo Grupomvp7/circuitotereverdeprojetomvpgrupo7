@@ -483,44 +483,43 @@ async function registerUser() {
 }
 
 // Cadastro de Administrador
-async function register() {
-    const nameEl = document.getElementById('registerName');
-    const userEl = document.getElementById('registerUser');
-    const passEl = document.getElementById('registerPass');
+    async function register() {
+      const nameEl = document.getElementById('registerName');
+      const emailEl = document.getElementById('registerEmail');
+      const passEl = document.getElementById('registerPass');
 
-    if (!nameEl || !userEl || !passEl) return;
+    if (!nameEl || !emailEl || !passEl) return;
 
     const name = nameEl.value.trim();
-    const user = userEl.value.trim();
+    const email = emailEl.value.trim();
     const pass = passEl.value.trim();
 
-      if (!name || !user || !pass) {
-        alert("Por favor, preencha todos os campos para realizar o cadastro.");
+    if (!name || !email || !pass) {
+        alert("Por favor, preencha todos os campos para realizar a solicitação.");
         return;
     }
 
-    if (!isEmailValido(user)) {
-        alert("Por favor, digite um e-mail válido no campo de usuário (ex: nome@exemplo.com).");
+    if (!isEmailValido(email)) {
+        alert("Por favor, digite um e-mail válido (ex: nome@exemplo.com).");
         return;
     }
 
     try {
-        const response = await fetch(`${API_URL}/register`, {
+        const response = await fetch(`${API_URL}/solicitacoes-admin`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email: user, password: pass, role: 'admin' })
+            body: JSON.stringify({ name, email, password: pass })
         });
-
         const data = await response.json();
 
                 if (response.ok) {
-            alert("Cadastro de Administrador realizado com sucesso! Você já pode fazer login.");
-            nameEl.value = '';
-            userEl.value = '';
-            passEl.value = '';
+            alert(data.message || "Solicitação enviada! Aguarde a aprovação de um administrador.");
+               nameEl.value = '';
+               emailEl.value = '';
+               passEl.value = '';
             showAdminLogin();
         } else {
-            alert("❌ Erro: " + (data.error || "Não foi possível cadastrar o administrador."));
+                alert("❌ " + (data.error || "Não foi possível enviar a solicitação."));
         }
     } catch (error) {
         console.error("Erro na comunicação com o servidor:", error);

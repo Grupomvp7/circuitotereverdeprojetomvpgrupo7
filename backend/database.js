@@ -109,7 +109,7 @@ async function connectDB() {
         );
     `);
 
-    // Cria tabela de Sessões (guarda o token de quem está logado como administrador)
+        // Cria tabela de Sessões (guarda o token de quem está logado como administrador)
     await db.exec(`
         CREATE TABLE IF NOT EXISTS sessions (
             token TEXT PRIMARY KEY,
@@ -117,6 +117,18 @@ async function connectDB() {
             role TEXT NOT NULL,
             criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
             expira_em DATETIME NOT NULL
+        );
+    `);
+
+    // Cria tabela de Solicitações de Administrador (pedidos de acesso aguardando aprovação)
+    await db.exec(`
+        CREATE TABLE IF NOT EXISTS solicitacoes_admin (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            email TEXT NOT NULL,
+            password TEXT NOT NULL,
+            status TEXT DEFAULT 'pendente',
+            criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
         );
     `);
 

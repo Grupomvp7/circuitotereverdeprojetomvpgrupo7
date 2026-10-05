@@ -154,8 +154,75 @@
             flex-shrink: 0;
         }
 
-        .imagem-chip button:hover {
+                .imagem-chip button:hover {
             background: #c62828;
+        }
+
+        /* Cartão de solicitação de administrador */
+        #lista-solicitacoes {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 720px;
+        }
+
+        .solicitacao-card {
+            background: #fff;
+            border-left: 4px solid #4f7942;
+            border-radius: 10px;
+            padding: 14px 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .solicitacao-info h4 {
+            margin: 0 0 2px 0;
+            font-size: 1.02em;
+            color: #2f2f2f;
+        }
+
+        .solicitacao-info p {
+            margin: 0;
+            font-size: 0.85em;
+            color: #888;
+        }
+
+        .solicitacao-botoes {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .solicitacao-botoes button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.82em;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: transform 0.15s ease, opacity 0.15s ease;
+        }
+
+        .solicitacao-botoes button:hover {
+            transform: translateY(-1px);
+            opacity: 0.92;
+        }
+
+        .btn-aprovar {
+            background-color: #4f7942;
+            color: #fff;
+        }
+
+        .btn-rejeitar {
+            background-color: #d32f2f;
+            color: #fff;
         }
     </style>
     <script src="alerta.js"></script>
@@ -182,6 +249,7 @@
                 <a href="#cachoeiras"><i class="fas fa-water"></i> Cachoeiras</a>
                 <a href="#eventos"><i class="fas fa-calendar-alt"></i> Eventos</a>
                 <a href="#usuarios"><i class="fas fa-user-cog"></i> Gestão de Usuários</a>
+                <a href="#solicitacoes"><i class="fas fa-user-check"></i> Solicitações de Admin</a>
                 <a href="#relatorios"><i class="fas fa-chart-pie"></i> Relatórios de Usuários</a>
             </nav>
         </aside>
@@ -261,6 +329,12 @@
                         </tbody>
                     </table>
                 </div>
+            </section>
+
+            <!-- SEÇÃO: SOLICITAÇÕES DE ADMINISTRADOR -->
+            <section id="solicitacoes" class="content-section">
+                <h3>🛡️ Solicitações de Acesso Administrativo</h3>
+                <div class="list-container" id="lista-solicitacoes"></div>
             </section>
 
             <!-- SEÇÃO: RELATÓRIOS DE USUÁRIOS (TEXTO FORMATADO EM LINHA DENTRO DOS CARDS) -->
@@ -1214,6 +1288,80 @@
             }
         }
 
+                async function carregarSolicitacoesAdmin() {
+            const container = document.getElementById('lista-solicitacoes');
+            if (!container) return;
+
+            try {
+                const response = await fetch(`${API_URL}/solicitacoes-admin`);
+                if (!response.ok) throw new Error('Falha ao buscar solicitações.');
+
+                const solicitacoes = await response.json();
+                container.innerHTML = '';
+
+                if (solicitacoes.length === 0) {
+                    container.innerHTML = '<p style="text-align:center;color:#888;grid-column:1/-1;">Nenhuma solicitação pendente no momento.</p>';
+                    return;
+                }
+
+                solicitacoes.forEach(s => {
+                    const div = document.createElement('div');
+                    div.className = 'solicitacao-card';
+                    div.id = `solicitacao-${s.id}`;
+                    div.innerHTML = `
+                        <div class="solicitacao-info">
+                            <h4>${s.name}</h4>
+                            <p>${s.email}</p>
+                        </div>
+                        <div class="solicitacao-botoes">
+                            <button class="btn-aprovar" onclick="aprovarSolicitacaoAdmin(${s.id}, '${s.name.replace(/'/g, "\\'")}')"><i class="fas fa-check"></i> Aprovar</button>
+                            <button class="btn-rejeitar" onclick="rejeitarSolicitacaoAdmin(${s.id}, '${s.name.replace(/'/g, "\\'")}')"><i class="fas fa-times"></i> Rejeitar</button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar solicitações:', error);
+            }
+        }
+
+        async function aprovarSolicitacaoAdmin(id, nome) {
+            try {
+                const response = await fetch(`${API_URL}/solicitacoes-admin/${id}/aprovar`, { method: 'POST' });
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message || `${nome} agora é administrador!`);
+                    document.getElementById(`solicitacao-${id}`)?.remove();
+                } else {
+                    alert(data.error || 'Erro ao aprovar solicitação.');
+                }
+            } catch (error) {
+                console.error('Erro ao aprovar solicitação:', error);
+                alert('Não foi possível conectar ao servidor.');
+            }
+        }
+
+        async function rejeitarSolicitacaoAdmin(id, nome) {
+            const confirmar = await confirmarExclusao(`Tem certeza que deseja rejeitar a solicitação de "${nome}"?`);
+            if (!confirmar) return;
+
+            try {
+                const response = await fetch(`${API_URL}/solicitacoes-admin/${id}/rejeitar`, { method: 'POST' });
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message || 'Solicitação rejeitada.');
+                    document.getElementById(`solicitacao-${id}`)?.remove();
+                } else {
+                    alert(data.error || 'Erro ao rejeitar solicitação.');
+                }
+            } catch (error) {
+                console.error('Erro ao rejeitar solicitação:', error);
+                alert('Não foi possível conectar ao servidor.');
+            }
+        }
+
         // 3. Função de Logout
         async function logout() {
             try {
@@ -1237,6 +1385,7 @@
             carregarCachoeirasAdmin();
             carregarTrilhasAdmin();
             carregarEventosAdmin();
+            carregarSolicitacoesAdmin();
         });
         
     </script>

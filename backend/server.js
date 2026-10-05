@@ -32,6 +32,7 @@ async function iniciarServidor() {
         app.use('/api/cachoeiras', require('./routes/cachoeiras.routes')(db));
         app.use('/api/eventos', require('./routes/eventos.routes')(db));
         app.use('/api/upload', require('./routes/upload.routes')(db));
+        app.use('/api/solicitacoes-admin', require('./routes/solicitacoes.routes')(db));
 
         app.listen(PORT, () => {
             console.log(`🚀 Servidor backend rodando em http://localhost:${PORT}`);
