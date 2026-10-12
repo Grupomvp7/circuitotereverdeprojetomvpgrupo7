@@ -1,0 +1,365 @@
+/* =====================================================================
+   HOME — estilos exclusivos da página inicial (usa as variáveis do site.css)
+   ===================================================================== */
+
+/* ---------- Hero ---------- */
+body.home .hero {
+    position: relative;
+    color: #fff;
+    padding: 120px 0 170px;
+    background:
+        linear-gradient(105deg, rgba(10, 38, 28, .88) 0%, rgba(10, 38, 28, .55) 55%, rgba(10, 38, 28, .25) 100%),
+        url('/img/Dedo_de_Deus_vista_do_Soberbo.jpg') center / cover no-repeat;
+}
+
+body.home .hero-content { max-width: 640px; }
+
+body.home .eyebrow {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 6px 14px;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 999px;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, .08);
+}
+
+body.home .hero h1 {
+    margin: 0 0 18px;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.12;
+    letter-spacing: -.02em;
+}
+
+body.home .hero p {
+    margin: 0 0 32px;
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, .88);
+    max-width: 540px;
+}
+
+body.home .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+
+
+
+
+/* ---------- Acesso rápido (cards sobrepostos ao hero) ---------- */
+body.home .quick { margin-top: -90px; position: relative; z-index: 2; }
+
+body.home .quick-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+body.home .hero-icon-card {
+    /* neutraliza estilos antigos de styles.css */
+    width: auto;
+    height: auto;
+    opacity: 1;
+    transform: none;
+    animation: none;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    background: #fff;
+    color: var(--texto);
+    padding: 28px;
+    border-radius: var(--raio);
+    border: 1px solid var(--borda);
+    box-shadow: var(--acento-topo), var(--sombra-md);
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+
+body.home .hero-icon-card:hover {
+    transform: translateY(-4px);
+    background: #fff;
+    border-color: var(--verde-600);
+    box-shadow: var(--acento-topo), 0 14px 32px rgba(18, 53, 42, .16);
+}
+
+body.home .hero-icon-card .icon-circle {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+    background: var(--verde-100);
+}
+
+body.home .hero-icon-card:hover .icon-circle { transform: none; box-shadow: none; background: var(--verde-700); }
+body.home .hero-icon-card .icon-circle i { font-size: 22px; color: var(--verde-700); }
+body.home .hero-icon-card:hover .icon-circle i { color: #fff; }
+
+body.home .hero-icon-card h3 {
+    margin: 0 0 6px;
+    font-size: 1.15rem;
+    color: var(--verde-800);
+}
+
+body.home .hero-icon-card p {
+    margin: 0 0 16px;
+    font-size: .95rem;
+    color: var(--texto-suave);
+}
+
+body.home .hero-icon-card .saiba-mais {
+    margin-top: auto;
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--verde-700);
+}
+
+body.home .hero-icon-card .saiba-mais i { margin-left: 4px; transition: transform .2s; }
+body.home .hero-icon-card:hover .saiba-mais i { transform: translateX(4px); }
+
+/* ---------- Seções genéricas ---------- */
+body.home .secao { padding: 96px 0 0; }
+
+body.home .secao-head { max-width: 680px; margin: 0 auto 48px; text-align: center; }
+
+body.home .secao-head .tag {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--verde-600);
+}
+
+body.home .secao-head h2 {
+    margin: 0 0 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+    line-height: 1.2;
+    letter-spacing: -.02em;
+    color: var(--verde-900);
+}
+
+body.home .secao-head p { margin: 0; color: var(--texto-suave); font-size: 1.05rem; }
+
+/* ---------- Parques ---------- */
+body.home .cards-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+body.home .card-info {
+    padding: 28px;
+    background: #fff;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    box-shadow: var(--acento-topo), var(--sombra-sm);
+    transition: box-shadow .25s, transform .25s;
+}
+
+body.home .card-info:hover { box-shadow: var(--acento-topo), var(--sombra-md); transform: translateY(-3px); }
+
+body.home .card-info .ico {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    background: var(--verde-100);
+    color: var(--verde-700);
+    font-size: 1.1rem;
+}
+
+body.home .card-info h3 { margin: 0 0 8px; font-size: 1.08rem; color: var(--verde-800); }
+body.home .card-info p { margin: 0; font-size: .95rem; color: var(--texto-suave); }
+
+/* ---------- Flora e fauna ---------- */
+body.home .bio { background: var(--verde-100); margin-top: 96px; padding: 96px 0; }
+body.home .bio .secao-head { margin-bottom: 48px; }
+
+body.home .bio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+body.home .bio-card {
+    padding: 32px;
+    background: #fff;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    box-shadow: var(--acento-topo);
+}
+
+body.home .bio-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 12px;
+    font-size: 1.2rem;
+    color: var(--verde-800);
+}
+
+body.home .bio-card h3 i { color: var(--verde-600); }
+body.home .bio-card > p { margin: 0 0 14px; color: var(--texto-suave); font-size: .97rem; }
+
+body.home .bio-card ul { margin: 0; padding: 0; list-style: none; }
+
+body.home .bio-card li {
+    position: relative;
+    padding: 7px 0 7px 22px;
+    font-size: .95rem;
+    color: var(--texto);
+    border-top: 1px solid var(--borda);
+}
+
+body.home .bio-card li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 17px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--verde-600);
+}
+
+body.home .bio-card li strong { color: var(--verde-800); }
+
+body.home .destaque {
+    margin-top: 40px;
+    padding: 32px 36px;
+    border-radius: var(--raio);
+    background: var(--verde-800);
+    color: #fff;
+    text-align: center;
+}
+
+body.home .destaque h3 { margin: 0 0 8px; font-family: 'Poppins', sans-serif; font-size: 1.3rem; }
+body.home .destaque p { margin: 0 auto; max-width: 720px; color: rgba(255, 255, 255, .85); }
+
+/* ---------- Sobre ---------- */
+body.home .sobre {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+}
+
+body.home .sobre-foto {
+    min-height: 360px;
+    border-radius: 20px;
+    background: url('/img/sobre.png') center / cover no-repeat;
+    box-shadow: var(--sombra-md);
+}
+
+body.home .sobre-texto .tag {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--verde-600);
+}
+
+body.home .sobre-texto h2 {
+    margin: 0 0 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+    line-height: 1.2;
+    color: var(--verde-900);
+}
+
+body.home .sobre-texto p { margin: 0 0 20px; color: var(--texto-suave); font-size: 1.03rem; }
+
+/* ---------- Responsivo (home) ---------- */
+@media (max-width: 960px) {
+    body.home .quick-grid,
+    body.home .cards-3,
+    body.home .bio-grid { grid-template-columns: 1fr; }
+    body.home .sobre { grid-template-columns: 1fr; gap: 32px; }
+}
+
+@media (max-width: 640px) {
+    body.home .hero { padding: 80px 0 140px; }
+    body.home .secao { padding-top: 64px; }
+    body.home .bio { margin-top: 64px; padding: 64px 0; }
+}
+
+/* =====================================================================
+   TOQUES DE VERDE  (apague este bloco para voltar ao visual anterior)
+   ===================================================================== */
+/* Hero um pouco mais verde */
+body.home .hero {
+    background:
+        linear-gradient(105deg, rgba(8, 52, 34, .90) 0%, rgba(14, 70, 46, .58) 55%, rgba(20, 90, 58, .22) 100%),
+        url('/img/Dedo_de_Deus_vista_do_Soberbo.jpg') center / cover no-repeat;
+}
+
+body.home .btn-primary { background: var(--verde-600); }
+body.home .btn-primary:hover { background: var(--verde-700); }
+body.home .hero .btn-primary { background: #3fa56a; }
+body.home .hero .btn-primary:hover { background: #2f8c56; }
+
+/* Ícones em verde cheio */
+body.home .hero-icon-card .icon-circle,
+body.home .card-info .ico {
+    background: linear-gradient(135deg, var(--verde-600), var(--verde-800));
+    box-shadow: 0 4px 12px rgba(45, 106, 79, .30);
+}
+
+body.home .hero-icon-card .icon-circle i,
+body.home .card-info .ico { color: #fff; }
+body.home .hero-icon-card:hover .icon-circle { background: linear-gradient(135deg, var(--verde-700), var(--verde-900)); }
+body.home .hero-icon-card:hover .icon-circle i { color: #fff; }
+
+/* Cartões com filete verde no topo */
+body.home .hero-icon-card,
+body.home .card-info,
+body.home .bio-card { border-top: 4px solid var(--verde-600); }
+
+/* Faixa de biodiversidade em verde mais marcado */
+body.home .bio {
+    background:
+        radial-gradient(circle at 8% 12%, rgba(255, 255, 255, .55) 0 140px, transparent 141px),
+        radial-gradient(circle at 94% 88%, rgba(255, 255, 255, .45) 0 180px, transparent 181px),
+        #dcecdf;
+}
+
+body.home .bio-card h3 i { color: var(--verde-700); }
+
+/* Pequeno traço verde sob os títulos de seção */
+body.home .secao-head h2::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 4px;
+    margin: 14px auto 0;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--verde-700), #7bc08f);
+}
+
+body.home .sobre-texto h2::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 4px;
+    margin-top: 14px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--verde-700), #7bc08f);
+}
+
+body.home .sobre-foto { box-shadow: 18px 18px 0 var(--verde-200), var(--sombra-md); }
+
+body.home .eyebrow { background: rgba(123, 192, 143, .18); border-color: rgba(159, 216, 176, .55); }
+
+/* ---------- Refino do verde (home) ---------- */
+/* o filete verde dos cartões já vem da borda superior; evita linha dupla */
+body.home { --acento-topo: 0 0 #0000; }
+
+/* faixa de natureza: verde um pouco mais marcado (mantém os círculos) */
+body.home .bio { background-color: #c9e3d1; }

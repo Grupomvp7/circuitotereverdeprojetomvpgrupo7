@@ -77,6 +77,83 @@ async function carregarEventosPublico() {
         console.error('Erro ao carregar eventos públicos:', error);
     }
 }
+// =================================================================
+// 🧩 COMPONENTES DE TRILHAS E CACHOEIRAS (layout organizado)
+// =================================================================
+function atrativoCarrosselHtml(imagens, titulo) {
+    if (!imagens || imagens.length === 0) return '';
+    const slides = imagens.map(url => `<img src="${url}" alt="${titulo}" />`).join('');
+    return `
+        <div class="carousel" tabindex="0" role="region" aria-roledescription="carrossel" aria-label="Fotos de ${titulo}">
+            <div class="carousel-track">${slides}</div>
+            <button type="button" class="carousel-btn prev" aria-label="Imagem anterior">&#10094;</button>
+            <button type="button" class="carousel-btn next" aria-label="Próxima imagem">&#10095;</button>
+        </div>`;
+}
+
+function atrativoParagrafosHtml(texto) {
+    return (texto || '')
+        .split(/\n\s*\n/)
+        .map(p => p.trim())
+        .filter(p => p.length > 0)
+        .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
+        .join('');
+}
+
+function atrativoNivelClasse(texto) {
+    const t = (texto || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    if (/leve|facil|baix/.test(t)) return 'nivel-leve';
+    if (/moder|medi/.test(t)) return 'nivel-moderado';
+    if (/alt|pesad|dific|extrem|forte/.test(t)) return 'nivel-alto';
+    return '';
+}
+
+// itens: [{ rotulo, valor, icone, classe }] — itens sem valor não aparecem
+function atrativoResumoHtml(itens) {
+    const chips = itens
+        .filter(i => i.valor && String(i.valor).trim())
+        .map(i => `<div class="chip ${i.classe || ''}"><i class="${i.icone}"></i><span><small>${i.rotulo}</small>${i.valor}</span></div>`)
+        .join('');
+    return chips ? `<div class="atrativo-resumo">${chips}</div>` : '';
+}
+
+// pares: [[rotulo, valor], ...] — linhas sem valor não aparecem
+function atrativoFichaHtml(pares) {
+    const linhas = pares
+        .filter(([, valor]) => valor && String(valor).trim())
+        .map(([rotulo, valor]) => `<div class="ficha-linha"><dt>${rotulo}</dt><dd>${valor}</dd></div>`)
+        .join('');
+    return linhas
+        ? `<aside class="atrativo-ficha"><h3>Características gerais</h3><dl class="ficha">${linhas}</dl></aside>`
+        : '';
+}
+
+function atrativoListaHtml(titulo, icone, itens, classeLista) {
+    if (!itens || itens.length === 0) return '';
+    return `
+        <div class="atrativo-bloco">
+            <h3><i class="${icone}"></i> ${titulo}</h3>
+            <ul class="${classeLista}">${itens.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>`;
+}
+
+function atrativoBlocoHtml({ titulo, rotuloSobre, carrossel, resumo, descricao, ficha, dicas, horarios }) {
+    const sobre = descricao
+        ? `<div class="atrativo-sobre"><h3>${rotuloSobre}</h3><div class="descricao-trilha">${descricao}</div></div>`
+        : '';
+    const corpo = (sobre || ficha) ? `<div class="atrativo-corpo">${sobre}${ficha}</div>` : '';
+    const extras = (dicas || horarios) ? `<div class="atrativo-extras">${dicas}${horarios}</div>` : '';
+    return `
+        <div class="atrativo-head">
+            <h2>${titulo}</h2>
+            ${resumo}
+        </div>
+        ${carrossel}
+        ${corpo}
+        ${extras}
+    `;
+}
+
 async function carregarTrilhasPublico() {
     const containerTresPicos = document.getElementById('trilhas-tres-picos');
     const containerMontanhas = document.getElementById('trilhas-montanhas');
@@ -91,61 +168,34 @@ async function carregarTrilhasPublico() {
         const trilhas = await response.json();
 
         trilhas.forEach(t => {
-            const imagensHtml = (t.imagens && t.imagens.length > 0)
-                ? t.imagens.map(url => `<img src="${url}" alt="${t.titulo}" />`).join('')
-                : '';
-
-            const carrosselHtml = imagensHtml ? `
-                <div class="carousel">
-                    <div class="carousel-track">${imagensHtml}</div>
-                    <button class="carousel-btn prev" aria-label="Imagem anterior">&#10094;</button>
-                    <button class="carousel-btn next" aria-label="Próxima imagem">&#10095;</button>
-                </div>
-            ` : '';
-
-            const dicasHtml = (t.dicas && t.dicas.length > 0)
-                ? `<h3>Dicas</h3><ul class="dicas-lista">${t.dicas.map(d => `<li>${d}</li>`).join('')}</ul>`
-                : '';
-
-            const horariosHtml = (t.horarios && t.horarios.length > 0)
-                ? `<h3>Horário de Funcionamento</h3><ul class="horarios-lista">${t.horarios.map(h => `<li>${h}</li>`).join('')}</ul>`
-                : '';
-
-            const descricaoHtml = (t.descricao || '')
-                .split('\n\n')
-                .map(paragrafo => paragrafo.trim())
-                .filter(p => p.length > 0)
-                .join('<br><br>');
-
             const bloco = document.createElement('section');
             bloco.className = 'trilha-section';
-            bloco.innerHTML = `
-                <h2>${t.titulo}</h2>
-                ${carrosselHtml}
-                <p class="descricao-trilha">${descricaoHtml}</p>
-                <h3>Características Gerais</h3>
-                <table>
-                    <thead><tr><th>Item</th><th>Informação</th></tr></thead>
-                    <tbody>
-                        <tr><td>Localização</td><td>${t.localizacao || 'Não informado'}</td></tr>
-                        <tr><td>Altitude</td><td>${t.altitude || 'Não informado'}</td></tr>
-                        <tr><td>Extensão</td><td>${t.distancia || 'Não informado'}</td></tr>
-                        <tr><td>Tempo médio</td><td>${t.duracao || 'Não informado'}</td></tr>
-                        <tr><td>Nível de dificuldade</td><td>${t.dificuldade || 'Não informado'}</td></tr>
-                        <tr><td>Tipo de atividade</td><td>${t.tipo_atividade || 'Não informado'}</td></tr>
-                        <tr><td>Acesso</td><td>${t.acesso || 'Não informado'}</td></tr>
-                        <tr><td>Ponto final</td><td>${t.ponto_final || 'Não informado'}</td></tr>
-                        <tr><td>Ambiente natural</td><td>${t.ambiente_natural || 'Não informado'}</td></tr>
-                        <tr><td>Sinalização</td><td>${t.sinalizacao || 'Não informado'}</td></tr>
-                        <tr><td>Melhor época</td><td>${t.melhor_epoca || 'Não informado'}</td></tr>
-                        <tr><td>Infraestrutura</td><td>${t.infraestrutura || 'Não informado'}</td></tr>
-                        <tr><td>Administração</td><td>${t.administracao || 'Não informado'}</td></tr>
-                        <tr><td>Indicação</td><td>${t.indicacao || 'Não informado'}</td></tr>
-                    </tbody>
-                </table>
-                ${dicasHtml}
-                ${horariosHtml}
-            `;
+            bloco.innerHTML = atrativoBlocoHtml({
+                titulo: t.titulo,
+                rotuloSobre: 'Sobre a trilha',
+                carrossel: atrativoCarrosselHtml(t.imagens, t.titulo),
+                resumo: atrativoResumoHtml([
+                    { rotulo: 'Dificuldade', valor: t.dificuldade, icone: 'fa-solid fa-gauge-high', classe: atrativoNivelClasse(t.dificuldade) },
+                    { rotulo: 'Extensão', valor: t.distancia, icone: 'fa-solid fa-route' },
+                    { rotulo: 'Tempo médio', valor: t.duracao, icone: 'fa-regular fa-clock' },
+                    { rotulo: 'Altitude', valor: t.altitude, icone: 'fa-solid fa-mountain' }
+                ]),
+                descricao: atrativoParagrafosHtml(t.descricao),
+                ficha: atrativoFichaHtml([
+                    ['Localização', t.localizacao],
+                    ['Tipo de atividade', t.tipo_atividade],
+                    ['Acesso', t.acesso],
+                    ['Ponto final', t.ponto_final],
+                    ['Ambiente natural', t.ambiente_natural],
+                    ['Sinalização', t.sinalizacao],
+                    ['Melhor época', t.melhor_epoca],
+                    ['Infraestrutura', t.infraestrutura],
+                    ['Administração', t.administracao],
+                    ['Indicação', t.indicacao]
+                ]),
+                dicas: atrativoListaHtml('Dicas', 'fa-solid fa-lightbulb', t.dicas, 'dicas-lista'),
+                horarios: atrativoListaHtml('Horário de funcionamento', 'fa-regular fa-clock', t.horarios, 'horarios-lista')
+            });
 
             // Decide em qual parque essa trilha deve aparecer, com base no campo "Parque"
             const nomeParque = (t.parque || '').toLowerCase();
@@ -182,53 +232,33 @@ async function carregarCachoeirasPublico() {
                 const cachoeiras = await response.json();
 
         cachoeiras.forEach(c => {
-            const imagensHtml = (c.imagens && c.imagens.length > 0)
-                ? c.imagens.map(url => `<img src="${url}" alt="${c.titulo}" />`).join('')
-                : '';
-
-            const carrosselHtml = imagensHtml ? `
-                <div class="carousel">
-                    <div class="carousel-track">${imagensHtml}</div>
-                    <button class="carousel-btn prev" aria-label="Imagem anterior">&#10094;</button>
-                    <button class="carousel-btn next" aria-label="Próxima imagem">&#10095;</button>
-                </div>
-            ` : '';
-
-            const dicasHtml = (c.dicas && c.dicas.length > 0)
-                ? `<h3>Dicas</h3><ul class="dicas-lista">${c.dicas.map(d => `<li>${d}</li>`).join('')}</ul>`
-                : '';
-
-            const horariosHtml = (c.horarios && c.horarios.length > 0)
-                ? `<h3>Horário de Funcionamento</h3><ul class="horarios-lista">${c.horarios.map(h => `<li>${h}</li>`).join('')}</ul>`
-                : '';
-
             const bloco = document.createElement('section');
             bloco.className = 'trilha-section';
-            bloco.innerHTML = `
-                <h2>${c.titulo}</h2>
-                ${carrosselHtml}
-                <p class="descricao-trilha">${c.descricao || ''}</p>
-                <h3>Características Gerais</h3>
-                <table>
-                    <thead><tr><th>Item</th><th>Informação</th></tr></thead>
-                    <tbody>
-                        <tr><td>Localização</td><td>${c.localizacao || 'Não informado'}</td></tr>
-                        <tr><td>Altitude média</td><td>${c.altitude_media || 'Não informado'}</td></tr>
-                        <tr><td>Extensão da trilha</td><td>${c.extensao_trilha || 'Não informado'}</td></tr>
-                        <tr><td>Tempo médio</td><td>${c.tempo_medio || 'Não informado'}</td></tr>
-                        <tr><td>Nível de dificuldade</td><td>${c.dificuldade || 'Não informado'}</td></tr>
-                        <tr><td>Tipo de atrativo</td><td>${c.tipo_atrativo || 'Não informado'}</td></tr>
-                        <tr><td>Acesso</td><td>${c.acesso || 'Não informado'}</td></tr>
-                        <tr><td>Ambiente</td><td>${c.ambiente || 'Não informado'}</td></tr>
-                        <tr><td>Destaque</td><td>${c.destaque || 'Não informado'}</td></tr>
-                        <tr><td>Estrutura de apoio</td><td>${c.estrutura || 'Não informado'}</td></tr>
-                        <tr><td>Melhor época</td><td>${c.melhor_epoca || 'Não informado'}</td></tr>
-                    </tbody>
-                </table>
-                ${dicasHtml}
-                ${horariosHtml}
-            `;
-                        // Decide em qual parque essa cachoeira deve aparecer, com base no campo "Parque"
+            bloco.innerHTML = atrativoBlocoHtml({
+                titulo: c.titulo,
+                rotuloSobre: 'Sobre a cachoeira',
+                carrossel: atrativoCarrosselHtml(c.imagens, c.titulo),
+                resumo: atrativoResumoHtml([
+                    { rotulo: 'Dificuldade', valor: c.dificuldade, icone: 'fa-solid fa-gauge-high', classe: atrativoNivelClasse(c.dificuldade) },
+                    { rotulo: 'Trilha de acesso', valor: c.extensao_trilha, icone: 'fa-solid fa-route' },
+                    { rotulo: 'Tempo médio', valor: c.tempo_medio, icone: 'fa-regular fa-clock' },
+                    { rotulo: 'Altitude média', valor: c.altitude_media, icone: 'fa-solid fa-mountain' }
+                ]),
+                descricao: atrativoParagrafosHtml(c.descricao),
+                ficha: atrativoFichaHtml([
+                    ['Localização', c.localizacao],
+                    ['Tipo de atrativo', c.tipo_atrativo],
+                    ['Acesso', c.acesso],
+                    ['Ambiente', c.ambiente],
+                    ['Destaque', c.destaque],
+                    ['Estrutura de apoio', c.estrutura],
+                    ['Melhor época', c.melhor_epoca]
+                ]),
+                dicas: atrativoListaHtml('Dicas', 'fa-solid fa-lightbulb', c.dicas, 'dicas-lista'),
+                horarios: atrativoListaHtml('Horário de funcionamento', 'fa-regular fa-clock', c.horarios, 'horarios-lista')
+            });
+
+            // Decide em qual parque essa cachoeira deve aparecer, com base no campo "Parque"
             const nomeParque = (c.parque || '').toLowerCase();
             let destino = containerOutras; // se não bater com nenhum parque conhecido, cai numa área reserva
 
@@ -246,36 +276,114 @@ async function carregarCachoeirasPublico() {
 
     } catch (error) {
         console.error('Erro ao carregar cachoeiras públicas:', error);
-        container.innerHTML = '<p class="descricao-trilha">Não foi possível carregar as novas cachoeiras no momento.</p>';
+        [containerTresPicos, containerSerraOrgaos, containerOutras].filter(Boolean).forEach(el => {
+            el.innerHTML = '<p class="descricao-trilha">Não foi possível carregar as cachoeiras no momento.</p>';
+        });
     }
 }
 function inicializarCarrosseis() {
-    const carousels = document.querySelectorAll('.carousel');
+    const INTERVALO = 5000; // troca de foto a cada 5 segundos
+    const reduzMovimento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    carousels.forEach((carousel) => {
+    document.querySelectorAll('.carousel').forEach((carousel) => {
+        if (carousel.dataset.iniciado === 'true') return; // evita ligar os eventos duas vezes
+
         const track = carousel.querySelector('.carousel-track');
         const images = carousel.querySelectorAll('.carousel-track img');
         const prevBtn = carousel.querySelector('.carousel-btn.prev');
         const nextBtn = carousel.querySelector('.carousel-btn.next');
 
-        if (!track || images.length === 0 || !prevBtn || !nextBtn) return;
+        if (!track || images.length === 0) return;
+        carousel.dataset.iniciado = 'true';
 
-        let currentIndex = 0;
-        const totalImages = images.length;
+        const total = images.length;
 
-        function updateCarousel() {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        // Com uma única foto não há o que alternar
+        if (total === 1) {
+            if (prevBtn) prevBtn.style.display = 'none';
+            if (nextBtn) nextBtn.style.display = 'none';
+            return;
         }
 
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalImages;
-            updateCarousel();
+        let atual = 0;
+        let timer = null;
+        let pausado = false;
+        let visivel = true;
+
+        // Indicadores (bolinhas) e contador
+        const dots = document.createElement('div');
+        dots.className = 'carousel-dots';
+        const contador = document.createElement('span');
+        contador.className = 'carousel-contador';
+        contador.setAttribute('aria-hidden', 'true');
+
+        images.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'carousel-dot';
+            dot.setAttribute('aria-label', `Ir para a imagem ${i + 1}`);
+            dot.addEventListener('click', () => { irPara(i); reiniciar(); });
+            dots.appendChild(dot);
+        });
+        carousel.appendChild(dots);
+        carousel.appendChild(contador);
+
+        function irPara(indice) {
+            atual = (indice + total) % total;
+            track.style.transform = `translateX(-${atual * 100}%)`;
+            Array.from(dots.children).forEach((d, i) => d.classList.toggle('ativo', i === atual));
+            contador.textContent = `${atual + 1} / ${total}`;
+        }
+
+        function parar() { clearInterval(timer); timer = null; }
+
+        function iniciar() {
+            if (reduzMovimento || timer || pausado || !visivel || document.hidden) return;
+            timer = setInterval(() => irPara(atual + 1), INTERVALO);
+        }
+
+        function reiniciar() { parar(); iniciar(); }
+
+        if (prevBtn) prevBtn.addEventListener('click', () => { irPara(atual - 1); reiniciar(); });
+        if (nextBtn) nextBtn.addEventListener('click', () => { irPara(atual + 1); reiniciar(); });
+
+        // Pausa enquanto o mouse está em cima (para dar tempo de olhar a foto)
+        carousel.addEventListener('mouseenter', () => { pausado = true; parar(); });
+        carousel.addEventListener('mouseleave', () => { pausado = false; iniciar(); });
+
+        // Navegação por teclado (setas) — pausa só quando o foco veio do teclado
+        carousel.addEventListener('focusin', (e) => {
+            if (e.target.matches(':focus-visible')) { pausado = true; parar(); }
+        });
+        carousel.addEventListener('focusout', () => { pausado = false; iniciar(); });
+        carousel.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') { irPara(atual - 1); reiniciar(); }
+            if (e.key === 'ArrowRight') { irPara(atual + 1); reiniciar(); }
         });
 
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-            updateCarousel();
+        // Deslizar o dedo no celular
+        let inicioX = null;
+        carousel.addEventListener('touchstart', (e) => { inicioX = e.touches[0].clientX; parar(); }, { passive: true });
+        carousel.addEventListener('touchend', (e) => {
+            if (inicioX !== null) {
+                const delta = e.changedTouches[0].clientX - inicioX;
+                if (Math.abs(delta) > 40) irPara(delta < 0 ? atual + 1 : atual - 1);
+            }
+            inicioX = null;
+            iniciar();
         });
+
+        // Só avança sozinho quando o carrossel está na tela e a aba está ativa
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver((entradas) => {
+                visivel = entradas[0].isIntersecting;
+                visivel ? iniciar() : parar();
+            }, { threshold: 0.3 }).observe(carousel);
+        }
+        document.addEventListener('visibilitychange', () => { document.hidden ? parar() : iniciar(); });
+
+        irPara(0);
+        iniciar();
     });
 }
 
@@ -347,6 +455,10 @@ function filterContent() {
             // 3. Aplica o grifado amarelo na palavra encontrada
             destacarTexto(item, regex);
         } else {
+            // Partes internas de um cartão de trilha/cachoeira não são escondidas isoladamente
+            if (item.closest('.trilha-section') && !item.classList.contains('trilha-section')) {
+                return;
+            }
             // Se for um bloco individual, oculta
             if (
                 item.tagName === 'LI' || 
