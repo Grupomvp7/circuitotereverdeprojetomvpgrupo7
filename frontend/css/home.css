@@ -322,13 +322,9 @@ body.home .hero-icon-card,
 body.home .card-info,
 body.home .bio-card { border-top: 4px solid var(--verde-600); }
 
-/* Faixa de biodiversidade em verde mais marcado */
-body.home .bio {
-    background:
-        radial-gradient(circle at 8% 12%, rgba(255, 255, 255, .55) 0 140px, transparent 141px),
-        radial-gradient(circle at 94% 88%, rgba(255, 255, 255, .45) 0 180px, transparent 181px),
-        #dcecdf;
-}
+/* Faixa de biodiversidade em verde mais marcado
+   (sem os círculos decorativos, que ficavam cortados na borda da tela) */
+body.home .bio { background: #dcecdf; }
 
 body.home .bio-card h3 i { color: var(--verde-700); }
 
@@ -361,5 +357,5 @@ body.home .eyebrow { background: rgba(123, 192, 143, .18); border-color: rgba(15
 /* o filete verde dos cartões já vem da borda superior; evita linha dupla */
 body.home { --acento-topo: 0 0 #0000; }
 
-/* faixa de natureza: verde um pouco mais marcado (mantém os círculos) */
+/* faixa de natureza: verde um pouco mais marcado */
 body.home .bio { background-color: #c9e3d1; }

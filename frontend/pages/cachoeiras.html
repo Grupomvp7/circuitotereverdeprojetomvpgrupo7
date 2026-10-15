@@ -46,9 +46,10 @@
                 <a href="login.html" class="login-icon" id="loginIcon" aria-label="Entrar">
                     <i class="fa-solid fa-user"></i>
                 </a>
-                <span id="userGreeting" style="display: none; align-items: center; gap: 8px;">
-                    Olá, <span id="userNameDisplay"></span>!
-                    <button onclick="logoutUser()" style="background: none; border: none; cursor: pointer; font-size: 1rem;" title="Sair">
+                <span id="userGreeting" style="display: none;">
+                    <span class="user-avatar" id="userAvatar" aria-hidden="true"></span>
+                    <span class="user-hello">Olá, <strong id="userNameDisplay"></strong>!</span>
+                    <button type="button" class="user-logout" onclick="logoutUser()" title="Sair" aria-label="Sair">
                         <i class="fa-solid fa-right-from-bracket"></i>
                     </button>
                 </span>

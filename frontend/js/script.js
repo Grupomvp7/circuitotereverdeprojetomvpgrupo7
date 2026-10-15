@@ -108,11 +108,16 @@ function atrativoNivelClasse(texto) {
     return '';
 }
 
-// itens: [{ rotulo, valor, icone, classe }] — itens sem valor não aparecem
+// itens: [{ rotulo, valor, icone, classe }]
+// Todos os chips são sempre exibidos, para que o cabeçalho tenha o mesmo padrão em
+// todas as trilhas e cachoeiras; sem valor, aparece "Não informado" (chip mais discreto).
 function atrativoResumoHtml(itens) {
     const chips = itens
-        .filter(i => i.valor && String(i.valor).trim())
-        .map(i => `<div class="chip ${i.classe || ''}"><i class="${i.icone}"></i><span><small>${i.rotulo}</small>${i.valor}</span></div>`)
+        .map(i => {
+            const tem = i.valor && String(i.valor).trim();
+            const classe = tem ? (i.classe || '') : 'chip-vazio';
+            return `<div class="chip ${classe}"><i class="${i.icone}"></i><span><small>${i.rotulo}</small>${tem ? i.valor : 'Não informado'}</span></div>`;
+        })
         .join('');
     return chips ? `<div class="atrativo-resumo">${chips}</div>` : '';
 }
@@ -240,9 +245,9 @@ async function carregarCachoeirasPublico() {
                 carrossel: atrativoCarrosselHtml(c.imagens, c.titulo),
                 resumo: atrativoResumoHtml([
                     { rotulo: 'Dificuldade', valor: c.dificuldade, icone: 'fa-solid fa-gauge-high', classe: atrativoNivelClasse(c.dificuldade) },
-                    { rotulo: 'Trilha de acesso', valor: c.extensao_trilha, icone: 'fa-solid fa-route' },
+                    { rotulo: 'Extensão', valor: c.extensao_trilha, icone: 'fa-solid fa-route' },
                     { rotulo: 'Tempo médio', valor: c.tempo_medio, icone: 'fa-regular fa-clock' },
-                    { rotulo: 'Altitude média', valor: c.altitude_media, icone: 'fa-solid fa-mountain' }
+                    { rotulo: 'Altitude', valor: c.altitude_media, icone: 'fa-solid fa-mountain' }
                 ]),
                 descricao: atrativoParagrafosHtml(c.descricao),
                 ficha: atrativoFichaHtml([

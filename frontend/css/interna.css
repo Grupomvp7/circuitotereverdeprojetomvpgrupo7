@@ -196,12 +196,20 @@ body.interna .chip small {
     color: var(--texto-suave);
 }
 
-body.interna .chip.nivel-leve     { background: #e7f5ea; border-color: #c5e4cc; color: #1d6a38; }
-body.interna .chip.nivel-leve i   { color: #1d6a38; }
-body.interna .chip.nivel-moderado { background: #fff4e0; border-color: #f4dcae; color: #8a5a00; }
-body.interna .chip.nivel-moderado i { color: #8a5a00; }
-body.interna .chip.nivel-alto     { background: #fdeaea; border-color: #f2c4c4; color: #a12a2a; }
-body.interna .chip.nivel-alto i   { color: #a12a2a; }
+/* Dificuldade: Fácil (azul) */
+body.interna .chip.nivel-leve { background: #e6f0fb; border-color: #b9d4f1; color: #1d4f8a; }
+body.interna .chip.nivel-leve i,
+body.interna .chip.nivel-leve small { color: #1d4f8a; }
+
+/* Dificuldade: Moderado (âmbar, combina com o laranja do site) */
+body.interna .chip.nivel-moderado { background: #fff1d6; border-color: #f2d596; color: #8a5a00; }
+body.interna .chip.nivel-moderado i,
+body.interna .chip.nivel-moderado small { color: #8a5a00; }
+
+/* Dificuldade: Difícil (vermelho suave) */
+body.interna .chip.nivel-alto { background: #fde4e1; border-color: #f4b8b1; color: #9b2c22; }
+body.interna .chip.nivel-alto i,
+body.interna .chip.nivel-alto small { color: #9b2c22; }
 
 /* Corpo: texto à esquerda, ficha técnica à direita */
 body.interna .atrativo-corpo {
@@ -520,3 +528,7 @@ body.interna .page-hero {
         radial-gradient(ellipse 700px 300px at 85% 0%, rgba(123, 192, 143, .30), transparent 60%),
         linear-gradient(120deg, #0f3a2b 0%, #1f6b4d 60%, #2f8a62 100%);
 }
+
+/* Chip sem informação: mantém o padrão do cabeçalho, porém mais discreto */
+body.interna .chip.chip-vazio { background: #f3f6f4; border-color: var(--borda); color: var(--texto-suave); font-weight: 500; }
+body.interna .chip.chip-vazio i { color: #9db3a6; }
