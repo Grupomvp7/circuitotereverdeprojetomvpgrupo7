@@ -3,6 +3,7 @@
 /* ============================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
     --color-primary-admin: #38761d;
@@ -16,8 +17,8 @@
     --color-border-admin: #dcdccb;
 
     /* Paleta da página de login (Serra dos Órgãos ao entardecer) */
-    --lg-forest-deep: #0e2417;
-    --lg-forest-mid: #1d3f26;
+    --lg-forest-deep: #0f3a2b;
+    --lg-forest-mid: #1f6b4d;
     --lg-moss: #4f7942;
     --lg-mist: #d8ead9;
     --lg-accent: #f4a261;
@@ -42,8 +43,8 @@ body {
     position: relative;
     overflow: hidden;
     background:
-        radial-gradient(ellipse 900px 500px at 50% -10%, rgba(244, 162, 97, 0.16), transparent 60%),
-        linear-gradient(180deg, var(--lg-forest-deep) 0%, var(--lg-forest-mid) 55%, #14301c 100%);
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(244, 162, 97, 0.16), transparent 60%),
+    linear-gradient(160deg, #0f3a2b 0%, #1f6b4d 60%, #2f8a62 100%);
 }
 
 /* Silhueta de montanhas (camada de trás) */
@@ -56,8 +57,8 @@ body::before {
     height: 42vh;
     z-index: 0;
     pointer-events: none;
-    background: var(--lg-forest-mid);
-    opacity: 0.55;
+    background: #17513b;
+    opacity: 0.7;
     clip-path: polygon(0% 100%, 0% 58%, 12% 42%, 22% 60%, 34% 24%, 46% 54%, 58% 32%, 70% 62%, 82% 18%, 92% 50%, 100% 38%, 100% 100%);
 }
 
@@ -79,7 +80,7 @@ body::after {
     width: 100%;
     max-width: 440px;
     padding: 42px 40px;
-    background: var(--lg-glass);
+    background: rgba(15, 58, 43, 0.38);;
     border-radius: 20px;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);

@@ -1,0 +1,395 @@
+/* =====================================================================
+   SITE — estilos compartilhados (cabeçalho, rodapé, botões, voltar ao topo)
+   Carregar DEPOIS de styles.css. Ativado por <body class="site ...">
+   ===================================================================== */
+
+body.site {
+    --verde-900: #12352a;
+    --verde-800: #1b4332;
+    --verde-700: #2d6a4f;
+    --verde-600: #40916c;
+    --verde-100: #e6f2ea;
+    --verde-50:  #f3f8f4;
+    --laranja:   #e9822f;
+    --texto:     #1f2a24;
+    --texto-suave: #5b6b62;
+    --borda:     #e3e9e5;
+    --sombra-sm: 0 1px 3px rgba(18, 53, 42, .08);
+    --sombra-md: 0 8px 24px rgba(18, 53, 42, .10);
+    --raio: 14px;
+    --fundo: #f4f8f5;          /* verde bem claro usado no fundo das páginas */
+    --acento-topo: inset 0 3px 0 var(--verde-600);
+
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+body.site * { box-sizing: border-box; }
+
+body.site .wrap {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+
+/* ---------- Botões ---------- */
+body.site .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 26px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: .98rem;
+    border: 1px solid transparent;
+    transition: transform .2s, background .2s, border-color .2s, color .2s;
+}
+body.site .btn:hover { transform: translateY(-2px); }
+body.site .btn-primary { background: var(--laranja); color: #fff; }
+body.site .btn-primary:hover { background: #d4711f; color: #fff; }
+body.site .btn-ghost { border-color: rgba(255, 255, 255, .55); color: #fff; }
+body.site .btn-ghost:hover { background: rgba(255, 255, 255, .12); color: #fff; }
+
+/* ---------- Cabeçalho ---------- */
+body.site .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, .94);
+    backdrop-filter: blur(10px);
+}
+
+/* fio verde sutil na base do cabeçalho */
+body.site .site-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--verde-800), var(--verde-600) 50%, var(--verde-800));
+}
+
+body.site .site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    height: 68px;
+}
+
+body.site .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--verde-800);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -.01em;
+    white-space: nowrap;
+}
+
+body.site .brand-mark {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--verde-700);
+    color: #fff;
+    font-size: 1rem;
+}
+
+body.site .main-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+body.site .main-nav a {
+    padding: 8px 14px;
+    border-radius: 8px;
+    color: var(--texto-suave);
+    font-size: .95rem;
+    font-weight: 500;
+    transition: background .2s, color .2s;
+}
+
+body.site .main-nav a:hover,
+body.site .main-nav a.ativo {
+    background: var(--verde-100);
+    color: var(--verde-700);
+}
+
+body.site .header-tools {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Busca (mantém .search-bar para compatibilidade com o script) */
+body.site .search-bar {
+    display: flex;
+    align-items: center;
+    background: var(--verde-50);
+    border: 1px solid var(--borda);
+    border-radius: 999px;
+    padding: 2px 14px;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+body.site .search-bar:focus-within {
+    border-color: var(--verde-600);
+    box-shadow: 0 0 0 3px rgba(64, 145, 108, .15);
+}
+
+body.site .search-bar input {
+    width: 150px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    padding: 8px 4px;
+    font: inherit;
+    font-size: .9rem;
+    color: var(--texto);
+}
+
+body.site .search-bar i { color: var(--verde-700); margin: 0 0 0 6px; }
+
+/* Área do usuário */
+body.site #userArea { display: inline-flex; align-items: center; }
+
+body.site .login-icon {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--verde-700);
+    color: #fff;
+    transition: background .2s;
+}
+
+body.site .login-icon:hover { background: var(--verde-800); }
+
+/* Saudação do usuário logado: avatar + "Olá, Nome!" + sair */
+body.site #userGreeting {
+    align-items: center;
+    gap: 10px;
+    padding: 4px 6px 4px 4px;
+    background: var(--verde-50);
+    border: 1px solid var(--borda);
+    border-radius: 999px;
+    color: var(--texto);
+    font-size: .9rem;
+    white-space: nowrap;
+}
+
+body.site .user-avatar {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--verde-700);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+body.site .user-hello { font-weight: 500; color: var(--texto-suave); }
+
+body.site .user-hello strong {
+    display: inline-block;
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+    font-weight: 600;
+    color: var(--verde-800);
+}
+
+body.site .user-logout {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #c0392b;
+    font-size: .9rem;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+}
+
+body.site .user-logout:hover { background: #c0392b; color: #fff; }
+
+/* telas estreitas: só avatar + sair */
+@media (max-width: 640px) {
+    body.site .user-hello { display: none; }
+}
+
+/* Menu mobile (hambúrguer) */
+body.site .menu-container { display: none; }
+
+body.site .hamburger span { background: var(--verde-800); }
+body.site .hamburger:hover span { background: var(--laranja); }
+
+body.site .menu {
+    top: 48px;
+    background: #fff;
+    border: 1px solid var(--borda);
+    box-shadow: var(--sombra-md);
+}
+
+body.site .menu a { color: var(--texto); }
+body.site .menu a:hover { background: var(--verde-50); color: var(--verde-700); }
+
+/* ---------- Rodapé ---------- */
+body.site .site-footer {
+    margin-top: 96px;
+    background: var(--verde-900);
+    color: rgba(255, 255, 255, .75);
+    font-size: .93rem;
+}
+
+body.site .footer-top {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 48px;
+    padding: 64px 0 48px;
+}
+
+body.site .site-footer h3 {
+    margin: 0 0 16px;
+    font-size: .8rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+body.site .site-footer p { margin: 0 0 8px; }
+body.site .site-footer ul { margin: 0; padding: 0; list-style: none; }
+body.site .site-footer li { margin-bottom: 10px; }
+body.site .site-footer a { color: rgba(255, 255, 255, .75); transition: color .2s; }
+body.site .site-footer a:hover { color: #fff; }
+
+body.site .footer-brand { color: #fff; margin-bottom: 14px; }
+body.site .footer-brand .brand-mark { background: var(--verde-600); }
+body.site .footer-brand .brand { color: #fff; }
+
+body.site .social { display: flex; gap: 10px; margin-top: 18px; }
+
+body.site .social a {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .1);
+    color: #fff;
+    transition: background .2s, transform .2s;
+}
+
+body.site .social a:hover { background: var(--laranja); transform: translateY(-2px); }
+
+body.site .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, .12);
+    padding: 20px 0;
+    text-align: center;
+    font-size: .85rem;
+    color: rgba(255, 255, 255, .55);
+}
+
+/* ---------- Voltar ao topo ---------- */
+body.site #voltarTopo {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+    background: var(--verde-700);
+    border: 0;
+    box-shadow: var(--sombra-md);
+}
+
+body.site #voltarTopo.ativo:hover { background: var(--verde-800); }
+
+/* ---------- Responsivo (compartilhado) ---------- */
+@media (max-width: 960px) {
+    body.site .main-nav { display: none; }
+    body.site .menu-container { display: flex; }
+    body.site .footer-top { grid-template-columns: 1fr; gap: 32px; }
+}
+
+@media (max-width: 640px) {
+    body.site .search-bar { display: none; }
+    body.site .site-footer { margin-top: 64px; }
+}
+
+/* =====================================================================
+   TOQUES DE VERDE  (apague este bloco para voltar ao visual anterior)
+   ===================================================================== */
+body.site {
+    --verde-200: #cde5d5;
+    --fundo: #eef6f0;                 /* fundo geral com um leve tom de verde */
+}
+
+body.site { background: var(--fundo); }
+body.site ::selection { background: var(--verde-200); color: var(--verde-900); }
+body.site { accent-color: var(--verde-700); }
+
+/* Faixa verde no topo do cabeçalho */
+body.site .site-header { border-bottom-color: var(--verde-200); }
+body.site .site-header::before {
+    content: "";
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, var(--verde-900), var(--verde-600) 55%, #7bc08f);
+}
+
+body.site .brand-mark {
+    background: linear-gradient(135deg, var(--verde-600), var(--verde-800));
+    box-shadow: 0 2px 8px rgba(45, 106, 79, .35);
+}
+
+body.site .main-nav a:hover,
+body.site .main-nav a.ativo { background: var(--verde-100); color: var(--verde-800); }
+
+body.site .search-bar { background: #fff; border-color: var(--verde-200); }
+
+/* Botão principal em verde (o laranja fica só como detalhe) */
+body.site .btn-primary { background: var(--verde-700); }
+body.site .btn-primary:hover { background: var(--verde-800); }
+
+/* Rodapé com filete verde */
+body.site .site-footer { background: linear-gradient(180deg, var(--verde-800), var(--verde-900)); border-top: 4px solid var(--verde-600); }
+body.site .site-footer h3 { color: #9fd8b0; }
+
+/* ---------- Toques de verde ---------- */
+body.site ::selection { background: rgba(64, 145, 108, .28); }
+
+body.site a:focus-visible,
+body.site button:focus-visible,
+body.site input:focus-visible {
+    outline: 2px solid var(--verde-600);
+    outline-offset: 2px;
+}
+
+/* =====================================================================
+   REFINO DO VERDE  (camada final — ajuste só estas variáveis para mudar o tom)
+   ===================================================================== */
+body.site {
+    --fundo:     #e6f1e9;   /* fundo das páginas: verde-sálvia claro */
+    --verde-50:  #eef6f0;   /* áreas internas dos cartões (ficha, etiquetas) */
+    --verde-100: #d8eadd;   /* item ativo do menu, faixas */
+    --verde-200: #bddbc7;
+    --borda:     #c9ddcf;   /* bordas com leve tom verde, para os cartões brancos se destacarem */
+}

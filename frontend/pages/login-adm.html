@@ -3,228 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Circuito Verde</title>
+    <title>Painel Administrativo | Circuito Terê Verde</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="estilopaginaadm.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Estilos para a tabela de usuários */
-        .table-responsive {
-            overflow-x: auto;
-            margin-top: 1rem;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-        .data-table th, .data-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-        }
-        .data-table th {
-            background-color: #f4f7f6;
-            color: #2e7d32;
-        }
-        .data-table tr:hover {
-            background-color: #f9f9f9;
-        }
-        .badge-user {
-            background-color: #e3f2fd;
-            color: #1976d2;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-        .badge-admin {
-            background-color: #e8f5e9;
-            color: #2e7d32;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-
-        /* Força a cor vermelha bem visível nos botões de excluir */
-        .btn-delete, .btn-delete-item, button.btn-delete, button.btn-delete-item {
-            background-color: #d32f2f !important;
-            color: #ffffff !important;
-            border: 1px solid #b71c1c !important;
-            padding: 6px 14px !important;
-            border-radius: 4px !important;
-            cursor: pointer !important;
-            font-weight: bold !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            gap: 6px !important;
-            transition: background 0.2s, transform 0.1s !important;
-        }
-
-        .btn-delete:hover, .btn-delete-item:hover, button.btn-delete:hover, button.btn-delete-item:hover {
-            background-color: #b71c1c !important;
-            color: #ffffff !important;
-            transform: scale(1.02);
-        }
-
-        /* Modal de cadastro/edição de cachoeira */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-box {
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 85vh;
-            overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .modal-box h3 {
-            margin-bottom: 15px;
-            color: #2e7d32;
-        }
-        .modal-box label {
-            display: block;
-            margin-top: 12px;
-            margin-bottom: 4px;
-            font-weight: 600;
-            color: #2f2f2f;
-        }
-        .modal-box input,
-        .modal-box textarea {
-            width: 100%;
-            padding: 8px 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-family: inherit;
-        }
-        .modal-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-                .modal-buttons button {
-            flex: 1;
-        }
-
-        .lista-chips-imagens {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-top: 8px;
-        }
-
-        .imagem-chip {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            background: #f1f1ea;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 6px 10px;
-            font-size: 0.82em;
-        }
-
-        .imagem-chip span {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .imagem-chip button {
-            background: #e5484d;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-                .imagem-chip button:hover {
-            background: #c62828;
-        }
-
-        /* Cartão de solicitação de administrador */
-        #lista-solicitacoes {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            max-width: 720px;
-        }
-
-        .solicitacao-card {
-            background: #fff;
-            border-left: 4px solid #4f7942;
-            border-radius: 10px;
-            padding: 14px 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .solicitacao-info h4 {
-            margin: 0 0 2px 0;
-            font-size: 1.02em;
-            color: #2f2f2f;
-        }
-
-        .solicitacao-info p {
-            margin: 0;
-            font-size: 0.85em;
-            color: #888;
-        }
-
-        .solicitacao-botoes {
-            display: flex;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-
-        .solicitacao-botoes button {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.82em;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: transform 0.15s ease, opacity 0.15s ease;
-        }
-
-        .solicitacao-botoes button:hover {
-            transform: translateY(-1px);
-            opacity: 0.92;
-        }
-
-        .btn-aprovar {
-            background-color: #4f7942;
-            color: #fff;
-        }
-
-        .btn-rejeitar {
-            background-color: #d32f2f;
-            color: #fff;
-        }
-    </style>
     <script src="alerta.js"></script>
 </head>
 
@@ -238,8 +20,8 @@
 
             <!-- LOGO DO MENU LATERAL -->
             <div class="logo">
-                <i class="fas fa-leaf"></i>
-                <h3>Painel</h3>
+                <span class="brand-mark"><i class="fas fa-leaf"></i></span>
+                <h3>Circuito Terê Verde</h3>
             </div>
 
             <!-- LINKS DO MENU -->
@@ -271,19 +53,19 @@
 
             <!-- SEÇÃO: VISÃO GERAL DO PAINEL -->
             <section id="overview" class="content-section active">
-                <h3>Informações dos Cadastros</h3>
+                <h3><i class="fas fa-chart-line"></i> Informações dos Cadastros</h3>
 
                 <div class="stats-cards">
-                    <div class="card"><i class="fas fa-route"></i> <strong>Trilhas:</strong> <span id="total-trilhas-overview">0</span> cadastradas</div>
-                    <div class="card"><i class="fas fa-water"></i> <strong>Cachoeiras:</strong> <span id="total-cachoeiras-overview">0</span> cadastradas</div>
-                    <div class="card"><i class="fas fa-calendar-alt"></i> <strong>Eventos:</strong> <span id="total-eventos-overview">0</span> cadastrados</div> 
-                    <div class="card"><i class="fas fa-users"></i> <strong>Usuários:</strong> <span id="total-usuarios-overview">0</span> registrados</div> 
+                    <div class="card stat-card"><i class="fas fa-route"></i><div class="stat-info"><span class="stat-number" id="total-trilhas-overview">0</span><span class="stat-label">Trilhas cadastradas</span></div></div>
+                    <div class="card stat-card"><i class="fas fa-water"></i><div class="stat-info"><span class="stat-number" id="total-cachoeiras-overview">0</span><span class="stat-label">Cachoeiras cadastradas</span></div></div>
+                    <div class="card stat-card"><i class="fas fa-calendar-alt"></i><div class="stat-info"><span class="stat-number" id="total-eventos-overview">0</span><span class="stat-label">Eventos cadastrados</span></div></div>
+                    <div class="card stat-card"><i class="fas fa-users"></i><div class="stat-info"><span class="stat-number" id="total-usuarios-overview">0</span><span class="stat-label">Usuários registrados</span></div></div>
                 </div>
             </section>
             
             <!-- SEÇÃO: GERENCIAMENTO DE TRILHAS (6 TRILHAS ORIGINAIS) -->
             <section id="trilhas" class="content-section">
-                <h3>🌿 Gestão de Trilhas</h3>
+                <h3><i class="fas fa-route"></i> Gestão de Trilhas</h3>
                 <div class="button-row">
                     <button class="btn-add" onclick="abrirModalTrilha()"><i class="fas fa-plus"></i> Cadastrar Trilha</button>
                 </div>
@@ -292,7 +74,7 @@
 
             <!-- SEÇÃO: CACHOEIRAS -->
             <section id="cachoeiras" class="content-section">
-                <h3>💧 Gestão de Cachoeiras</h3>
+                <h3><i class="fas fa-water"></i> Gestão de Cachoeiras</h3>
                 <div class="button-row">
                    <button class="btn-add" onclick="abrirModalCachoeira()"><i class="fas fa-plus"></i> Cadastrar Cachoeira</button> 
                 </div>
@@ -301,7 +83,7 @@
 
             <!-- SEÇÃO: GESTÃO DE EVENTOS -->
             <section id="eventos" class="content-section">
-                <h3>📅 Gestão de Eventos</h3>
+                <h3><i class="fas fa-calendar-alt"></i> Gestão de Eventos</h3>
                 <div class="button-row">
                     <button class="btn-add" onclick="abrirModalEvento()"><i class="fas fa-plus"></i> Cadastrar Evento</button>
                 </div>
@@ -311,7 +93,7 @@
 
             <!-- SEÇÃO: GESTÃO DE USUÁRIOS -->
             <section id="usuarios" class="content-section">
-                <h3>👤 Usuários Cadastrados no Sistema</h3>
+                <h3><i class="fas fa-user-cog"></i> Usuários Cadastrados no Sistema</h3>
 
                 <div class="table-responsive">
                     <table class="data-table">
@@ -333,25 +115,36 @@
 
             <!-- SEÇÃO: SOLICITAÇÕES DE ADMINISTRADOR -->
             <section id="solicitacoes" class="content-section">
-                <h3>🛡️ Solicitações de Acesso Administrativo</h3>
+                <h3><i class="fas fa-user-check"></i> Solicitações de Acesso Administrativo</h3>
                 <div class="list-container" id="lista-solicitacoes"></div>
             </section>
 
             <!-- SEÇÃO: RELATÓRIOS DE USUÁRIOS (TEXTO FORMATADO EM LINHA DENTRO DOS CARDS) -->
             <section id="relatorios" class="content-section">
-                <h3>👥 Relatórios de Usuários</h3>
+                <h3><i class="fas fa-chart-pie"></i> Relatórios de Usuários</h3>
                 <div class="stats-cards">
-                    <div class="card status-card">
-                        <i class="fas fa-users"></i>
-                        <span><strong>Usuários Cadastrados:</strong> <span id="total-usuarios-relatorio">0</span></span>
+                    <div class="card stat-card"><i class="fas fa-users"></i><div class="stat-info"><span class="stat-number" id="total-usuarios-relatorio">0</span><span class="stat-label">Usuários cadastrados</span></div></div>
+                    <div class="card stat-card"><i class="fas fa-hiking"></i><div class="stat-info"><span class="stat-number">10.000</span><span class="stat-label">Trilhas concluídas</span></div></div>
+                    <div class="card stat-card"><i class="fas fa-comment-dots"></i><div class="stat-info"><span class="stat-number">5.000</span><span class="stat-label">Feedback dos usuários</span></div></div>
+                </div>
+
+                <div class="report-grid">
+                    <div class="panel">
+                        <h4><i class="fas fa-user-tag"></i> Usuários por tipo</h4>
+                        <div class="split-bar" aria-hidden="true">
+                            <span class="seg-clientes" id="rel-bar-clientes" style="width:0%"></span>
+                            <span class="seg-admins" id="rel-bar-admins" style="width:0%"></span>
+                        </div>
+                        <ul class="legend">
+                            <li><i class="dot dot-clientes"></i> Clientes <strong id="rel-clientes">0</strong></li>
+                            <li><i class="dot dot-admins"></i> Administradores <strong id="rel-admins">0</strong></li>
+                        </ul>
                     </div>
-                    <div class="card status-card">
-                        <i class="fas fa-hiking"></i>
-                        <span><strong>Trilhas Concluídas:</strong> 10.000</span>
-                    </div>
-                    <div class="card status-card">
-                        <i class="fas fa-comment-dots"></i>
-                        <span><strong>Feedback dos Usuários:</strong> 5.000</span>
+                    <div class="panel">
+                        <h4><i class="fas fa-user-plus"></i> Últimos cadastrados</h4>
+                        <ul class="recent-list" id="rel-ultimos">
+                            <li class="recent-empty">Nenhum usuário ainda.</li>
+                        </ul>
                     </div>
                 </div>
             </section>
@@ -614,6 +407,46 @@
         }
 
         // 1. Função para carregar os usuários reais do SQLite em ordem
+        // Preenche o relatório com dados reais dos usuários
+        function atualizarPainelRelatorio(usuarios) {
+            const total = usuarios.length;
+            const admins = usuarios.filter(u => u.role === 'admin').length;
+            const clientes = total - admins;
+            const pct = n => total ? Math.round((n / total) * 100) : 0;
+
+            document.getElementById('rel-clientes').textContent = clientes;
+            document.getElementById('rel-admins').textContent = admins;
+            document.getElementById('rel-bar-clientes').style.width = pct(clientes) + '%';
+            document.getElementById('rel-bar-admins').style.width = (total ? 100 - pct(clientes) : 0) + '%';
+
+            const lista = document.getElementById('rel-ultimos');
+            lista.innerHTML = '';
+            const recentes = [...usuarios].sort((a, b) => b.id - a.id).slice(0, 5);
+            if (recentes.length === 0) {
+                lista.innerHTML = '<li class="recent-empty">Nenhum usuário ainda.</li>';
+                return;
+            }
+            recentes.forEach(u => {
+                const li = document.createElement('li');
+                const avatar = document.createElement('span');
+                avatar.className = 'recent-avatar';
+                avatar.textContent = (u.name || '?').trim().charAt(0).toUpperCase();
+                const info = document.createElement('div');
+                info.className = 'recent-info';
+                const nome = document.createElement('strong');
+                nome.textContent = u.name;
+                const email = document.createElement('small');
+                email.textContent = u.email;
+                info.append(nome, email);
+                const badge = document.createElement('span');
+                const isAdmin = u.role === 'admin';
+                badge.className = isAdmin ? 'badge-admin' : 'badge-user';
+                badge.textContent = isAdmin ? 'Admin' : 'Cliente';
+                li.append(avatar, info, badge);
+                lista.appendChild(li);
+            });
+        }
+
         async function carregarUsuarios() {
             const tabela = document.getElementById('lista-usuarios');
             if (!tabela) return;
@@ -627,6 +460,7 @@
 
                 // Atualiza o valor real nos dois cards de relatório/visão geral
                 atualizarContadoresUsuarios(usuarios.length);
+                atualizarPainelRelatorio(usuarios);
 
                 if (usuarios.length === 0) {
                     tabela.innerHTML = '<tr><td colspan="5" style="text-align:center;">Nenhum usuário cadastrado.</td></tr>';
@@ -740,6 +574,46 @@
         }
 
 // 2.1 Carrega as cachoeiras cadastradas no banco (mantém os itens fixos já existentes)
+
+        // ---------- Peças dos cards de cadastro ----------
+        function adminMidiaCard(url, icone) {
+            if (url) {
+                const seguro = String(url).replace(/"/g, '%22').replace(/'/g, '%27');
+                return `<div class="item-midia" style="background-image:url('${seguro}')"></div>`;
+            }
+            return `<div class="item-midia sem-foto"><i class="${icone}"></i></div>`;
+        }
+
+        // itens: [{icone, valor}] — os vazios não aparecem
+        function adminInfosCard(itens) {
+            const lis = itens
+                .filter(i => i.valor && String(i.valor).trim())
+                .map(i => `<li title="${String(i.valor).replace(/"/g, '&quot;')}"><i class="${i.icone}"></i><span>${i.valor}</span></li>`)
+                .join('');
+            return lis ? `<ul class="item-info">${lis}</ul>` : '';
+        }
+
+        // Selo curto: pega só o começo do texto (antes de "—", "-", "," ou "(")
+        function adminSeloCard(texto) {
+            if (!texto || !String(texto).trim()) return '';
+            const completo = String(texto).trim();
+            const curto = completo.split(/\s[—–-]\s|,|\(/)[0].trim().slice(0, 28);
+            const t = completo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            let nivel = '';
+            if (/^(leve|facil|baix)/.test(t)) nivel = 'nivel-leve';
+            else if (/^(moder|medi)/.test(t)) nivel = 'nivel-moderado';
+            else if (/^(alt|pesad|dific|extrem|forte)/.test(t)) nivel = 'nivel-alto';
+            else if (/leve|facil/.test(t)) nivel = 'nivel-leve';
+            else if (/moder|medi/.test(t)) nivel = 'nivel-moderado';
+            else if (/dific|pesad|extrem/.test(t)) nivel = 'nivel-alto';
+            return `<span class="item-selo ${nivel}" title="${completo.replace(/"/g, '&quot;')}"><span>${curto}</span></span>`;
+        }
+
+        function adminResumoCard(texto) {
+            const primeiro = ((texto || '').split(/\n\s*\n/)[0] || '').trim();
+            return primeiro ? `<p class="item-resumo">${primeiro}</p>` : '';
+        }
+
         async function carregarCachoeirasAdmin() {
             const container = document.getElementById('lista-cachoeiras');
             if (!container) return;
@@ -758,11 +632,19 @@
                     div.className = 'item item-db';
                     div.id = `cachoeira-${c.id}`;
                     div.innerHTML = `
-                        <h4>${c.titulo}</h4>
-                        <p>• Acesso: ${c.acesso || 'Não informado'}</p>
-                        <div class="action-buttons">
+                        ${adminMidiaCard((c.imagens || [])[0], 'fas fa-water')}
+                        <div class="item-corpo">
+                            <div class="item-topo"><h4>${c.titulo}</h4>${adminSeloCard(c.dificuldade)}</div>
+                            ${adminInfosCard([
+                                { icone: 'fas fa-route', valor: c.extensao_trilha },
+                                { icone: 'far fa-clock', valor: c.tempo_medio },
+                                { icone: 'fas fa-map-marker-alt', valor: c.acesso }
+                            ])}
+                            ${adminResumoCard(c.descricao)}
+                            <div class="action-buttons">
                             <button class="btn-edit" onclick="editarCachoeira(${c.id})"><i class="fas fa-edit"></i> Editar</button>
                             <button class="btn-delete-item" onclick="excluirCachoeira(${c.id}, '${c.titulo.replace(/'/g, "\\'")}')"><i class="fas fa-trash-alt"></i> Excluir</button>
+                        </div>
                         </div>
                     `;
                     container.appendChild(div);
@@ -955,11 +837,19 @@
                     div.className = 'item item-db';
                     div.id = `trilha-${t.id}`;
                     div.innerHTML = `
-                        <h4>${t.titulo}${t.dificuldade ? ` (${t.dificuldade})` : ''}</h4>
-                        <p>${t.distancia ? t.distancia + ' • ' : ''}${t.duracao ? t.duracao + ' de duração.' : ''}</p>
-                        <div class="action-buttons">
+                        ${adminMidiaCard((t.imagens || [])[0], 'fas fa-hiking')}
+                        <div class="item-corpo">
+                            <div class="item-topo"><h4>${t.titulo}</h4>${adminSeloCard(t.dificuldade)}</div>
+                            ${adminInfosCard([
+                                { icone: 'fas fa-route', valor: t.distancia },
+                                { icone: 'far fa-clock', valor: t.duracao },
+                                { icone: 'fas fa-mountain', valor: t.altitude }
+                            ])}
+                            ${adminResumoCard(t.descricao)}
+                            <div class="action-buttons">
                             <button class="btn-edit" onclick="editarTrilha(${t.id})"><i class="fas fa-edit"></i> Editar</button>
                             <button class="btn-delete-item" onclick="excluirTrilha(${t.id}, '${t.titulo.replace(/'/g, "\\'")}')"><i class="fas fa-trash-alt"></i> Excluir</button>
+                        </div>
                         </div>
                     `;
                     container.appendChild(div);
@@ -1162,11 +1052,18 @@
                     div.className = 'item item-db';
                     div.id = `evento-${e.id}`;
                     div.innerHTML = `
-                        <h4>${e.titulo}</h4>
-                        <p>Data: ${e.data_evento || 'A definir'} | Local: ${e.local || 'A definir'}</p>
-                        <div class="action-buttons">
+                        ${adminMidiaCard(e.imagem, 'fas fa-calendar-alt')}
+                        <div class="item-corpo">
+                            <div class="item-topo"><h4>${e.titulo}</h4></div>
+                            ${adminInfosCard([
+                                { icone: 'fas fa-calendar-day', valor: e.data_evento || 'Data a definir' },
+                                { icone: 'fas fa-map-marker-alt', valor: e.local || 'Local a definir' }
+                            ])}
+                            ${adminResumoCard(e.descricao)}
+                            <div class="action-buttons">
                             <button class="btn-edit" onclick="editarEvento(${e.id})"><i class="fas fa-edit"></i> Editar</button>
                             <button class="btn-delete-item" onclick="excluirEvento(${e.id}, '${e.titulo.replace(/'/g, "\\'")}')"><i class="fas fa-trash-alt"></i> Excluir</button>
+                        </div>
                         </div>
                     `;
                     container.appendChild(div);
