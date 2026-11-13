@@ -487,9 +487,14 @@
                         <td>${user.email}</td>
                         <td><span class="${badgeClass}">${roleText}</span></td>
                         <td>
-                            <button class="btn-delete" onclick="deletarUsuario(${user.id}, '${user.name.replace(/'/g, "\\'")}')">
-                                <i class="fas fa-trash-alt"></i> Excluir
-                            </button>
+                            <div class="acoes-usuario">
+                                <button class="btn-delete" onclick="deletarUsuario(${user.id}, '${user.name.replace(/'/g, "\\'")}')">
+                                    <i class="fas fa-trash-alt"></i> Excluir
+                                </button>
+                                ${isAdmin ? '' : `<button class="btn-promover" onclick="promoverUsuario(${user.id}, '${user.name.replace(/'/g, "\\'")}')">
+                                    <i class="fas fa-user-shield"></i> Promover
+                                </button>`}
+                            </div>
                         </td>
                     `;
                     tabela.appendChild(tr);
@@ -497,6 +502,32 @@
             } catch (erro) {
                 console.error("Erro ao carregar lista de usuários:", erro);
                 tabela.innerHTML = '<tr><td colspan="5" style="text-align:center; color:red;">Erro ao carregar usuários. Verifique se o backend está ligado.</td></tr>';
+            }
+        }
+
+                // Promove um usuário comum a administrador (mantém o mesmo e-mail e a mesma senha)
+        async function promoverUsuario(userId, nome) {
+            const confirmar = await confirmarAcao(
+                `Tem certeza que deseja promover "${nome}" a administrador? Essa pessoa passará a ter acesso total ao painel.`,
+                'Promover a administrador',
+                'Promover',
+                'fa-user-shield'
+            );
+            if (!confirmar) return;
+
+            try {
+                const response = await fetch(`${API_URL}/users/${userId}/promover`, { method: 'POST' });
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert(result.message || 'Usuário promovido com sucesso!');
+                    carregarUsuarios();
+                } else {
+                    alert(result.error || 'Erro ao promover o usuário.');
+                }
+            } catch (erro) {
+                console.error('Erro ao promover usuário:', erro);
+                alert('Não foi possível conectar ao servidor.');
             }
         }
 

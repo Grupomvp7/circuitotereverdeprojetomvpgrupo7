@@ -98,6 +98,15 @@ module.exports = (db) => {
         const { id } = req.params;
 
         try {
+            // Não deixa excluir o último administrador (o painel ficaria sem ninguém para entrar)
+            const alvo = await db.get(`SELECT role FROM users WHERE id = ?`, [id]);
+            if (alvo && alvo.role === 'admin') {
+                const contagem = await db.get(`SELECT COUNT(*) AS total FROM users WHERE role = 'admin'`);
+                if (contagem.total <= 1) {
+                    return res.status(400).json({ error: 'Não foi possível excluir: esse é o último administrador do sistema.' });
+                }
+            }
+
             const result = await db.run(`DELETE FROM users WHERE id = ?`, [id]);
 
             if (result.changes === 0) {
@@ -108,6 +117,28 @@ module.exports = (db) => {
         } catch (error) {
             console.error('Erro ao deletar usuário:', error);
             res.status(500).json({ error: 'Erro ao excluir o usuário do banco.' });
+        }
+    });
+
+        // ================= ROTA PARA PROMOVER USUÁRIO A ADMINISTRADOR =================
+    router.post('/users/:id/promover', proteger, async (req, res) => {
+        try {
+            const usuario = await db.get(`SELECT id, name, role FROM users WHERE id = ?`, [req.params.id]);
+
+            if (!usuario) {
+                return res.status(404).json({ error: 'Usuário não encontrado.' });
+            }
+
+            if (usuario.role === 'admin') {
+                return res.status(400).json({ error: 'Esse usuário já é administrador.' });
+            }
+
+            await db.run(`UPDATE users SET role = 'admin' WHERE id = ?`, [req.params.id]);
+
+            res.json({ message: `${usuario.name} foi promovido a administrador com sucesso! Ele já pode entrar pelo Acesso Administrativo.` });
+        } catch (error) {
+            console.error('Erro ao promover usuário:', error);
+            res.status(500).json({ error: 'Erro ao promover o usuário.' });
         }
     });
 

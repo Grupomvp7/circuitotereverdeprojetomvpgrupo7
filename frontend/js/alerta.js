@@ -384,6 +384,56 @@
             btnConfirmar.addEventListener('click', function () { fechar(true); });
             overlay.addEventListener('click', function (e) { if (e.target === overlay) fechar(false); });
             document.addEventListener('keydown', aoTeclar, true);
+                        btnConfirmar.focus();
+        });
+    };
+
+    // Janela de confirmação para ações que não são exclusão (ex: promover usuário).
+    // Use com await: confirmarAcao(mensagem, titulo, textoDoBotao, icone)
+    window.confirmarAcao = function (mensagem, titulo, textoBotao, icone) {
+        return new Promise(function (resolve) {
+            const overlay = document.createElement('div');
+            overlay.className = 'alerta-overlay';
+            overlay.innerHTML = `
+                <div class="alerta-caixa alerta-aviso" role="alertdialog" aria-modal="true">
+                    <div class="alerta-icone"><i class="fas ${icone || 'fa-question-circle'}"></i></div>
+                    <h3 class="alerta-titulo"></h3>
+                    <p class="alerta-mensagem"></p>
+                    <div class="alerta-botoes">
+                        <button type="button" class="alerta-botao alerta-botao-secundario">Cancelar</button>
+                        <button type="button" class="alerta-botao alerta-botao-ok"></button>
+                    </div>
+                </div>
+            `;
+            overlay.querySelector('.alerta-titulo').textContent = titulo || 'Confirmar';
+            overlay.querySelector('.alerta-mensagem').textContent = mensagem;
+            overlay.querySelector('.alerta-botao-ok').textContent = textoBotao || 'Confirmar';
+            document.body.appendChild(overlay);
+
+            const btnCancelar = overlay.querySelector('.alerta-botao-secundario');
+            const btnConfirmar = overlay.querySelector('.alerta-botao-ok');
+            let resolvido = false;
+
+            function fechar(resultado) {
+                if (resolvido) return;
+                resolvido = true;
+                document.removeEventListener('keydown', aoTeclar, true);
+                overlay.classList.add('alerta-saindo');
+                setTimeout(function () {
+                    overlay.remove();
+                    resolve(resultado);
+                }, 180);
+            }
+
+            function aoTeclar(e) {
+                if (e.key === 'Escape') { e.preventDefault(); fechar(false); }
+                if (e.key === 'Enter') { e.preventDefault(); fechar(true); }
+            }
+
+            btnCancelar.addEventListener('click', function () { fechar(false); });
+            btnConfirmar.addEventListener('click', function () { fechar(true); });
+            overlay.addEventListener('click', function (e) { if (e.target === overlay) fechar(false); });
+            document.addEventListener('keydown', aoTeclar, true);
             btnConfirmar.focus();
         });
     };

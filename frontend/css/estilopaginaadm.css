@@ -800,3 +800,24 @@ button, input, textarea { font-family: inherit; }
     .content-section h3 { font-size: 1.35rem; }
     .modal-box { padding: 22px; }
 }
+
+/* Botão "Promover" e agrupamento de ações na tabela de usuários */
+.acoes-usuario { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.btn-promover {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 36px;
+    padding: 0 14px;
+    border: 1px solid var(--card-borda-forte);
+    border-radius: var(--raio-btn);
+    background: #fff;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: .85rem;
+    cursor: pointer;
+    transition: background .2s, color .2s, border-color .2s;
+}
+.btn-promover:hover { background: var(--verde-800); border-color: var(--verde-800); color: #fff; }
