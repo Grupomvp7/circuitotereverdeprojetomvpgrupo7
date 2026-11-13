@@ -315,6 +315,8 @@ Para acessar o sistema de autenticação e administração:
 
 http://localhost:3000/login.html
 
+Login para acessar o painel como Administrador >  login: admin , senha: 12345678
+
 
 Na tela de login, selecione:
 
